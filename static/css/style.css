@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffe4e1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+#cabecalho {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    color: #ff4081;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+/* Container principal */
+#container {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    background-color: white;
+}
+
+/* Telas */
+.tela {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.tela.active {
+    display: flex;
+}
+
+/* Foto - sem limitação de proporção */
+.foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botões de navegação */
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ff4081;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#prev { left: 10px; }
+#next { right: 10px; }
+
+/* Coracoes flutuantes */
+.coracoes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Rodapé fixo dentro do container */
+#rodape {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ff4081;
+    font-weight: bold;
+}
+
+/* Texto final para Darya (abaixo de tudo) */
+#texto-darya {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.titulo-russo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff4081;
+}
+
+.subtexto {
+    font-size: 1rem;
+    color: #ff6f91;
+    margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+    #container {
+        height: 400px;
+    }
+
+    #cabecalho {
+        font-size: 1.5rem;
+    }
+
+    .titulo-russo {
+        font-size: 1.2rem;
+    }
+
+    .subtexto {
+        font-size: 0.9rem;
+    }
+
+    #rodape {
+        font-size: 1rem;
+    }
+}
+
+header {
+    text-align: center;
+}

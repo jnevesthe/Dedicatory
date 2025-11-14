@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirm Deletion — Love Dedicatory</title>
+  <style>
+    :root {
+      --pink: #ff5a8f;
+      --danger: #ff5a5f;
+      --cancel: #b2bec3;
+      --text: #2d3436;
+      --bg: #fff8fb;
+      --shadow: rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffe5ec, #fff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      color: var(--text);
+    }
+
+    header {
+      width: 100%;
+      background: var(--pink);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    .delete-card {
+      background: white;
+      border-radius: 18px;
+      padding: 40px 50px;
+      box-shadow: 0 10px 25px var(--shadow);
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      margin: 50px auto;
+      transition: all 0.3s ease;
+    }
+
+    .delete-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px var(--shadow);
+    }
+
+    h1 {
+      color: var(--danger);
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 14px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .btn-delete {
+      background: var(--danger);
+      color: white;
+    }
+
+    .btn-delete:hover {
+      background: #ff7675;
+      transform: scale(1.02);
+    }
+
+    .btn-cancel {
+      background: var(--cancel);
+      color: var(--text);
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-cancel:hover {
+      background: #dfe6e9;
+      transform: scale(1.02);
+    }
+
+    .banner-container {
+      display: flex;
+      justify-content: center;
+      margin: 15px 0;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
+    }
+
+    @media (max-width: 600px) {
+      .delete-card {
+        padding: 25px 20px;
+        border-radius: 12px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+
+      .btn {
+        font-size: 15px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Love Dedicatory 💌</h1>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+  </header>
+    <!-- Banners Centralizados -->
+    <div class="banner-container">
+      {% include 'includes/SmartLink_1.html' %}
+    </div>
+    <div class="banner-container">
+      {% include 'includes/banner320x50_1.html' %}
+    </div>
+
+  <div class="delete-card">
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to permanently delete this dedicatory?</p>
+
+
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-delete">Yes, Delete</button>
+      <a href="{% url 'screen_dedicatory' object.codigo %}" class="btn btn-cancel">Cancel</a>
+    </form>
+  </div>
+</body>
+</html>

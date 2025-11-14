@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Dedication</title>
+  <style>
+    :root {
+      --pink: #ff5a8f;
+      --bg: #fff8fb;
+      --text: #222;
+      --muted: #666;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--pink);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    main {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--pink);
+      margin-bottom: 25px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: var(--pink);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #e14a78;
+    }
+
+    .error {
+      margin-top: 20px;
+      color: #e14a78;
+      font-weight: 500;
+    }
+
+    .banner-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        margin: 30px 10px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Love Dedicatory 💌</h1>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Find Your Dedication</h1>
+
+    <!-- Banner Centralizado -->
+  <center>
+    <div class="banner-container">
+      {% include 'includes/SmartLink_1.html' %}
+    </div> 
+  </center>
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="codigo" placeholder="Enter dedication code" required>
+      <br>
+      <button type="submit">Search</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+  </main>
+</body>
+</html>
