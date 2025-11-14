@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You - {{ dedicatory.nome }}</title>
+<style>
+:root {
+  --pink: #ff4d88;
+  --bg-gradient: linear-gradient(180deg, #fff5f8 0%, #ffeef7 100%);
+  --text: #2c2c2c;
+  --shadow: rgba(0,0,0,0.15);
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  font-size: 2.2em;
+  padding: 30px 10px;
+  color: var(--pink);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255,77,136,0.3);
+  animation: fadeIn 1.2s ease;
+}
+
+#container {
+  position: relative;
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.tela {
+  display: none;
+  transition: opacity 0.6s ease;
+}
+.tela.active {
+  display: block;
+  animation: fadeIn 1s ease;
+}
+
+img.foto {
+  width: 95%;
+  max-width: 550px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px var(--shadow);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+img.foto:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(255,77,136,0.3);
+}
+
+#prev, #next {
+  background: var(--pink);
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  padding: 14px 28px;
+  margin: 25px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255,77,136,0.4);
+  transition: transform 0.3s, background 0.3s;
+}
+#prev:hover, #next:hover {
+  transform: scale(1.12);
+  background: #ff2f6f;
+}
+
+#rodape {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: var(--pink);
+  font-weight: 500;
+  text-shadow: 0 0 5px rgba(255,77,136,0.2);
+  animation: fadeIn 1.5s ease;
+}
+
+#texto-darya {
+  max-width: 700px;
+  margin: 35px auto;
+  text-align: center;
+  padding: 25px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(255,77,136,0.15);
+  backdrop-filter: blur(6px);
+  animation: fadeInUp 1s ease;
+}
+
+.titulo-russo {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--pink);
+  margin-top: 5px;
+}
+
+.subtexto {
+  font-size: 1.1em;
+  margin-top: 10px;
+  color: #444;
+  line-height: 1.6em;
+}
+
+.code-box {
+  text-align: center;
+  margin-top: 15px;
+  color: #ff3366;
+  font-size: 1em;
+  font-weight: 500;
+  animation: fadeIn 1s ease;
+}
+
+.botao {
+  display: inline-block;
+  margin: 20px 10px;
+  padding: 14px 30px;
+  background: var(--pink);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(255,77,136,0.3);
+  transition: transform 0.3s, background 0.3s;
+}
+.botao:hover {
+  transform: scale(1.07);
+  background: #ff1f5f;
+}
+
+.coracao {
+  position: absolute;
+  font-size: 1.8em;
+  animation: subir 5s linear infinite;
+  opacity: 0.75;
+  color: rgba(255,77,136,0.8);
+}
+
+@keyframes subir {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
+  50% { transform: translateY(-180px) scale(1); opacity: 1; }
+  100% { transform: translateY(-350px) scale(0.8); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.98);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 600px) {
+  img.foto { max-width: 90%; }
+  #prev, #next { padding: 10px 20px; font-size: 1.2em; }
+}
+</style>
+</head>
+<body>
+<header>For You, {{ dedicatory.nome }} ❤️</header>
+
+<div id="container">
+  {% for foto in fotos %}
+  <div class="tela {% if forloop.first %}active{% endif %}">
+    <img src="{{ foto }}" alt="Photo {{ forloop.counter }}" class="foto">
+  </div>
+  {% endfor %}
+  
+  <button id="prev">⬅️</button>
+  <button id="next">➡️</button>
+  <div id="rodape">From {{ dedicatory.teu }} with love ❤️</div>
+</div>
+  
+<div class="banner-container">
+      {% include 'includes/SmartLink_1.html' %}
+</div> 
+
+<div id="texto-darya">
+  <div class="titulo-russo">{{ dedicatory.nome }}</div>
+  <div class="subtexto">{{ dedicatory.mensagem }}</div>
+</div>
+
+<!-- Dedication code outside the white box -->
+<center>
+   <div>
+  Dedication Code: <strong>{{ dedicatory.codigo }}</strong>
+   </div>
+</center>
+
+<div style="text-align:center;">
+  <a href="{% url 'confirm_edit' dedicatory.codigo %}" class="botao">Edit</a>
+  <a href="{% url 'confirm_delete' dedicatory.codigo %}" class="botao">Delete</a>
+  <a href="{% url 'home' %}" class="botao" style="background: gray;">Back</a>
+</div>
+
+<script>
+const screens = document.querySelectorAll('.tela');
+let index = 0;
+
+document.getElementById('next').onclick = () => {
+  screens[index].classList.remove('active');
+  index = (index + 1) % screens.length;
+  screens[index].classList.add('active');
+};
+
+document.getElementById('prev').onclick = () => {
+  screens[index].classList.remove('active');
+  index = (index - 1 + screens.length) % screens.length;
+  screens[index].classList.add('active');
+};
+
+// Floating hearts animation 💕
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('coracao');
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+  heart.innerHTML = '❤️';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 900);
+</script>
+</body>
+</html>
