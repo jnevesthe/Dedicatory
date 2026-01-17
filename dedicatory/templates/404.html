@@ -1,46 +1,149 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Not Found - Love Dedicatory</title>
+  <title>404 - Page Not Found — Love Dedicatory</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --primary: #ff477e;
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text: #2d2d2d;
+      --shadow: 0 15px 35px rgba(255, 71, 126, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: "Poppins", Arial, sans-serif;
-      background: #fff8fb;
-      color: #222;
+      font-family: "Outfit", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text);
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      flex-direction: column;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .error-container {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 50px 30px;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      max-width: 500px;
+      width: 100%;
       text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      animation: fadeInUp 0.8s ease-out;
     }
-    h1 {
-      font-size: 4rem;
-      color: #ff5a8f;
+
+    .error-code {
+      font-family: "Playfair Display", serif;
+      font-size: 6rem;
+      color: var(--primary);
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 10px;
+      animation: float 3s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    .error-icon {
+      font-size: 3rem;
       margin-bottom: 20px;
+      display: block;
     }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #444;
+    }
+
     p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 35px;
+      line-height: 1.6;
     }
-    a {
+
+    .btn-home {
+      display: inline-block;
       text-decoration: none;
-      background: #ff5a8f;
+      background: var(--primary);
       color: white;
-      padding: 12px 25px;
-      border-radius: 10px;
-      font-weight: 600;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
     }
-    a:hover {
-      background: #ff3b7a;
+
+    .btn-home:hover {
+      transform: scale(1.05) translateY(-2px);
+      background: #d62f63;
+      box-shadow: 0 8px 20px rgba(255, 71, 126, 0.4);
+    }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @media (max-width: 480px) {
+      .error-code { font-size: 4.5rem; }
+      .error-container { padding: 40px 20px; }
     }
   </style>
 </head>
 <body>
-  <h1>404</h1>
-  <p>Oops! The page you are looking for does not exist.</p>
-  <a href="{% url 'home' %}">Go Back Home</a>
+
+  <div class="error-container">
+    <span class="error-icon">💔</span>
+    <h1 class="error-code">404</h1>
+    <h2>Lost in love?</h2>
+    <p>The page you are looking for seems to have disappeared, just like a letter lost in the wind.</p>
+    
+    <a href="{% url 'home' %}" class="btn-home">Back to Home</a>
+  </div>
+
+  <script>
+    function createBgHeart() {
+      const heart = document.createElement('div');
+      heart.innerHTML = '❤️';
+      heart.style.position = 'fixed';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '110vh';
+      heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+      heart.style.opacity = '0.2';
+      heart.style.transition = 'transform 5s linear, opacity 5s';
+      heart.style.pointerEvents = 'none';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.style.transform = 'translateY(-120vh) rotate(360deg)';
+        heart.style.opacity = '0';
+      }, 100);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createBgHeart, 1000);
+  </script>
+
 </body>
 </html>
