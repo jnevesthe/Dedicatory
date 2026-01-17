@@ -254,6 +254,34 @@ img.foto {
   <div class="code-display">
     Dedication Code: <strong>{{ dedicatory.codigo }}</strong>
   </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <div class="code-display">
+        Dedication Code: <strong>{{ dedicatory.codigo }}</strong>
+    </div>
+
+    <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+        <p style="margin-bottom: 8px;">Direct Link:</p>
+        <div style="display: inline-flex; align-items: center; background: #fff; padding: 10px 15px; border-radius: 12px; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <span id="share-link" style="color: var(--primary); font-weight: 500; margin-right: 10px;">
+                https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/
+            </span>
+            <button onclick="copyLink()" style="background: var(--primary); color: white; border: none; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">
+                Copy
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+function copyLink() {
+    const linkText = "https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/";
+    navigator.clipboard.writeText(linkText).then(() => {
+        alert("Link copied to clipboard! 💌");
+    });
+}
+</script>
+  
 </div>
 
 <div class="action-area">
