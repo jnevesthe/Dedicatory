@@ -1,66 +1,169 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Love Dedicatory</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --pink: #ff5a8f;
-      --bg: #fff8fb;
-      --text: #222;
-      --muted: #666;
+      --primary: #ff477e;
+      --primary-dark: #d62f63;
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text-main: #2d2d2d;
+      --text-muted: #555;
+      --card-bg: #ffffff;
+      --shadow: 0 15px 35px -5px rgba(255, 71, 126, 0.15);
+      --radius: 20px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: "Poppins", Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
+      font-family: "Outfit", sans-serif;
+      color: var(--text-main);
+      background: var(--bg-gradient);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Cabeçalho Glassmorphism */
     header {
-      background: var(--pink);
-      color: white;
-      padding: 20px;
-      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 71, 126, 0.1);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
     nav a {
-      color: white;
-      margin: 0 10px;
+      color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
     }
-    nav a:hover { text-decoration: underline; }
 
-    main {
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 25px;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    nav a:hover { color: var(--primary); }
+
+    /* Layout Principal */
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    h1 {
-      color: var(--pink);
-      margin-bottom: 25px;
+
+    /* Cartão de Privacidade */
+    .privacy-card {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 100%;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .privacy-card h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.2rem;
+      color: var(--primary);
       text-align: center;
+      margin-bottom: 30px;
     }
-    p {
-      color: var(--muted);
-      font-size: 1.05em;
-      margin-bottom: 15px;
-      line-height: 1.6;
+
+    .privacy-card p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-left: 20px;
     }
+
+    /* Detalhe de bullet decorativo */
+    .privacy-card p::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+
+    /* Link de E-mail Estilizado */
+    .contact-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid rgba(255, 71, 126, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      border-bottom-color: var(--primary);
+      background: rgba(255, 71, 126, 0.05);
+    }
+
+    /* Áreas de Banner */
+    .banner-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 15px 0;
+    }
+
     footer {
       text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      padding: 20px;
-      border-top: 1px solid #eee;
-      margin-top: 40px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 30px 20px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      margin-top: auto;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 10px; }
+      nav { justify-content: center; }
+      .privacy-card { padding: 30px 20px; }
+      .privacy-card h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Love Dedicatory 💌</h1>
     <nav>
@@ -72,21 +175,35 @@
     </nav>
   </header>
 
-  
-<div class="banner-container">
-      {% include 'includes/SmartLink_1.html' %}
-</div> 
+  <div class="container">
 
-  <main>
-    <h1>Privacy Policy</h1>
-    <p>We value your privacy and are committed to protecting your personal information.</p>
-    <p>All data shared within Love Dedicatory is used solely to provide our service and improve your experience.</p>
-    <p>We do not share, sell, or distribute your data to third parties without your consent.</p>
-    <p>For questions about privacy, feel free to contact us at <a href="mailto:love.dedicatory@gmail.com" class="contact-link">love.dedicatory@gmail.com</a>.</p>
-  </main>
+    <div class="banner-wrapper">
+       {% include 'includes/SmartLink_1.html' %}
+    </div> 
+
+    <main class="privacy-card">
+      <h1>Privacy Policy</h1>
+      
+      <p>We value your privacy and are deeply committed to protecting your personal information.</p>
+      
+      <p>All data shared within <strong>Love Dedicatory</strong> is used solely to provide our service and improve your dedicated experience.</p>
+      
+      <p>We do not share, sell, or distribute your data to third parties. Your trust is our most valuable asset.</p>
+      
+      <p>For questions about your data or privacy concerns, feel free to contact us at 
+        <a href="mailto:love.dedicatory@gmail.com" class="contact-link">love.dedicatory@gmail.com</a>.
+      </p>
+    </main>
+
+    <div class="banner-wrapper">
+       {% include 'includes/banner320x50_1.html' %}
+    </div> 
+
+  </div>
 
   <footer>
     © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
+
 </body>
 </html>
