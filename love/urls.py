@@ -37,4 +37,4 @@ if settings.DEBUG:
 from django.conf.urls import handler404
 from dedicatory import views
 
-handler404 = views.custom_404_redirect
+handler404 = 'dedicatory.views.costum_404_view'  # Opcional, se quiser custom handler
