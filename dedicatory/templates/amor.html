@@ -1,239 +1,299 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You - {{ dedicatory.nome }}</title>
+<title>A Special Gift for {{ dedicatory.nome }}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
-  --pink: #ff4d88;
-  --bg-gradient: linear-gradient(180deg, #fff5f8 0%, #ffeef7 100%);
-  --text: #2c2c2c;
-  --shadow: rgba(0,0,0,0.15);
+  --primary: #ff4d88;
+  --secondary: #ff85a1;
+  --bg-gradient: linear-gradient(135deg, #fff5f8 0%, #ffeef7 100%);
+  --white: rgba(255, 255, 255, 0.9);
+  --glass: rgba(255, 255, 255, 0.7);
+  --shadow: 0 15px 35px rgba(255, 77, 136, 0.2);
 }
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
   background: var(--bg-gradient);
-  color: var(--text);
+  color: #333;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 header {
   text-align: center;
-  font-size: 2.2em;
-  padding: 30px 10px;
-  color: var(--pink);
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(255,77,136,0.3);
-  animation: fadeIn 1.2s ease;
+  padding: 40px 20px;
+  animation: fadeInDown 1.5s ease;
+}
+
+header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  color: var(--primary);
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
 }
 
 #container {
   position: relative;
-  text-align: center;
-  max-width: 750px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.tela {
+/* Estilo Polaróide para Fotos */
+.photo-frame {
   display: none;
-  transition: opacity 0.6s ease;
+  background: white;
+  padding: 15px 15px 60px 15px;
+  box-shadow: var(--shadow);
+  border-radius: 4px;
+  transform: rotate(-2deg);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.tela.active {
+
+.photo-frame.active {
   display: block;
-  animation: fadeIn 1s ease;
+  animation: photoIn 0.8s ease forwards;
 }
+
+.photo-frame:nth-child(even) { transform: rotate(2deg); }
 
 img.foto {
-  width: 95%;
-  max-width: 550px;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px var(--shadow);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-img.foto:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 40px rgba(255,77,136,0.3);
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border: 1px solid #eee;
 }
 
-#prev, #next {
-  background: var(--pink);
-  border: none;
-  color: white;
-  font-size: 1.5em;
-  padding: 14px 28px;
-  margin: 25px 12px;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(255,77,136,0.4);
-  transition: transform 0.3s, background 0.3s;
+/* Navegação Flutuante */
+.nav-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  position: absolute;
+  top: 45%;
+  z-index: 10;
+  pointer-events: none;
 }
-#prev:hover, #next:hover {
-  transform: scale(1.12);
-  background: #ff2f6f;
+
+.nav-btn {
+  background: var(--white);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.1);
 }
 
 #rodape {
-  margin-top: 20px;
-  font-size: 1.2em;
-  color: var(--pink);
-  font-weight: 500;
-  text-shadow: 0 0 5px rgba(255,77,136,0.2);
-  animation: fadeIn 1.5s ease;
-}
-
-#texto-darya {
-  max-width: 700px;
-  margin: 35px auto;
+  margin-top: 30px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: var(--primary);
   text-align: center;
-  padding: 25px 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(255,77,136,0.15);
-  backdrop-filter: blur(6px);
-  animation: fadeInUp 1s ease;
 }
 
-.titulo-russo {
-  font-size: 1.5em;
-  font-weight: 700;
-  color: var(--pink);
-  margin-top: 5px;
+/* Cartão de Mensagem Glassmorphism */
+#message-card {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 40px 30px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.subtexto {
-  font-size: 1.1em;
-  margin-top: 10px;
+.message-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.message-body {
+  font-size: 1.2rem;
+  line-height: 1.8;
   color: #444;
-  line-height: 1.6em;
+  font-weight: 300;
 }
 
-.code-box {
-  text-align: center;
-  margin-top: 15px;
-  color: #ff3366;
-  font-size: 1em;
-  font-weight: 500;
-  animation: fadeIn 1s ease;
-}
-
-.botao {
-  display: inline-block;
-  margin: 20px 10px;
-  padding: 14px 30px;
-  background: var(--pink);
-  color: white;
-  font-weight: 600;
-  border: none;
+/* Badge do Código */
+.code-display {
+  background: rgba(255, 77, 136, 0.1);
+  padding: 8px 20px;
   border-radius: 50px;
-  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--primary-dark);
+  margin: 20px auto;
+  display: inline-block;
+  border: 1px dashed var(--primary);
+}
+
+/* Botões de Ação */
+.action-area {
+  padding: 40px 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 50px;
   text-decoration: none;
-  box-shadow: 0 5px 15px rgba(255,77,136,0.3);
-  transition: transform 0.3s, background 0.3s;
-}
-.botao:hover {
-  transform: scale(1.07);
-  background: #ff1f5f;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
 }
 
-.coracao {
-  position: absolute;
-  font-size: 1.8em;
-  animation: subir 5s linear infinite;
-  opacity: 0.75;
-  color: rgba(255,77,136,0.8);
+.btn-edit { background: #fff; color: var(--primary); border: 1px solid var(--primary); }
+.btn-delete { background: #ffe0e0; color: #e63946; }
+.btn-home { background: #888; color: white; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+/* Animações */
+@keyframes photoIn {
+  from { opacity: 0; transform: scale(0.8) translateY(50px) rotate(10deg); }
+  to { opacity: 1; transform: scale(1) translateY(0) rotate(-2deg); }
 }
 
-@keyframes subir {
-  0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
-  50% { transform: translateY(-180px) scale(1); opacity: 1; }
-  100% { transform: translateY(-350px) scale(0.8); opacity: 0; }
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.98);}
-  to {opacity: 1; transform: scale(1);}
+.heart-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  animation: floatUp linear forwards;
 }
 
-@keyframes fadeInUp {
-  from {opacity: 0; transform: translateY(30px);}
-  to {opacity: 1; transform: translateY(0);}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
+  100% { transform: translateY(-100vh) scale(1.5) rotate(360deg); opacity: 0; }
 }
 
 @media (max-width: 600px) {
-  img.foto { max-width: 90%; }
-  #prev, #next { padding: 10px 20px; font-size: 1.2em; }
+  header h1 { font-size: 2.5rem; }
+  .photo-frame { padding: 10px 10px 45px 10px; width: 85%; }
+  .nav-controls { padding: 0 5px; }
+  .nav-btn { width: 40px; height: 40px; }
 }
 </style>
 </head>
 <body>
-<header>For You, {{ dedicatory.nome }} ❤️</header>
+
+<header>
+  <h1>For You, {{ dedicatory.nome }} ❤️</h1>
+</header>
 
 <div id="container">
+  <div class="nav-controls">
+    <button class="nav-btn" id="prev">❮</button>
+    <button class="nav-btn" id="next">❯</button>
+  </div>
+
   {% for foto in fotos %}
-  <div class="tela {% if forloop.first %}active{% endif %}">
-    <img src="{{ foto }}" alt="Photo {{ forloop.counter }}" class="foto">
+  <div class="photo-frame {% if forloop.first %}active{% endif %}">
+    <img src="{{ foto }}" alt="Memory" class="foto">
   </div>
   {% endfor %}
   
-  <button id="prev">⬅️</button>
-  <button id="next">➡️</button>
-  <div id="rodape">From {{ dedicatory.teu }} with love ❤️</div>
+  <div id="rodape">From {{ dedicatory.teu }} with love</div>
 </div>
+
+<div class="banner-container" style="text-align: center; margin: 20px 0;">
+  {% include 'includes/SmartLink_1.html' %}
+</div>
+
+<div id="message-card">
+  <div class="message-title">A special message...</div>
+  <div class="message-body">
+    {{ dedicatory.mensagem|linebreaks }}
+  </div>
   
-<div class="banner-container">
-      {% include 'includes/SmartLink_1.html' %}
-</div> 
-
-<div id="texto-darya">
-  <div class="titulo-russo">{{ dedicatory.nome }}</div>
-  <div class="subtexto">{{ dedicatory.mensagem }}</div>
+  <div class="code-display">
+    Dedication Code: <strong>{{ dedicatory.codigo }}</strong>
+  </div>
 </div>
 
-<!-- Dedication code outside the white box -->
-<center>
-   <div>
-  Dedication Code: <strong>{{ dedicatory.codigo }}</strong>
-   </div>
-</center>
-
-<div style="text-align:center;">
-  <a href="{% url 'confirm_edit' dedicatory.codigo %}" class="botao">Edit</a>
-  <a href="{% url 'confirm_delete' dedicatory.codigo %}" class="botao">Delete</a>
-  <a href="{% url 'home' %}" class="botao" style="background: gray;">Back</a>
+<div class="action-area">
+  <a href="{% url 'confirm_edit' dedicatory.codigo %}" class="btn btn-edit">Edit</a>
+  <a href="{% url 'confirm_delete' dedicatory.codigo %}" class="btn btn-delete">Delete</a>
+  <a href="{% url 'home' %}" class="btn btn-home">Back to Home</a>
 </div>
 
 <script>
-const screens = document.querySelectorAll('.tela');
-let index = 0;
+const frames = document.querySelectorAll('.photo-frame');
+let currentIndex = 0;
 
-document.getElementById('next').onclick = () => {
-  screens[index].classList.remove('active');
-  index = (index + 1) % screens.length;
-  screens[index].classList.add('active');
-};
+function updateGallery(newIndex) {
+  frames[currentIndex].classList.remove('active');
+  currentIndex = (newIndex + frames.length) % frames.length;
+  frames[currentIndex].classList.add('active');
+}
 
-document.getElementById('prev').onclick = () => {
-  screens[index].classList.remove('active');
-  index = (index - 1 + screens.length) % screens.length;
-  screens[index].classList.add('active');
-};
+document.getElementById('next').onclick = () => updateGallery(currentIndex + 1);
+document.getElementById('prev').onclick = () => updateGallery(currentIndex - 1);
 
-// Floating hearts animation 💕
+// Efeito de partículas de coração melhorado
+const hearts = ['❤️', '💖', '✨', '🌸', '💕'];
 function createHeart() {
   const heart = document.createElement('div');
-  heart.classList.add('coracao');
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-  heart.innerHTML = '❤️';
+  heart.className = 'heart-particle';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.top = '100vh';
+  heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+  heart.style.duration = (Math.random() * 3 + 4) + 's';
+  heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+  
+  heart.style.animation = `floatUp ${heart.style.duration} linear forwards`;
+  
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 6000);
 }
-setInterval(createHeart, 900);
+
+setInterval(createHeart, 600);
 </script>
 </body>
 </html>
+    
