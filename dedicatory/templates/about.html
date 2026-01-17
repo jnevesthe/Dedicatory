@@ -1,66 +1,190 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Love Dedicatory</title>
+  <title>About Us — Love Dedicatory</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --pink: #ff5a8f;
-      --bg: #fff8fb;
-      --text: #222;
-      --muted: #666;
+      --primary: #ff477e;
+      --primary-dark: #d62f63;
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text-main: #2d2d2d;
+      --text-muted: #555;
+      --card-bg: #ffffff;
+      --shadow: 0 15px 35px -5px rgba(255, 71, 126, 0.15);
+      --radius: 20px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: "Poppins", Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
+      font-family: "Outfit", sans-serif;
+      color: var(--text-main);
+      background: var(--bg-gradient);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Cabeçalho Glassmorphism */
     header {
-      background: var(--pink);
-      color: white;
-      padding: 20px;
-      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 71, 126, 0.1);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
     nav a {
-      color: white;
-      margin: 0 10px;
+      color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
     }
-    nav a:hover { text-decoration: underline; }
 
-    main {
-      max-width: 650px;
-      margin: 60px auto;
-      padding: 25px;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      text-align: center;
+    nav a:hover {
+      color: var(--primary);
     }
-    h1 {
-      color: var(--pink);
+
+    /* Container Principal */
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Estilo do Card Central */
+    .about-card {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      margin: 20px 0;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .about-card h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.5rem;
+      color: var(--primary);
       margin-bottom: 25px;
     }
-    p {
-      color: var(--muted);
-      font-size: 1.1em;
-      margin-bottom: 15px;
-      line-height: 1.6;
+
+    .about-content {
+      font-size: 1.05rem;
+      color: var(--text-muted);
     }
+
+    .about-content p {
+      margin-bottom: 20px;
+    }
+
+    /* Destaque para o nome */
+    .highlight-name {
+      color: var(--text-main);
+      font-weight: 700;
+      background: linear-gradient(120deg, rgba(255, 71, 126, 0.1) 0%, rgba(255, 71, 126, 0.1) 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 40%;
+      background-position: 0 85%;
+      padding: 0 5px;
+    }
+
+    /* Badge de Aviso */
+    .warning-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff0f3;
+      color: #d62f63;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 20px;
+      border: 1px solid #ffccd5;
+    }
+
+    .warning-badge span { margin-right: 8px; font-size: 1.1rem; }
+
+    /* Área de Banners */
+    .banner-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
     footer {
       text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      padding: 20px;
-      border-top: 1px solid #eee;
-      margin-top: 40px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 30px 20px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      margin-top: auto;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      nav {
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .about-card {
+        padding: 30px 20px;
+      }
+
+      .about-card h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Love Dedicatory 💌</h1>
     <nav>
@@ -72,27 +196,38 @@
     </nav>
   </header>
 
-  
-<div class="banner-container">
-      {% include 'includes/SmartLink_1.html' %}
-</div> 
+  <div class="container">
+    
+    <div class="banner-wrapper">
+       {% include 'includes/SmartLink_1.html' %}
+    </div> 
 
+    <main class="about-card">
+      <h1>About Us</h1>
+      
+      <div class="about-content">
+        <p><strong>Love Dedicatory</strong> is a heartfelt project created with a single purpose: to connect people through raw emotions and beautiful messages of love.</p>
+        
+        <p>Our goal is to provide a safe, charming space where you can dedicate messages that truly express your feelings — whether it's a romantic declaration, a hug for a best friend, or simply an affectionate note to family.</p>
+        
+        <p>Developed with passion by <span class="highlight-name">Josemar Neves</span>, this project blends modern technology and human emotion into one seamless experience. 💌</p>
+      </div>
 
-  <main>
-    <h1>About Us</h1>
-    <p><strong>Love Dedicatory</strong> is a heartfelt project created to connect people through emotions and messages of love.</p>
-    <p>Our goal is to create a place where you can dedicate messages that truly express your feelings — whether romantic, friendly, or simply affectionate.</p>
-    <p>Developed with passion by <strong>Josemar Neves</strong>, this project blends technology and emotion into one beautiful experience. 💌</p>
-     <p style="color: red;">After three (3) days, the Dedications will be automatically deleted.</p>
+      <div class="warning-badge">
+        <span>⚠️</span> Note: All dedications are automatically deleted after 3 days.
+      </div>
+    </main>
 
-  </main>
+    <div class="banner-wrapper">
+       {% include 'includes/banner320x50_1.html' %}
+    </div> 
 
-<div class="banner-container">
-      {% include 'includes/banner320x50_1.html' %}
-</div> 
-   
+  </div>
+
   <footer>
     © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
+
 </body>
-</html>
+  </html>
+  
