@@ -1,76 +1,161 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Love Dedicatory</title>
+  <title>Contact Us — Love Dedicatory</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --pink: #ff5a8f;
-      --bg: #fff8fb;
-      --text: #222;
-      --muted: #666;
+      --primary: #ff477e;
+      --primary-dark: #d62f63;
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text-main: #2d2d2d;
+      --text-muted: #666;
+      --white: #ffffff;
+      --shadow: 0 10px 30px -10px rgba(255, 71, 126, 0.3);
+      --radius: 24px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: "Poppins", Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
+      font-family: "Outfit", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Cabeçalho Glassmorphism */
     header {
-      background: var(--pink);
-      color: white;
-      padding: 20px;
-      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 71, 126, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-style: italic;
+    }
+
     nav a {
-      color: white;
-      margin: 0 10px;
+      color: var(--text-muted);
+      margin-left: 15px;
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.3s;
     }
-    nav a:hover { text-decoration: underline; }
+    nav a:hover { color: var(--primary); }
 
-    main {
+    /* Layout Principal */
+    .container {
       max-width: 600px;
       margin: 60px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 0 20px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .contact-card {
+      background: var(--white);
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
-    h1 {
-      color: var(--pink);
-      margin-bottom: 25px;
+
+    .contact-card h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.5rem;
+      color: var(--text-main);
+      margin-bottom: 10px;
     }
-    p {
-      color: var(--muted);
-      font-size: 1.1em;
-      margin-bottom: 15px;
+
+    .subtitle {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-size: 1.1rem;
     }
-    a.contact-link {
-      color: var(--pink);
+
+    /* Estilo dos Links de Contato */
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .method-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 16px;
       text-decoration: none;
+      color: var(--text-main);
       font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
     }
-    a.contact-link:hover { text-decoration: underline; }
+
+    .method-item:hover {
+      background: #fff;
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 71, 126, 0.1);
+      color: var(--primary);
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      margin-right: 15px;
+    }
+
+    .footer-note {
+      margin-top: 40px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
 
     footer {
       text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      padding: 20px;
-      border-top: 1px solid #eee;
-      margin-top: 40px;
+      padding: 30px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
     }
 
     @media (max-width: 600px) {
-      main { margin: 30px 10px; padding: 15px; }
+      .container { margin: 30px auto; }
+      .contact-card { padding: 30px 20px; }
+      header { flex-direction: column; gap: 10px; }
+      nav { margin-bottom: 5px; }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Love Dedicatory 💌</h1>
     <nav>
@@ -82,15 +167,30 @@
     </nav>
   </header>
 
-  <main>
-    <h1>Contact Us</h1>
-    <p>📧 Email: <a href="mailto:love.dedicatory@gmail.com" class="contact-link">love.dedicatory@gmail.com</a></p>
-    <p>📸 Instagram: <a href="https://www.instagram.com/love_dedicatory/" target="_blank" class="contact-link">@love_dedicatory</a></p>
-    <p>Feel free to reach out to us anytime! 💌</p>
-  </main>
+  <div class="container">
+    <main class="contact-card">
+      <h1>Contact Us</h1>
+      <p class="subtitle">We'd love to hear from you! Reach out through any of these channels.</p>
+
+      <div class="contact-methods">
+        <a href="mailto:love.dedicatory@gmail.com" class="method-item">
+          <span class="icon">📧</span>
+          love.dedicatory@gmail.com
+        </a>
+
+        <a href="https://www.instagram.com/love_dedicatory/" target="_blank" class="method-item">
+          <span class="icon">📸</span>
+          @love_dedicatory
+        </a>
+      </div>
+
+      <p class="footer-note">Feel free to reach out anytime! 💌</p>
+    </main>
+  </div>
 
   <footer>
     © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
+
 </body>
 </html>
