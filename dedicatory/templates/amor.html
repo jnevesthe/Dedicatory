@@ -256,27 +256,48 @@ img.foto {
         Dedication Code: <strong>{{ dedicatory.codigo }}</strong>
     </div>
 
-    <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
-        <p style="margin-bottom: 8px;">Direct Link:</p>
-        <div style="display: inline-flex; align-items: center; background: #fff; padding: 10px 15px; border-radius: 12px; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <span id="share-link" style="color: var(--primary); font-weight: 500; margin-right: 10px;">
-                https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/
-            </span>
-            <button onclick="copyLink()" style="background: var(--primary); color: white; border: none; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">
-                Copy
-            </button>
-        </div>
+    <div style="margin-top: 15px; font-size: 0.9rem; color: #666; width: 100%;">
+    <p style="margin-bottom: 8px;">Direct Link:</p>
+    <div style="
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+        background: #fff; 
+        padding: 10px 15px; 
+        border-radius: 12px; 
+        border: 1px solid #ddd; 
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        max-width: 100%; /* Garante que não ultrapasse o pai */
+        gap: 10px;
+    ">
+        <span id="share-link" style="
+            color: var(--primary); 
+            font-weight: 500; 
+            white-space: nowrap;      /* Impede quebra de linha */
+            overflow: hidden;         /* Esconde o que sobrar */
+            text-overflow: ellipsis;  /* Adiciona "..." no final */
+            flex: 1;                  /* Ocupa o espaço disponível */
+            text-align: left;
+            font-size: 0.85rem;
+        ">
+            https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/
+        </span>
+        <button onclick="copyLink()" style="
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 8px 15px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 0.8rem; 
+            font-weight: 600;
+            flex-shrink: 0; /* Impede o botão de amassar */
+        ">
+            Copy
+        </button>
     </div>
-</div>
-
-<script>
-function copyLink() {
-    const linkText = "https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/";
-    navigator.clipboard.writeText(linkText).then(() => {
-        alert("Link copied to clipboard! 💌");
-    });
-}
-</script>
+    </div>
+    
   
 </div>
 
