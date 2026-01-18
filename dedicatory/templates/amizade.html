@@ -1,241 +1,392 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Friendship - {{ dedicatory.nome }}</title>
+<title>Friendship — {{ dedicatory.nome }}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
 <style>
 :root {
-  --blue: #3399ff;
-  --bg-gradient: linear-gradient(180deg, #e3f2ff 0%, #a3d8ff 100%);
-  --text: #2c2c2c;
-  --shadow: rgba(0,0,0,0.15);
+  --blue-primary: #00a8ff;
+  --blue-dark: #0077cc;
+  --bg-gradient: linear-gradient(135deg, #e3f2ff 0%, #ffffff 100%);
+  --glass: rgba(255, 255, 255, 0.7);
+  --shadow: 0 15px 35px rgba(0, 168, 255, 0.15);
 }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  margin: 0;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Outfit", sans-serif;
   background: var(--bg-gradient);
-  color: var(--text);
+  color: #2c2c2c;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Header Animado */
 header {
   text-align: center;
-  font-size: 2.2em;
-  padding: 30px 10px;
-  color: var(--blue);
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(51,153,255,0.3);
-  animation: fadeIn 1.2s ease;
+  padding: 40px 20px;
+  animation: fadeInDown 1s ease;
 }
 
-#container {
+header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: var(--blue-dark);
+  text-shadow: 2px 2px 10px rgba(0, 168, 255, 0.2);
+}
+
+/* Galeria de Fotos */
+#gallery-container {
   position: relative;
-  text-align: center;
-  max-width: 750px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 450px;
 }
 
-.tela {
+.photo-frame {
   display: none;
-  transition: opacity 0.6s ease;
+  background: white;
+  padding: 12px 12px 50px 12px;
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+  transform: rotate(-1deg);
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.tela.active {
+
+.photo-frame.active {
   display: block;
-  animation: fadeIn 1s ease;
+  animation: slideIn 0.8s ease forwards;
+}
+
+.photo-frame:hover {
+  transform: scale(1.02) rotate(0deg);
 }
 
 img.foto {
-  width: 95%;
-  max-width: 550px;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px var(--shadow);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-img.foto:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 40px rgba(51,153,255,0.3);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
 }
 
-#prev, #next {
-  background: var(--blue);
+/* Controles da Galeria */
+.nav-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.nav-btn {
+  background: white;
   border: none;
-  color: white;
-  font-size: 1.5em;
-  padding: 14px 28px;
-  margin: 25px 12px;
-  border-radius: 50px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(51,153,255,0.4);
-  transition: transform 0.3s, background 0.3s;
-}
-#prev:hover, #next:hover {
-  transform: scale(1.12);
-  background: #0077cc;
-}
-
-#rodape {
-  margin-top: 20px;
-  font-size: 1.2em;
-  color: var(--blue);
-  font-weight: 500;
-  text-shadow: 0 0 5px rgba(51,153,255,0.2);
-  animation: fadeIn 1.5s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-primary);
 }
 
-#texto-darya {
-  max-width: 700px;
-  margin: 35px auto;
+.nav-btn:hover {
+  background: var(--blue-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+#rodape-nome {
+  margin-top: 25px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: var(--blue-dark);
+  animation: fadeInUp 1.2s ease;
+}
+
+/* Cartão de Mensagem (Glassmorphism) */
+#message-card {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 40px 30px;
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow);
   text-align: center;
-  padding: 25px 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(51,153,255,0.15);
-  backdrop-filter: blur(6px);
   animation: fadeInUp 1s ease;
 }
 
-.titulo-russo {
-  font-size: 1.5em;
-  font-weight: 700;
-  color: var(--blue);
-  margin-top: 5px;
-}
-
-.subtexto {
-  font-size: 1.1em;
-  margin-top: 10px;
+.message-body {
+  font-size: 1.2rem;
+  line-height: 1.8;
   color: #444;
-  line-height: 1.6em;
+  font-weight: 300;
+  margin-bottom: 30px;
 }
 
-.code-box {
-  text-align: center;
-  margin-top: 15px;
-  color: #3399ff;
-  font-size: 1em;
-  font-weight: 500;
-  animation: fadeIn 1s ease;
+/* Link e Código */
+.share-section {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #e0f2ff;
 }
 
-.botao {
+.code-display {
   display: inline-block;
-  margin: 20px 10px;
-  padding: 14px 30px;
-  background: var(--blue);
-  color: white;
-  font-weight: 600;
-  border: none;
+  padding: 6px 15px;
+  background: #e3f2ff;
+  color: var(--blue-dark);
   border-radius: 50px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.link-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  gap: 10px;
+  overflow: hidden;
+}
+
+#share-link {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--blue-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.btn-copy {
+  background: var(--blue-primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+/* Botões de Ação */
+.actions {
+  padding: 30px 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 50px;
   text-decoration: none;
-  box-shadow: 0 5px 15px rgba(51,153,255,0.3);
-  transition: transform 0.3s, background 0.3s;
-}
-.botao:hover {
-  transform: scale(1.07);
-  background: #0077cc;
-}
-
-.coracao {
-  position: absolute;
-  font-size: 1.8em;
-  animation: subir 5s linear infinite;
-  opacity: 0.75;
-  color: rgba(51,153,255,0.8);
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-@keyframes subir {
-  0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
-  50% { transform: translateY(-180px) scale(1); opacity: 1; }
-  100% { transform: translateY(-350px) scale(0.8); opacity: 0; }
+.btn-edit { background: white; color: var(--blue-dark); border: 1px solid var(--blue-primary); }
+.btn-delete { background: #fdf2f2; color: #d9534f; }
+.btn-back { background: #888; color: white; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+/* Animações */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(50px) rotate(5deg); }
+  to { opacity: 1; transform: translateX(0) rotate(-1deg); }
 }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.98);}
-  to {opacity: 1; transform: scale(1);}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-  from {opacity: 0; transform: translateY(30px);}
-  to {opacity: 1; transform: translateY(0);}
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Partículas de Bolha */
+.bubble {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  background: rgba(51, 153, 255, 0.2);
+  border-radius: 50%;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
 }
 
 @media (max-width: 600px) {
-  img.foto { max-width: 90%; }
-  #prev, #next { padding: 10px 20px; font-size: 1.2em; }
+  header h1 { font-size: 2.2rem; }
+  #gallery-container { min-height: 380px; }
+  .photo-frame { width: 90%; }
 }
 </style>
 </head>
 <body>
-<header>Friendship for You, {{ dedicatory.nome }} 🤝</header>
 
-<div id="container">
+<header>
+  <h1>A Gift of Friendship, {{ dedicatory.nome }} 🤝</h1>
+</header>
+
+<div id="gallery-container">
+  <div class="nav-controls">
+    <button class="nav-btn" id="prev">❮</button>
+    <button class="nav-btn" id="next">❯</button>
+  </div>
+
   {% for foto in fotos %}
-  <div class="tela {% if forloop.first %}active{% endif %}">
-    <img src="{{ foto }}" alt="Photo {{ forloop.counter }}" class="foto">
+  <div class="photo-frame {% if forloop.first %}active{% endif %}">
+    <img src="{{ foto }}" alt="Memory" class="foto">
   </div>
   {% endfor %}
   
-  <button id="prev">⬅️</button>
-  <button id="next">➡️</button>
-  <div id="rodape">From {{ dedicatory.teu }} with friendship 💙</div>
+  <div id="rodape-nome">From {{ dedicatory.teu }} with friendship 💙</div>
 </div>
 
+<div class="banner-container" style="text-align: center; margin: 20px 0;">
+  {% include 'includes/banner320x50_1.html' %}
+</div>
 
-    <!-- Banners Centralizados -->
-    <div class="banner-container">
-      {% include 'includes/banner320x50_1.html' %}
+<div id="message-card">
+  <div class="message-body">
+    {{ dedicatory.mensagem|linebreaks }}
+  </div>
+
+  <div class="share-section">
+    <div class="code-display">Code: {{ dedicatory.codigo }}</div>
+    <div class="link-box">
+      <span id="share-link">https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/</span>
+      <button id="copyBtn" class="btn-copy" onclick="copyLink()">Copy</button>
     </div>
-
-<div id="texto-darya">
-  <div class="titulo-russo">{{ dedicatory.nome }}</div>
-  <div class="subtexto">{{ dedicatory.mensagem }}</div>
+  </div>
 </div>
 
-<!-- Dedication code outside the white box -->
-<center>
-   <div>
-      Dedication Code: <strong>{{ dedicatory.codigo }}</strong>
-   </div>
-</center>
-
-<div style="text-align:center;">
-  <a href="{% url 'confirm_edit' dedicatory.codigo %}" class="botao">Edit</a>
-  <a href="{% url 'confirm_delete' dedicatory.codigo %}" class="botao">Delete</a>
-  <a href="{% url 'home' %}" class="botao" style="background: gray;">Back</a>
+<div class="actions">
+  <a href="{% url 'confirm_edit' dedicatory.codigo %}" class="btn btn-edit">✏️ Edit</a>
+  <a href="{% url 'confirm_delete' dedicatory.codigo %}" class="btn btn-delete">🗑️ Delete</a>
+  <a href="{% url 'home' %}" class="btn btn-back">⬅️ Back</a>
 </div>
 
 <script>
-const screens = document.querySelectorAll('.tela');
-let index = 0;
+  // Galeria
+  const frames = document.querySelectorAll('.photo-frame');
+  let currentIndex = 0;
 
-document.getElementById('next').onclick = () => {
-  screens[index].classList.remove('active');
-  index = (index + 1) % screens.length;
-  screens[index].classList.add('active');
-};
+  function updateGallery(newIndex) {
+    if (frames.length <= 1) return;
+    frames[currentIndex].classList.remove('active');
+    currentIndex = (newIndex + frames.length) % frames.length;
+    frames[currentIndex].classList.add('active');
+  }
 
-document.getElementById('prev').onclick = () => {
-  screens[index].classList.remove('active');
-  index = (index - 1 + screens.length) % screens.length;
-  screens[index].classList.add('active');
-};
+  document.getElementById('next').onclick = () => updateGallery(currentIndex + 1);
+  document.getElementById('prev').onclick = () => updateGallery(currentIndex - 1);
 
-// Floating bubbles animation 💬
-function createBubble() {
-  const bubble = document.createElement('div');
-  bubble.classList.add('coracao');
-  bubble.style.left = Math.random() * window.innerWidth + 'px';
-  bubble.style.animationDuration = (4 + Math.random() * 3) + 's';
-  bubble.innerHTML = '💬';
-  document.body.appendChild(bubble);
-  setTimeout(() => bubble.remove(), 6000);
-}
-setInterval(createBubble, 900);
+  // Sistema de Cópia (Infalível)
+  function copyLink() {
+    const linkText = "https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/";
+    const btn = document.getElementById('copyBtn');
+
+    const showSuccess = () => {
+      const originalText = btn.innerText;
+      btn.innerText = "Copied! ✅";
+      btn.style.background = "#2ecc71";
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.background = "var(--blue-primary)";
+      }, 2000);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(linkText).then(showSuccess).catch(() => fallbackCopy(linkText, showSuccess));
+    } else {
+      fallbackCopy(linkText, showSuccess);
+    }
+  }
+
+  function fallbackCopy(text, callback) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-9999px";
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      if (document.execCommand('copy')) callback();
+    } catch (err) {
+      alert("Manual copy: " + text);
+    }
+    document.body.removeChild(textArea);
+  }
+
+  // Animação de Bolhas (Melhorada)
+  function createBubble() {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    const size = Math.random() * 40 + 10 + 'px';
+    bubble.style.width = size;
+    bubble.style.height = size;
+    bubble.style.left = Math.random() * 100 + 'vw';
+    bubble.style.top = '110vh';
+    
+    const duration = Math.random() * 4 + 4 + 's';
+    bubble.style.animation = `floatUp ${duration} linear forwards`;
+    
+    document.body.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 8000);
+  }
+
+  setInterval(createBubble, 800);
 </script>
+
 </body>
 </html>
+      
