@@ -1,132 +1,183 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Criar Dedicatória — Love Dedicatory</title>
+  <title>Create Dedication — Love Dedicatory</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --pink: #ff5a8f;
-      --bg: #fff8fb;
-      --text: #222;
-      --muted: #666;
+      --primary: #ff477e;
+      --primary-dark: #d62f63;
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text-main: #2d2d2d;
+      --text-muted: #666;
+      --white: #ffffff;
+      --shadow: 0 10px 30px -10px rgba(255, 71, 126, 0.3);
+      --radius: 20px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: "Poppins", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: "Outfit", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* Cabeçalho Glassmorphism */
     header {
-      background: var(--pink);
-      color: white;
-      text-align: center;
-      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 71, 126, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-style: italic;
     }
 
     nav a {
-      color: white;
-      margin: 0 10px;
+      color: var(--text-muted);
+      margin-left: 15px;
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.9rem;
     }
 
-    nav a:hover { text-decoration: underline; }
-
-    main {
-      max-width: 700px;
-      margin: 50px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    h1 {
-      text-align: center;
-      color: var(--pink);
-      margin-bottom: 25px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input, select, textarea {
-      padding: 12px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-family: inherit;
+    /* Layout do Formulário */
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
       width: 100%;
     }
 
-    textarea { resize: vertical; height: 120px; }
+    .form-card {
+      background: var(--white);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
 
-    button {
-      background: var(--pink);
+    .form-card h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.2rem;
+      color: var(--text-main);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .form-card p.subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    /* Estilização do Form Django (as_p) */
+    form p {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    form label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    form input, form select, form textarea {
+      padding: 14px 18px;
+      border: 2px solid #f0f0f0;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+
+    form input:focus, form select:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(255, 71, 126, 0.05);
+    }
+
+    .helptext {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    /* Botão Principal */
+    .btn-submit {
+      background: var(--primary);
       color: white;
       border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 600;
+      padding: 16px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
       width: 100%;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(255, 71, 126, 0.3);
     }
 
-    button:hover {
-      background: #ff4d88;
-      transform: scale(1.03);
+    .btn-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 71, 126, 0.4);
+    }
+
+    .banner-wrapper {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
     }
 
     footer {
       text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      padding: 20px;
-      border-top: 1px solid #eee;
-      margin-top: 40px;
+      padding: 30px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: auto;
     }
 
-    /* ===== Responsivo ===== */
+    /* Responsivo */
     @media (max-width: 600px) {
-      main {
-        margin: 20px auto;
-        padding: 15px;
-        width: 95%;
-      }
-      h1 {
-        font-size: 22px;
-      }
-      button {
-        font-size: 14px;
-        padding: 12px;
-      }
-    }
-
-    @media (min-width: 601px) and (max-width: 1199px) {
-      main {
-        max-width: 700px;
-        padding: 25px;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      main {
-        max-width: 900px;
-        padding: 35px;
-      }
+      .form-card { padding: 25px 20px; }
+      header { flex-direction: column; gap: 10px; }
+      nav { margin-bottom: 5px; }
+      .form-card h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Love Dedicatory 💌</h1>
     <nav>
@@ -134,25 +185,38 @@
       <a href="{% url 'about' %}">About</a>
       <a href="{% url 'contact' %}">Contact</a>
       <a href="{% url 'privacy' %}">Privacy</a>
-      <a href="{% url 'terms' %}">Terms</a>
     </nav>
   </header>
 
-  <div class="banner-container">
-      {% include 'includes/SmartLink_1.html' %}
-  </div> 
+  <div class="container">
+    
+    <div class="banner-wrapper">
+       {% include 'includes/SmartLink_1.html' %}
+    </div> 
 
-  <main>
-    <h1>Create your Dedicatory</h1>
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Gerar Link</button>
-    </form>
-  </main>
+    <main class="form-card">
+      <h1>Create Dedication</h1>
+      <p class="subtitle">Turn your feelings into a lasting memory.</p>
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <button type="submit" class="btn-submit">Generate Magic Link ✨</button>
+      </form>
+    </main>
+
+    <div class="banner-wrapper">
+       {% include 'includes/banner320x50_1.html' %}
+    </div> 
+
+  </div>
 
   <footer>
     © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
+
 </body>
-</html>
+  </html>
+  
