@@ -1,120 +1,195 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Confirm Email - {{ dedicatory.nome }}</title>
+  <title>Verify Access — Love Dedicatory</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --pink: #ff5a8f;
-      --bg: #fff8fb;
-      --text: #222;
-      --muted: #666;
+      --primary: #ff477e;
+      --primary-dark: #d62f63;
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text-main: #2d2d2d;
+      --text-muted: #666;
+      --white: rgba(255, 255, 255, 0.9);
+      --shadow: 0 10px 30px -10px rgba(255, 71, 126, 0.3);
+      --radius: 24px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Poppins', Arial, sans-serif;
-      background: linear-gradient(135deg, #fceabb, #f8b500);
-      color: var(--text);
+      font-family: "Outfit", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* Cabeçalho Glassmorphism */
     header {
-      background: var(--pink);
-      color: white;
-      text-align: center;
-      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 71, 126, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-style: italic;
     }
 
     nav a {
-      color: white;
-      margin: 0 10px;
+      color: var(--text-muted);
+      margin-left: 15px;
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.9rem;
+    }
+    nav a:hover { color: var(--primary); }
+
+    /* Container Central */
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    nav a:hover { text-decoration: underline; }
-
-    main {
-      max-width: 500px;
-      margin: 50px auto;
-      background: rgba(255,255,255,0.95);
-      padding: 30px 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    .confirm-card {
+      background: var(--white);
+      backdrop-filter: blur(10px);
+      width: 100%;
+      max-width: 450px;
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       text-align: center;
-      animation: fadeIn 1s ease;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      animation: fadeInUp 0.8s ease;
     }
 
-    h1 {
-      color: var(--pink);
+    .icon-lock {
+      font-size: 3rem;
       margin-bottom: 20px;
-      font-size: 2em;
+      display: inline-block;
+      filter: drop-shadow(0 4px 10px rgba(255, 71, 126, 0.2));
     }
 
-    p {
-      margin-bottom: 20px;
-      font-size: 1em;
-      color: #333;
-    }
-
-    .error {
-      color: red;
+    .confirm-card h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
       margin-bottom: 15px;
-      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .confirm-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .confirm-card strong {
+      color: var(--primary);
+    }
+
+    /* Input e Botão */
+    .form-group {
+      margin-bottom: 20px;
     }
 
     input[type="email"] {
       width: 100%;
-      padding: 12px 15px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      font-size: 1em;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      padding: 15px 20px;
+      border-radius: 50px;
+      border: 2px solid #eee;
+      font-size: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      font-family: inherit;
     }
 
     input[type="email"]:focus {
       outline: none;
-      border-color: var(--pink);
-      box-shadow: 0 0 8px rgba(255,90,143,0.5);
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(255, 71, 126, 0.1);
     }
 
-    button {
+    .btn-confirm {
       width: 100%;
-      padding: 14px;
-      margin-top: 15px;
+      padding: 15px;
+      background: var(--primary);
+      color: white;
       border: none;
       border-radius: 50px;
-      background-color: var(--pink);
-      color: white;
-      font-size: 1.1em;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 71, 126, 0.3);
     }
 
-    button:hover {
-      transform: scale(1.05);
-      background-color: #e14a78;
+    .btn-confirm:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 71, 126, 0.4);
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    /* Estilo de Erro */
+    .error-msg {
+      background: #fff0f3;
+      color: #d62f63;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      border: 1px solid #ffccd5;
+      animation: shake 0.4s ease;
     }
 
-    /* Responsividade */
-    @media (max-width: 600px) {
-      main {
-        margin: 30px 10px;
-        padding: 20px;
-      }
+    .banner-wrapper {
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    @media (max-width: 480px) {
+      header { flex-direction: column; gap: 8px; }
+      .confirm-card { padding: 35px 20px; }
+      .confirm-card h2 { font-size: 1.7rem; }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Love Dedicatory 💌</h1>
     <nav>
@@ -124,19 +199,38 @@
     </nav>
   </header>
 
-  <main>
-    <h1>Confirm Email</h1>
-    <p>To edit the dedication <strong>{{ dedicatory.nome }}</strong>, please enter the email used when creating it:</p>
+  <div class="container">
+    
+    <div class="banner-wrapper">
+       {% include 'includes/SmartLink_1.html' %}
+    </div> 
 
-    {% if erro %}
-      <div class="error">{{ erro }}</div>
-    {% endif %}
+    <main class="confirm-card">
+      <div class="icon-lock">🔐</div>
+      <h2>Verification</h2>
+      <p>To access and edit <strong>{{ dedicatory.nome }}</strong>, please confirm the email address used during creation.</p>
 
-    <form method="post">
-      {% csrf_token %}
-      <input type="email" name="email" placeholder="Enter your email" required>
-      <button type="submit">Confirm</button>
-    </form>
-  </main>
+      {% if erro %}
+        <div class="error-msg">
+          <span>⚠️</span> {{ erro }}
+        </div>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="email" name="email" placeholder="e.g. yourname@email.com" required>
+        </div>
+        <button type="submit" class="btn-confirm">Verify & Continue</button>
+      </form>
+    </main>
+
+  </div>
+
+  <footer style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.8rem;">
+    © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
+  </footer>
+
 </body>
-</html>
+            </html>
+            
