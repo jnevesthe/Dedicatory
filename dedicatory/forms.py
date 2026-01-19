@@ -1,5 +1,7 @@
 from django import forms
 from .models import Dedicatory
+from django.forms.widgets import ClearableFileInput
+
 
 class DedicatoryForm(forms.ModelForm):
     class Meta:
@@ -20,6 +22,7 @@ class DedicatoryForm(forms.ModelForm):
             'nome': forms.TextInput(attrs={'placeholder': 'Ex: John Smith'}),
             'mensagem': forms.Textarea(attrs={'placeholder': 'Write your message here...', 'rows': 4}),
         }
+
 
 class DedicatoryEditForm(forms.ModelForm):
     class Meta:
@@ -44,4 +47,10 @@ class DedicatoryEditForm(forms.ModelForm):
         widgets = {
             'nome': forms.TextInput(attrs={'placeholder': 'Ex: John Smith'}),
             'mensagem': forms.Textarea(attrs={'placeholder': 'Write your message here...', 'rows': 4}),
+            # Sobrescrevendo os campos de imagem para não mostrar o link
+            'photo1': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
+            'photo2': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
+            'photo3': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
+            'photo4': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
+            'photo5': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
         }
