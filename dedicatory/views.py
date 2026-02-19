@@ -234,4 +234,16 @@ def custom_404_redirect(request, exception=None):
     # redireciona para uma p��gina espec��fica
     return render(request, '404.html', status=404)
 
-               
+
+
+from django.http import HttpResponse
+from django.conf import settings
+import os
+
+def sitemap_view(request):
+    # Caminho do sitemap na raiz do projeto
+    sitemap_path = os.path.join(settings.BASE_DIR, 'sitemap.xml')
+    
+    # Abrir o arquivo e retornar como XML
+    with open(sitemap_path, 'r', encoding='utf-8') as f:
+        return HttpResponse(f.read(), content_type='application/xml')
