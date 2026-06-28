@@ -247,3 +247,14 @@ def sitemap_view(request):
     # Abrir o arquivo e retornar como XML
     with open(sitemap_path, 'r', encoding='utf-8') as f:
         return HttpResponse(f.read(), content_type='application/xml')
+
+
+from django.http import HttpResponse
+
+def robots_txt(request):
+    content = """User-agent: *
+Allow: /
+
+Sitemap: https://love-dedicatory.xyz/sitemap.xml
+"""
+    return HttpResponse(content, content_type="text/plain")
