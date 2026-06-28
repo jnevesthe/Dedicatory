@@ -248,3 +248,10 @@ def sitemap_view(request):
     with open(sitemap_path, 'r', encoding='utf-8') as f:
         return HttpResponse(f.read(), content_type='application/xml')
 
+
+
+def robots_txt(request):
+    content = """User-agent: *
+Allow: /"""
+
+    return HttpResponse(content, content_type="text/plain")
