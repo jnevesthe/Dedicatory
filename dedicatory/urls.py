@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import Home, About, Privacy, Contact, Terms
-from .views import robots_txt
+
 
 
 urlpatterns = [
@@ -24,6 +24,7 @@ urlpatterns = [
     path('delete/<str:codigo>/', DeleteDedicatory.as_view(), name='delete'),
     path('sitemap.xml/', views.sitemap_view, name='sitemap'),    
     path("robots.txt/", robots_txt)
+    path('ads.txt/', views.ads_txt_view),
 ]
 
 if settings.DEBUG:
