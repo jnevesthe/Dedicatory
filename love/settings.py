@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dedicatory',
     'access',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
+    
 ]
 
 MIDDLEWARE = [
@@ -119,8 +118,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-#SITEMAP
-SITE_ID = 1
+
 
 
 # Static files (CSS, JavaScript, Images)
