@@ -21,8 +21,7 @@ urlpatterns = [
     path('confirm_delete/<str:codigo>/', views.confirmar_email_delete, name='confirm_delete'),
     path('update/<str:codigo>/', UpdateDedicatory.as_view(), name='edit'),
     path('delete/<str:codigo>/', DeleteDedicatory.as_view(), name='delete'),
-    path('sitemap.xml', views.sitemap_view, name='sitemap'),
-    
+    path('sitemap.xml', views.sitemap_view, name='sitemap'),    
 ]
 
 if settings.DEBUG:
