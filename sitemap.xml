@@ -3,46 +3,46 @@
 
   <!-- Home -->
   <url>
-    <loc>https://love-dedicatory.onrender.com/</loc>
+    <loc>https://love-dedicatory.xyz/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Páginas institucionais -->
   <url>
-    <loc>https://love-dedicatory.onrender.com/about/</loc>
+    <loc>https://love-dedicatory.xyz/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://love-dedicatory.onrender.com/privacy/</loc>
+    <loc>https://love-dedicatory.xyz/privacy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
-    <loc>https://love-dedicatory.onrender.com/terms/</loc>
+    <loc>https://love-dedicatory.xyz/terms/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
-    <loc>https://love-dedicatory.onrender.com/contact/</loc>
+    <loc>https://love-dedicatory.xyz/contact/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <!-- Criar dedicatória -->
   <url>
-    <loc>https://love-dedicatory.onrender.com/create/</loc>
+    <loc>https://love-dedicatory.xyz/create/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Pesquisa -->
   <url>
-    <loc>https://love-dedicatory.onrender.com/search/</loc>
+    <loc>https://love-dedicatory.xyz/search/</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
