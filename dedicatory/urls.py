@@ -23,8 +23,8 @@ urlpatterns = [
     path('update/<str:codigo>/', UpdateDedicatory.as_view(), name='edit'),
     path('delete/<str:codigo>/', DeleteDedicatory.as_view(), name='delete'),
     path('sitemap.xml/', views.sitemap_view, name='sitemap'),    
-    path("robots.txt/", views.robots_txt)
-    path('ads.txt/', views.ads_txt_view),
+    path("robots.txt/", views.robots_txt, name='robots'),
+    path('ads.txt/', views.ads_txt_view, name='ads'),
 ]
 
 if settings.DEBUG:
