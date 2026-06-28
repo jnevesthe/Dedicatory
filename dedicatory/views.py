@@ -255,3 +255,11 @@ def robots_txt(request):
 Allow: /"""
 
     return HttpResponse(content, content_type="text/plain")
+
+def ads_txt_view(request):
+    # Caminho do ads.txt na raiz do projeto
+    ads_path = os.path.join(settings.BASE_DIR, 'ads.txt')
+
+    # Abrir o arquivo e retornar como texto puro
+    with open(ads_path, 'r', encoding='utf-8') as f:
+        return HttpResponse(f.read(), content_type='text/plain')
