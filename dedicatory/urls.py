@@ -22,7 +22,7 @@ urlpatterns = [
     path('update/<str:codigo>/', UpdateDedicatory.as_view(), name='edit'),
     path('delete/<str:codigo>/', DeleteDedicatory.as_view(), name='delete'),
     path('sitemap.xml', views.sitemap_view, name='sitemap'),
-    path("robots.txt", robots_txt),
+    path('robots.txt', robots_txt),
 ]
 
 if settings.DEBUG:
