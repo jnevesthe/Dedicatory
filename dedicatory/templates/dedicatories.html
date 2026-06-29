@@ -1,0 +1,452 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dedication Examples — Love Dedicatory</title>
+  <meta name="description" content="Get inspired by real dedication examples. A boyfriend writing to his girlfriend, a dad to his son, and a mom to her child. Create yours for free!" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://love-dedicatory.xyz/dedicatories/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://love-dedicatory.xyz/dedicatories/" />
+  <meta property="og:title" content="Dedication Examples — Love Dedicatory" />
+  <meta property="og:description" content="Get inspired by real dedication examples. Create a heartfelt message for someone you love." />
+  <meta property="og:image" content="https://love-dedicatory.xyz/static/img/love1.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Love Dedicatory" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dedication Examples — Love Dedicatory" />
+  <meta name="twitter:description" content="Get inspired. Create a heartfelt dedication for someone you love." />
+  <meta name="twitter:image" content="https://love-dedicatory.xyz/static/img/love1.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Dedication Examples — Love Dedicatory",
+    "url": "https://love-dedicatory.xyz/dedicatories/",
+    "description": "Inspiring dedication examples for boyfriends, dads, and moms.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Love Dedicatory",
+      "url": "https://love-dedicatory.xyz"
+    }
+  }
+  </script>
+
+  {% include 'adsense.html' %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ff477e;
+      --primary-dark: #d62f63;
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text-main: #2d2d2d;
+      --text-muted: #666;
+      --white: #ffffff;
+      --shadow: 0 10px 30px -10px rgba(255, 71, 126, 0.3);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 71, 126, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      margin-left: 15px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--primary); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 55px 20px 35px;
+    }
+
+    .hero h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.4rem;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .hero h2 em { color: var(--primary); font-style: italic; }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Cards */
+    .container {
+      max-width: 720px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Faixa decorativa no topo de cada card */
+    .card-ribbon {
+      height: 6px;
+      width: 100%;
+    }
+    .card-ribbon.love   { background: linear-gradient(90deg, #ff477e, #ff8fab, #ff477e); }
+    .card-ribbon.dad    { background: linear-gradient(90deg, #4a90d9, #82b4f0, #4a90d9); }
+    .card-ribbon.mom    { background: linear-gradient(90deg, #9b59b6, #c39bd3, #9b59b6); }
+
+    /* Floaties decorativos */
+    .floaties {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 14px 24px 0;
+      font-size: 1.15rem;
+      line-height: 1;
+      opacity: 0.75;
+    }
+
+    /* Header do card */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 24px 16px;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .avatar.love { background: #fce4ec; }
+    .avatar.dad  { background: #e3f2fd; }
+    .avatar.mom  { background: #f3e5f5; }
+
+    .card-meta { display: flex; flex-direction: column; }
+
+    .card-from {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .card-to {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .card-badge {
+      margin-left: auto;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 20px;
+    }
+
+    .badge-love   { background: #fce4ec; color: #c2185b; }
+    .badge-dad    { background: #e3f2fd; color: #1565c0; }
+    .badge-mom    { background: #f3e5f5; color: #6a1b9a; }
+
+    /* Corpo */
+    .card-body {
+      padding: 0 24px 24px;
+      border-top: 1px solid #f5f5f5;
+      padding-top: 20px;
+    }
+
+    .dedication-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    .dedication-text {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      color: #444;
+      white-space: pre-line;
+    }
+
+    .dedication-sign {
+      margin-top: 18px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      text-align: right;
+    }
+
+    /* Barra de emoções */
+    .emotion-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 16px 24px;
+      border-top: 1px solid #f0f0f0;
+      background: #fffafb;
+    }
+
+    .emotion {
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #fff0f5;
+      color: var(--primary);
+      font-weight: 500;
+      border: 1px solid #ffd6e4;
+    }
+
+    .emotion.blue   { background: #e8f4fd; color: #1565c0; border-color: #b3d4f5; }
+    .emotion.purple { background: #f5eef8; color: #6a1b9a; border-color: #d7b8eb; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 10px 20px 60px;
+    }
+
+    .cta-section p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(255, 71, 126, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 71, 126, 0.45);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 { font-size: 1.8rem; }
+      .card-header { padding: 12px 18px 14px; }
+      .card-body { padding: 18px; }
+      .floaties { padding: 12px 18px 0; }
+      .emotion-bar { padding: 14px 18px; }
+      .card-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Love Dedicatory 💌</h1>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      <a href="{% url 'privacy' %}">Privacy</a>
+      <a href="{% url 'terms' %}">Terms</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Get <em>Inspired</em> by Real Dedications 💌</h2>
+    <p>See how others express their love. Then create your own unique dedication in seconds.</p>
+  </section>
+
+  <div class="container">
+
+    <!-- Card 1: Namorado → Namorada -->
+    <article class="card">
+      <div class="card-ribbon love"></div>
+      <div class="floaties">
+        ❤️ 💕 🌹 💋 ✨ 💖 🥰 💗 🌸 💝 ❤️ 💞
+      </div>
+      <div class="card-header">
+        <div class="avatar love">💑</div>
+        <div class="card-meta">
+          <span class="card-from">Lucas</span>
+          <span class="card-to">To his girlfriend, Ana</span>
+        </div>
+        <span class="card-badge badge-love">💕 Love</span>
+      </div>
+      <div class="card-body">
+        <p class="dedication-title">"You are my favorite place in the world."</p>
+        <p class="dedication-text">Ana,
+
+Every morning I wake up and the first thing I think about is you — your smile, your laugh, the way you wrinkle your nose when something surprises you.
+
+I never believed in the kind of love they write songs about. Until you. You showed me that love isn't just a feeling, it's a choice — and every single day, I choose you without hesitation.
+
+Thank you for being my home, my calm, and my greatest adventure. I love you more than any words could ever hold.</p>
+        <p class="dedication-sign">— Forever yours, Lucas ❤️</p>
+      </div>
+      <div class="emotion-bar">
+        <span class="emotion">❤️ Love</span>
+        <span class="emotion">🥰 Adoration</span>
+        <span class="emotion">🌹 Romance</span>
+        <span class="emotion">✨ Gratitude</span>
+      </div>
+    </article>
+
+    <!-- Card 2: Pai → Filho -->
+    <article class="card">
+      <div class="card-ribbon dad"></div>
+      <div class="floaties">
+        ⭐ 🌟 💙 🤗 🏆 👊 💪 🌊 🦁 ⭐ 🌟 💙
+      </div>
+      <div class="card-header">
+        <div class="avatar dad">👨‍👦</div>
+        <div class="card-meta">
+          <span class="card-from">Michael</span>
+          <span class="card-to">To his son, Noah</span>
+        </div>
+        <span class="card-badge badge-dad">👨‍👦 Father & Son</span>
+      </div>
+      <div class="card-body">
+        <p class="dedication-title">"The day you were born, I became a better man."</p>
+        <p class="dedication-text">Noah,
+
+I still remember the exact moment I held you for the first time. You were so small, and yet the weight of that moment was everything. In that instant, my whole life rearranged itself around you.
+
+Watching you grow has been the greatest privilege of my life. Every question you ask, every challenge you face head-on, every time you get back up — you teach me something new about courage.
+
+Never forget: no matter where life takes you, you will always have a father who believes in you completely. I'm proud of you every single day, son.</p>
+        <p class="dedication-sign">— With all my love, Dad 💙</p>
+      </div>
+      <div class="emotion-bar">
+        <span class="emotion blue">💙 Pride</span>
+        <span class="emotion blue">⭐ Inspiration</span>
+        <span class="emotion blue">🤗 Warmth</span>
+        <span class="emotion blue">💪 Encouragement</span>
+      </div>
+    </article>
+
+    <!-- Card 3: Mãe → Filho -->
+    <article class="card">
+      <div class="card-ribbon mom"></div>
+      <div class="floaties">
+        💜 🌸 🕊️ 🌷 ✨ 🫶 💐 🌙 💜 🌸 🕊️ 🌷
+      </div>
+      <div class="card-header">
+        <div class="avatar mom">👩‍👦</div>
+        <div class="card-meta">
+          <span class="card-from">Sarah</span>
+          <span class="card-to">To her son, Ethan</span>
+        </div>
+        <span class="card-badge badge-mom">💜 Mother & Son</span>
+      </div>
+      <div class="card-body">
+        <p class="dedication-title">"You are the best thing I have ever done."</p>
+        <p class="dedication-text">My dearest Ethan,
+
+There are no words big enough to describe the love a mother carries for her child. But I'll try anyway — because you deserve to know.
+
+From your very first breath, you filled every corner of my world with a light I didn't know was missing. I have watched you stumble and rise, cry and laugh, dream and doubt — and through every single moment, my love for you has only grown deeper.
+
+You don't have to be perfect, baby. You just have to be you. And who you are is already more than enough — more than I could have ever wished for.
+
+I love you yesterday, today, and every tomorrow that comes.</p>
+        <p class="dedication-sign">— Always your mom, Sarah 💜</p>
+      </div>
+      <div class="emotion-bar">
+        <span class="emotion purple">💜 Unconditional Love</span>
+        <span class="emotion purple">🌸 Tenderness</span>
+        <span class="emotion purple">🕊️ Peace</span>
+        <span class="emotion purple">✨ Hope</span>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="cta-section">
+    <p>Feeling inspired? Create your own dedication now — it's free! 💌</p>
+    <a href="{% url 'create' %}" class="btn-primary">Create My Dedication ✨</a>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> Love Dedicatory. Made with ❤️ by Josemar Neves.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
