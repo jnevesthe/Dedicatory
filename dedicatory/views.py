@@ -2,28 +2,45 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import TemplateView
+from django.http import HttpResponse
+from django.conf import settings
+import os
+
 from .forms import DedicatoryForm, DedicatoryEditForm
 from .models import Dedicatory
 
+
+# =========================
+# PÁGINAS ESTÁTICAS
+# =========================
+
 class Home(TemplateView):
-    template_name= 'index.html'
-    
-    
+    template_name = 'index.html'
+
+
 class About(TemplateView):
-    template_name= 'about.html'
-    
-    
+    template_name = 'about.html'
+
+
 class Privacy(TemplateView):
-    template_name= 'privacy.html'  
-    
+    template_name = 'privacy.html'
+
+
 class Contact(TemplateView):
-    template_name= 'contact.html'     
-    
+    template_name = 'contact.html'
+
+
 class Terms(TemplateView):
-    template_name= 'terms.html'   
+    template_name = 'terms.html'
+
 
 def dedicatories(request):
     return render(request, 'dedicatories.html')
+
+
+# =========================
+# CRIAR DEDICATÓRIA
+# =========================
 
 def criar_dedicatoria(request):
     if request.method == 'POST':
@@ -31,173 +48,139 @@ def criar_dedicatoria(request):
         if form.is_valid():
             dedicatoria = form.save()
             return redirect('screen_dedicatory', dedicatoria.codigo)
-             
     else:
         form = DedicatoryForm()
+
     return render(request, 'criar.html', {'form': form})
 
 
+# =========================
+# VER DEDICATÓRIA (PÚBLICA OU PRIVADA POR CÓDIGO)
+# =========================
+
 def ver_dedicatoria(request, codigo):
     dedicatory = get_object_or_404(Dedicatory, codigo=codigo)
-    fotos = [dedicatory.photo1, dedicatory.photo2, dedicatory.photo3, dedicatory.photo4, dedicatory.photo5]
-    fotos = [foto.url for foto in fotos if foto]  # só as que existem
 
-    # Escolhe o HTML conforme o contexto
-    if dedicatory.contexto == 'amor':
-        template = 'amor.html'
-    elif dedicatory.contexto == 'carinho':
-        template = 'carinho.html'
-    elif dedicatory.contexto == 'amizade':
-        template = 'amizade.html'
-    else:
-        template = 'galeria.html'  # fallback padrão
+    fotos = [
+        dedicatory.photo1,
+        dedicatory.photo2,
+        dedicatory.photo3,
+        dedicatory.photo4,
+        dedicatory.photo5
+    ]
+    fotos = [f.url for f in fotos if f]
 
-    return render(request, template, {'dedicatory': dedicatory, 'fotos': fotos})
+    templates = {
+        'amor': 'amor.html',
+        'carinho': 'carinho.html',
+        'amizade': 'amizade.html'
+    }
+
+    template = templates.get(dedicatory.contexto, 'galeria.html')
+
+    return render(request, template, {
+        'dedicatory': dedicatory,
+        'fotos': fotos
+    })
 
 
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Dedicatory
+# =========================
+# PESQUISA POR CÓDIGO
+# =========================
 
 def search(request):
-    dedicatory = None
-    codigo = None
     error = None
 
     if request.method == 'POST':
         codigo = request.POST.get('codigo')
+
         try:
-            dedicatory = Dedicatory.objects.get(codigo=codigo)
-            # Se encontrado, redireciona para a página da dedicatória
-            return redirect('screen_dedicatory', codigo=dedicatory.codigo)
+            dedicatoria = Dedicatory.objects.get(codigo=codigo)
+            return redirect('screen_dedicatory', codigo=dedicatoria.codigo)
         except Dedicatory.DoesNotExist:
-            error = f'No dedication found with the code "{codigo}".'
+            error = "Nenhuma dedicatória encontrada com esse código."
 
-    return render(request, 'search.html', {'error': error, 'codigo': codigo})
+    return render(request, 'search.html', {'error': error})
 
-def confirmar_email_edit(request, codigo):
-    """
-    Verifica se o e-mail informado corresponde ao e-mail da dedicatória com o código fornecido.
-    """
+
+# =========================
+# CONFIRMAR PIN (EDITAR)
+# =========================
+
+def confirmar_pin_edit(request, codigo):
     dedicatoria = get_object_or_404(Dedicatory, codigo=codigo)
     erro = None
 
     if request.method == 'POST':
-        email = request.POST.get('email', '').strip()
+        pin = request.POST.get('pin', '').strip()
 
-        if email == dedicatoria.email:
-            # Cria sessão permitindo editar
-            request.session['editar'] = True
-            request.session['email'] = email
+        if pin == dedicatoria.pin:
+            request.session['edit_allowed'] = True
             return redirect('edit', codigo=dedicatoria.codigo)
         else:
-            erro = "O e-mail não corresponde à dedicatória informada."
+            erro = "PIN inválido."
 
-    return render(request, 'confirm.html', {'dedicatory': dedicatoria, 'erro': erro})
-    
-def confirmar_email_delete(request, codigo):
-    """
-    Verifica se o e-mail informado corresponde ao e-mail da dedicatória com o código fornecido.
-    """
+    return render(request, 'confirm.html', {
+        'dedicatory': dedicatoria,
+        'erro': erro
+    })
+
+
+# =========================
+# CONFIRMAR PIN (DELETE)
+# =========================
+
+def confirmar_pin_delete(request, codigo):
     dedicatoria = get_object_or_404(Dedicatory, codigo=codigo)
     erro = None
 
     if request.method == 'POST':
-        email = request.POST.get('email', '').strip()
+        pin = request.POST.get('pin', '').strip()
 
-        if email == dedicatoria.email:
-            # Cria sessão permitindo editar
-            request.session['delete'] = True
-            request.session['email'] = email
+        if pin == dedicatoria.pin:
+            request.session['delete_allowed'] = True
             return redirect('delete', codigo=dedicatoria.codigo)
         else:
-            erro = "O e-mail não corresponde à dedicatória informada."
+            erro = "PIN inválido."
 
-    return render(request, 'confirm.html', {'dedicatory': dedicatoria, 'erro': erro})
- 
-    
-"""          
+    return render(request, 'confirm.html', {
+        'dedicatory': dedicatoria,
+        'erro': erro
+    })
+
+
+# =========================
+# EDITAR DEDICATÓRIA
+# =========================
+
 class UpdateDedicatory(UpdateView):
-   
-    Segunda etapa: editar a dedicatória, se o e-mail da sessão for o mesmo do banco.
     model = Dedicatory
     form_class = DedicatoryEditForm
     template_name = 'edit.html'
 
+    def get_object(self, queryset=None):
+        return get_object_or_404(Dedicatory, codigo=self.kwargs['codigo'])
+
     def dispatch(self, request, *args, **kwargs):
-        codigo = kwargs.get('codigo')
-        dedicatoria = get_object_or_404(Dedicatory, codigo=codigo)
+        obj = self.get_object()
 
-        # Verifica se há permissão de edição na sessão
-        email_sessao = request.session.get('email')
-        editar_sessao = request.session.get('editar')
-
-        if not editar_sessao or not email_sessao:
-            return redirect('confirmar_email', codigo=codigo)
-
-        # Confirma que o e-mail da sessão é o mesmo do banco
-        if dedicatoria.email != email_sessao:
-            # Se não for igual, limpa a sessão e redireciona
-            request.session.pop('editar', None)
-            request.session.pop('email', None)
-            return redirect('confirmar_email', codigo=codigo)
+        if not request.session.get('edit_allowed'):
+            return redirect('confirm_pin_edit', codigo=obj.codigo)
 
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        # Após salvar, remove as variáveis da sessão
-        self.request.session.pop('editar', None)
-        self.request.session.pop('email', None)
+        self.request.session.pop('edit_allowed', None)
         return response
 
     def get_success_url(self):
         return reverse_lazy('screen_dedicatory', kwargs={'codigo': self.object.codigo})
-        
-""" 
-
-class UpdateDedicatory(UpdateView):
-    """
-    Segunda etapa: editar a dedicatória, se o e-mail da sessão for o mesmo do banco.
-    """
-    model = Dedicatory
-    form_class = DedicatoryEditForm
-    template_name = 'edit.html'
-
-    # Sobrescreve get_object para usar codigo em vez de pk
-    def get_object(self, queryset=None):
-        codigo = self.kwargs.get('codigo')
-        return get_object_or_404(Dedicatory, codigo=codigo)
-
-    def dispatch(self, request, *args, **kwargs):
-        dedicatoria = self.get_object()  # agora pega pelo get_object
-
-        # Verifica se há permissão de edição na sessão
-        email_sessao = request.session.get('email')
-        editar_sessao = request.session.get('editar')
-
-        if not editar_sessao or not email_sessao:
-            return redirect('confirm_edit', codigo=dedicatoria.codigo)
-
-        # Confirma que o e-mail da sessão é o mesmo do banco
-        if dedicatoria.email != email_sessao:
-            # Se não for igual, limpa a sessão e redireciona
-            request.session.pop('editar', None)
-            request.session.pop('email', None)
-            return redirect('confirm_edit', codigo=dedicatoria.codigo)
-
-        return super().dispatch(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        # Após salvar, remove as variáveis da sessão
-        self.request.session.pop('editar', None)
-        self.request.session.pop('email', None)
-        return response
-
-    def get_success_url(self):
-        return reverse_lazy('screen_dedicatory', kwargs={'codigo': self.object.codigo})              
 
 
+# =========================
+# DELETE DEDICATÓRIA
+# =========================
 
 class DeleteDedicatory(DeleteView):
     model = Dedicatory
@@ -205,64 +188,61 @@ class DeleteDedicatory(DeleteView):
     success_url = reverse_lazy('home')
 
     def get_object(self, queryset=None):
-        codigo = self.kwargs.get('codigo')
-        return get_object_or_404(Dedicatory, codigo=codigo)
+        return get_object_or_404(Dedicatory, codigo=self.kwargs['codigo'])
 
     def dispatch(self, request, *args, **kwargs):
-        self.dedicatoria = self.get_object()
+        obj = self.get_object()
 
-        # Sempre verificar sessão
-        email_sessao = request.session.get('email')
-        delete_sessao = request.session.get('delete')
-
-        # --- VERIFICAÇÃO DE SEGURANÇA ---
-        if not delete_sessao or not email_sessao:
-            return redirect('confirm_delete', codigo=self.dedicatoria.codigo)
-
-        if self.dedicatoria.email != email_sessao:
-            return redirect('confirm_delete', codigo=self.dedicatoria.codigo)
-
-        # --- APAGAR SESSÃO APENAS NO POST ---
-        if request.method == "POST":
-            request.session.pop('email', None)
-            request.session.pop('delete', None)
+        if not request.session.get('delete_allowed'):
+            return redirect('confirm_pin_delete', codigo=obj.codigo)
 
         return super().dispatch(request, *args, **kwargs)
-    
 
-# views.py
-from django.shortcuts import render
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        request.session.pop('delete_allowed', None)
+        return response
+
+
+# =========================
+# SEO FILES
+# =========================
 
 def custom_404_redirect(request, exception=None):
-    # redireciona para uma p��gina espec��fica
     return render(request, '404.html', status=404)
 
 
-
-from django.http import HttpResponse
-from django.conf import settings
-import os
-
 def sitemap_view(request):
-    # Caminho do sitemap na raiz do projeto
-    sitemap_path = os.path.join(settings.BASE_DIR, 'sitemap.xml')
-    
-    # Abrir o arquivo e retornar como XML
-    with open(sitemap_path, 'r', encoding='utf-8') as f:
+    path = os.path.join(settings.BASE_DIR, 'sitemap.xml')
+    with open(path, 'r', encoding='utf-8') as f:
         return HttpResponse(f.read(), content_type='application/xml')
 
 
-
 def robots_txt(request):
-    content = """User-agent: *
-Allow: /"""
+    return HttpResponse("User-agent: *\nAllow: /", content_type="text/plain")
 
-    return HttpResponse(content, content_type="text/plain")
 
 def ads_txt_view(request):
-    # Caminho do ads.txt na raiz do projeto
-    ads_path = os.path.join(settings.BASE_DIR, 'ads.txt')
-
-    # Abrir o arquivo e retornar como texto puro
-    with open(ads_path, 'r', encoding='utf-8') as f:
+    path = os.path.join(settings.BASE_DIR, 'ads.txt')
+    with open(path, 'r', encoding='utf-8') as f:
         return HttpResponse(f.read(), content_type='text/plain')
+
+from django.core.paginator import Paginator
+
+
+def v(request):
+    contexto_filtro = request.GET.get('contexto')
+
+    dedicatorias = Dedicatory.objects.filter(status='publico').order_by('-criado_em')
+
+    if contexto_filtro in ['amor', 'carinho', 'amizade']:
+        dedicatorias = dedicatorias.filter(contexto=contexto_filtro)
+
+    paginator = Paginator(dedicatorias, 5)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'list.html', {
+        'page_obj': page_obj,
+        'contexto_filtro': contexto_filtro,
+    })

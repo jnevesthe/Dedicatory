@@ -17,19 +17,18 @@ urlpatterns = [
     path('dedicatory/<str:codigo>/', views.ver_dedicatoria, name='screen_dedicatory'),
     path('search/', views.search, name='search'),
     path('create/', views.criar_dedicatoria, name='create_dedicatory'),
-    path('dedicatory/<str:codigo>/', views.ver_dedicatoria, name='screen_dedicatory'),
-    path('confirm_edit/<str:codigo>/', views.confirmar_email_edit, name='confirm_edit'),
-    path('confirm_delete/<str:codigo>/', views.confirmar_email_delete, name='confirm_delete'),
+    path('confirm_edit/<str:codigo>/', views.confirmar_pin_edit, name='confirm_edit'),
+    path('confirm_delete/<str:codigo>/', views.confirmar_pin_delete, name='confirm_delete'),
     path('update/<str:codigo>/', UpdateDedicatory.as_view(), name='edit'),
     path('delete/<str:codigo>/', DeleteDedicatory.as_view(), name='delete'),
     path('sitemap.xml/', views.sitemap_view, name='sitemap'),    
     path("robots.txt/", views.robots_txt, name='robots'),
     path('ads.txt/', views.ads_txt_view, name='ads'),
     path('dedicatories/', views.dedicatories, name='dedicatories'),
-    
+    path('v/', views.v, name='listar_publicas'),    
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-handler404 = 'dedicatory.views.costum_404_view'  # Opcional, se quiser custom handler
+handler404 = 'dedicatory.views.custom_404_redirect'  # Opcional, se quiser custom handler

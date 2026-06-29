@@ -3,37 +3,80 @@ from .models import Dedicatory
 from django.forms.widgets import ClearableFileInput
 
 
+# =========================
+# FORM DE CRIAÇÃO
+# =========================
 class DedicatoryForm(forms.ModelForm):
     class Meta:
         model = Dedicatory
-        fields = ['teu', 'nome', 'email', 'tipo', 'contexto', 'mensagem']
+        fields = [
+            'teu',
+            'nome',
+            'pin',
+            'tipo',
+            'contexto',
+            'status',
+            'mensagem'
+        ]
+
         labels = {
-            'teu':'Your name',
+            'teu': 'Your Name',
             'nome': 'Full Name',
-            'email': 'Email Address',
+            'pin': '4 digits Pin',
             'tipo': 'Type of Dedication',
             'contexto': 'Context',
+            'status': 'Visibility',
             'mensagem': 'Message',
         }
+
         help_texts = {
-            'mensagem': 'Write your dedication here, max 200 characters.',
+            'mensagem': 'Write your dedication here.',
+            'status': 'Public = everyone can see, Private = needs code.',
         }
+
         widgets = {
-            'nome': forms.TextInput(attrs={'placeholder': 'Ex: John Smith'}),
-            'mensagem': forms.Textarea(attrs={'placeholder': 'Write your message here...', 'rows': 4}),
+            'teu': forms.TextInput(attrs={'placeholder': 'Ex: João'}),
+            'nome': forms.TextInput(attrs={'placeholder': 'Ex: Maria Silva'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
+            'tipo': forms.Select(),
+            'contexto': forms.Select(),
+            'status': forms.Select(),
+
+            'mensagem': forms.Textarea(attrs={
+                'placeholder': 'Write your message here...',
+                'rows': 4
+            }),
         }
 
 
+# =========================
+# FORM DE EDIÇÃO
+# =========================
 class DedicatoryEditForm(forms.ModelForm):
     class Meta:
         model = Dedicatory
-        fields = ['nome', 'email', 'tipo', 'contexto', 'mensagem', 
-                  'photo1', 'photo2', 'photo3', 'photo4', 'photo5']
+        fields = [
+            'teu',
+            'nome',
+            'pin',
+            'tipo',
+            'contexto',
+            'status',
+            'mensagem',
+            'photo1',
+            'photo2',
+            'photo3',
+            'photo4',
+            'photo5'
+        ]
+
         labels = {
+            'teu': 'Your Name',
             'nome': 'Full Name',
             'email': 'Email Address',
             'tipo': 'Type of Dedication',
             'contexto': 'Context',
+            'status': 'Visibility',
             'mensagem': 'Message',
             'photo1': 'Photo 1',
             'photo2': 'Photo 2',
@@ -41,16 +84,24 @@ class DedicatoryEditForm(forms.ModelForm):
             'photo4': 'Photo 4',
             'photo5': 'Photo 5',
         }
-        help_texts = {
-            'mensagem': 'Write your dedication here, max 200 characters.',
-        }
+
         widgets = {
-            'nome': forms.TextInput(attrs={'placeholder': 'Ex: John Smith'}),
-            'mensagem': forms.Textarea(attrs={'placeholder': 'Write your message here...', 'rows': 4}),
-            # Sobrescrevendo os campos de imagem para não mostrar o link
-            'photo1': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
-            'photo2': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
-            'photo3': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
-            'photo4': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
-            'photo5': ClearableFileInput(attrs={'initial_text': '', 'input_text': 'Choose file', 'clear_checkbox_label': ''}),
+            'teu': forms.TextInput(attrs={'placeholder': 'Ex: João'}),
+            'nome': forms.TextInput(attrs={'placeholder': 'Ex: Maria Silva'}),
+            'pin': forms.TextInput(attrs={'placeholder': '4-digit PIN'}),
+
+            'tipo': forms.Select(),
+            'contexto': forms.Select(),
+            'status': forms.Select(),
+
+            'mensagem': forms.Textarea(attrs={
+                'placeholder': 'Write your message here...',
+                'rows': 4
+            }),
+
+            'photo1': ClearableFileInput(attrs={'input_text': 'Choose file'}),
+            'photo2': ClearableFileInput(attrs={'input_text': 'Choose file'}),
+            'photo3': ClearableFileInput(attrs={'input_text': 'Choose file'}),
+            'photo4': ClearableFileInput(attrs={'input_text': 'Choose file'}),
+            'photo5': ClearableFileInput(attrs={'input_text': 'Choose file'}),
         }

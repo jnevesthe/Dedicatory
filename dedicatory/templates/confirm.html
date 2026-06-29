@@ -201,30 +201,26 @@
 
   <div class="container">
     
-    <div class="banner-wrapper">
-       {% include 'includes/SmartLink_1.html' %}
-    </div> 
-
+    
     <main class="confirm-card">
-      <div class="icon-lock">🔐</div>
-      <h2>Verification</h2>
-      <p>To access and edit <strong>{{ dedicatory.nome }}</strong>, please confirm the email address used during creation.</p>
+  <div class="icon-lock">🔐</div>
+  <h2>Verification</h2>
+  <p>To access and edit <strong>{{ dedicatory.nome }}</strong>, please enter the PIN code used during creation.</p>
 
-      {% if erro %}
-        <div class="error-msg">
-          <span>⚠️</span> {{ erro }}
-        </div>
-      {% endif %}
+  {% if erro %}
+    <div class="error-msg">
+      <span>⚠️</span> {{ erro }}
+    </div>
+  {% endif %}
 
-      <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-          <input type="email" name="email" placeholder="e.g. yourname@email.com" required>
-        </div>
-        <button type="submit" class="btn-confirm">Verify & Continue</button>
-      </form>
-    </main>
-
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <input type="text" name="pin" placeholder="e.g. 1234" inputmode="numeric" maxlength="6" required>
+    </div>
+    <button type="submit" class="btn-confirm">Verify & Continue</button>
+  </form>
+</main>
   </div>
 
   <footer style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.8rem;">
