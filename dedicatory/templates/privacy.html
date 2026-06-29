@@ -5,11 +5,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — Love Dedicatory</title>
 
+  <!-- SEO Primary Tags -->
+  <title>Privacy Policy | Love Dedicatory — Send Love Messages Online</title>
+  <meta name="description" content="Read Love Dedicatory's Privacy Policy. Learn how we protect your personal data and keep your information safe on our love message platform." />
+  <meta name="keywords" content="love dedicatory privacy, privacy policy, data protection, love messages platform privacy, personal data policy" />
+  <meta name="author" content="Josemar Neves" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://love-dedicatory.xyz/privacy/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://love-dedicatory.xyz/privacy/" />
+  <meta property="og:title" content="Privacy Policy | Love Dedicatory" />
+  <meta property="og:description" content="Learn how Love Dedicatory protects your personal information and keeps your data private on our love message platform." />
+  <meta property="og:image" content="https://love-dedicatory.xyz/static/img/og-image.jpg" />
+  <meta property="og:site_name" content="Love Dedicatory" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacy Policy | Love Dedicatory" />
+  <meta name="twitter:description" content="Read Love Dedicatory's Privacy Policy and learn how we protect your personal data." />
+  <meta name="twitter:image" content="https://love-dedicatory.xyz/static/img/og-image.jpg" />
+
+  <!-- Structured Data: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy — Love Dedicatory",
+    "description": "Privacy Policy for Love Dedicatory, a platform for sending love messages and dedications online.",
+    "url": "https://love-dedicatory.xyz/privacy/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Love Dedicatory",
+      "url": "https://love-dedicatory.xyz"
+    },
+    "inLanguage": "en-US",
+    "datePublished": "2025-01-01",
+    "dateModified": "2025-01-01"
+  }
+  </script>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <!-- Google AdSense -->
+  {% include 'adsense.html' %}
 
   <style>
     :root {
@@ -35,7 +80,7 @@
       flex-direction: column;
     }
 
-    /* Cabeçalho Glassmorphism */
+    /* Header */
     header {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(10px);
@@ -49,13 +94,6 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-    }
-
-    header h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 1.5rem;
-      color: var(--primary);
-      font-style: italic;
     }
 
     nav {
@@ -73,8 +111,9 @@
     }
 
     nav a:hover { color: var(--primary); }
+    nav a[aria-current="page"] { color: var(--primary); font-weight: 700; }
 
-    /* Layout Principal */
+    /* Layout */
     .container {
       width: 100%;
       max-width: 800px;
@@ -86,7 +125,7 @@
       align-items: center;
     }
 
-    /* Cartão de Privacidade */
+    /* Privacy Card */
     .privacy-card {
       background: var(--card-bg);
       padding: 40px;
@@ -97,7 +136,7 @@
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
-    .privacy-card h1 {
+    .privacy-card h2 {
       font-family: "Playfair Display", serif;
       font-size: 2.2rem;
       color: var(--primary);
@@ -105,24 +144,42 @@
       margin-bottom: 30px;
     }
 
-    .privacy-card p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
+    .privacy-section {
+      display: flex;
+      align-items: flex-start;
       margin-bottom: 20px;
-      position: relative;
-      padding-left: 20px;
+      padding: 15px;
+      background: #fafafa;
+      border-radius: 12px;
+      transition: transform 0.2s ease;
     }
 
-    /* Detalhe de bullet decorativo */
-    .privacy-card p::before {
-      content: '✦';
-      position: absolute;
-      left: 0;
-      color: var(--primary);
-      font-size: 0.8rem;
+    .privacy-section:hover {
+      transform: translateY(-2px);
+      background: #fff5f8;
     }
 
-    /* Link de E-mail Estilizado */
+    .privacy-section .icon {
+      font-size: 1.2rem;
+      margin-right: 15px;
+      margin-top: 2px;
+      min-width: 25px;
+      text-align: center;
+    }
+
+    .privacy-section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .privacy-section p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Contact link */
     .contact-link {
       color: var(--primary);
       text-decoration: none;
@@ -136,14 +193,16 @@
       background: rgba(255, 71, 126, 0.05);
     }
 
-    /* Áreas de Banner */
-    .banner-wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin: 15px 0;
+    .card-footer-msg {
+      text-align: center;
+      margin-top: 30px;
+      font-weight: 600;
+      color: var(--primary);
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
     }
 
+    /* Footer */
     footer {
       text-align: center;
       color: var(--text-muted);
@@ -153,57 +212,100 @@
       margin-top: auto;
     }
 
-    /* Responsividade */
+    /* Responsive */
     @media (max-width: 600px) {
       header { flex-direction: column; gap: 10px; }
       nav { justify-content: center; }
       .privacy-card { padding: 30px 20px; }
-      .privacy-card h1 { font-size: 1.8rem; }
+      .privacy-card h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Love Dedicatory 💌</h1>
-    <nav>
+    <p><a href="{% url 'home' %}" style="text-decoration:none;"><span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--primary);font-style:italic;">Love Dedicatory 💌</span></a></p>
+    <nav aria-label="Main navigation">
       <a href="{% url 'home' %}">Home</a>
       <a href="{% url 'about' %}">About</a>
       <a href="{% url 'contact' %}">Contact</a>
-      <a href="{% url 'privacy' %}">Privacy</a>
+      <a href="{% url 'privacy' %}" aria-current="page">Privacy</a>
       <a href="{% url 'terms' %}">Terms</a>
     </nav>
   </header>
 
   <div class="container">
 
-    <div class="banner-wrapper">
-       {% include 'includes/SmartLink_1.html' %}
-    </div> 
+    <main>
+      <article class="privacy-card" itemscope itemtype="https://schema.org/WebPage">
 
-    <main class="privacy-card">
-      <h1>Privacy Policy</h1>
-      
-      <p>We value your privacy and are deeply committed to protecting your personal information.</p>
-      
-      <p>All data shared within <strong>Love Dedicatory</strong> is used solely to provide our service and improve your dedicated experience.</p>
-      
-      <p>We do not share, sell, or distribute your data to third parties. Your trust is our most valuable asset.</p>
-      
-      <p>For questions about your data or privacy concerns, feel free to contact us at 
-        <a href="mailto:love.dedicatory@gmail.com" class="contact-link">love.dedicatory@gmail.com</a>.
-      </p>
+        <h2 itemprop="name">Privacy Policy</h2>
+
+        <div class="privacy-section">
+          <span class="icon" aria-hidden="true">🔒</span>
+          <div>
+            <h3>Your Privacy Matters</h3>
+            <p>We are deeply committed to protecting your personal information. Your privacy is not an afterthought — it is built into the foundation of Love Dedicatory.</p>
+          </div>
+        </div>
+
+        <div class="privacy-section">
+          <span class="icon" aria-hidden="true">📋</span>
+          <div>
+            <h3>Data We Collect</h3>
+            <p>Any data shared within <strong>Love Dedicatory</strong> is used solely to provide our service and improve your experience. We collect only what is necessary to make the platform work for you.</p>
+          </div>
+        </div>
+
+        <div class="privacy-section">
+          <span class="icon" aria-hidden="true">🚫</span>
+          <div>
+            <h3>We Never Sell Your Data</h3>
+            <p>We do not share, sell, or distribute your personal data to third parties. Your trust is our most valuable asset and we take that seriously.</p>
+          </div>
+        </div>
+
+        <div class="privacy-section">
+          <span class="icon" aria-hidden="true">🍪</span>
+          <div>
+            <h3>Cookies & Advertising</h3>
+            <p>We use cookies to improve your browsing experience and to serve relevant ads through Google AdSense. By using this site, you consent to the use of cookies in accordance with Google's advertising policies.</p>
+          </div>
+        </div>
+
+        <div class="privacy-section">
+          <span class="icon" aria-hidden="true">🔄</span>
+          <div>
+            <h3>Policy Updates</h3>
+            <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page. Continued use of Love Dedicatory after updates constitutes acceptance of the revised policy.</p>
+          </div>
+        </div>
+
+        <div class="privacy-section">
+          <span class="icon" aria-hidden="true">📬</span>
+          <div>
+            <h3>Contact Us</h3>
+            <p>For questions about your data or privacy concerns, feel free to reach out at
+              <a href="mailto:love.dedicatory@gmail.com" class="contact-link">love.dedicatory@gmail.com</a>.
+            </p>
+          </div>
+        </div>
+
+        <p class="card-footer-msg">Your love messages are safe with us. 💗</p>
+
+      </article>
     </main>
-
-    <div class="banner-wrapper">
-       {% include 'includes/banner320x50_1.html' %}
-    </div> 
 
   </div>
 
   <footer>
-    © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
+    <p>© {% now "Y" %} Love Dedicatory. Made with ❤️ by Josemar Neves.</p>
+    <p style="margin-top:8px;font-size:0.82rem;">
+      <a href="{% url 'privacy' %}" style="color:var(--primary);margin-right:12px;">Privacy Policy</a>
+      <a href="{% url 'terms' %}" style="color:var(--text-muted);">Terms of Service</a>
+    </p>
   </footer>
 
 </body>
-</html>
+  </html>
+                                
