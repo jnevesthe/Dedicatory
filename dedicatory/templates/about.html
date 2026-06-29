@@ -5,7 +5,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===================== SEO ===================== -->
   <title>About Us — Love Dedicatory</title>
+  <meta name="description" content="Learn the story behind Love Dedicatory, a project created to connect people through heartfelt messages and love dedications for partners, family, and friends." />
+  <meta name="keywords" content="about love dedicatory, online dedication project, love message platform, Josemar Neves" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://love-dedicatory.xyz/about/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About Us — Love Dedicatory" />
+  <meta property="og:description" content="The story behind Love Dedicatory — a project built to help people share heartfelt dedications with the ones they love." />
+  <meta property="og:url" content="https://love-dedicatory.xyz/about/" />
+  <meta property="og:image" content="{% static 'img/love1.png' %}" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="About Us — Love Dedicatory" />
+  <meta name="twitter:description" content="The story behind Love Dedicatory — a project built to help people share heartfelt dedications." />
+  <meta name="twitter:image" content="{% static 'img/love1.png' %}" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Us — Love Dedicatory",
+    "url": "https://love-dedicatory.xyz/about/",
+    "description": "Love Dedicatory is a project created to connect people through heartfelt messages and love dedications.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Love Dedicatory",
+      "founder": {
+        "@type": "Person",
+        "name": "Josemar Neves"
+      }
+    }
+  }
+  </script>
+
+  {% include 'adsense.html' %}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +65,8 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Outfit", sans-serif;
@@ -51,11 +94,12 @@
       flex-wrap: wrap;
     }
 
-    header h1 {
+    header .logo {
       font-family: "Playfair Display", serif;
       font-size: 1.5rem;
       color: var(--primary);
       font-style: italic;
+      font-weight: 600;
     }
 
     nav {
@@ -72,8 +116,13 @@
       transition: color 0.3s ease;
     }
 
-    nav a:hover {
+    nav a:hover, nav a:focus-visible {
       color: var(--primary);
+    }
+
+    nav a:focus-visible {
+      outline: 2px solid var(--primary-dark);
+      outline-offset: 3px;
     }
 
     /* Container Principal */
@@ -181,12 +230,16 @@
         font-size: 2rem;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Love Dedicatory 💌</h1>
+    <span class="logo">Love Dedicatory 💌</span>
     <nav>
       <a href="{% url 'home' %}">Home</a>
       <a href="{% url 'about' %}">About</a>
@@ -197,19 +250,16 @@
   </header>
 
   <div class="container">
-    
-    <div class="banner-wrapper">
-       {% include 'includes/SmartLink_1.html' %}
-    </div> 
+
 
     <main class="about-card">
       <h1>About Us</h1>
-      
+
       <div class="about-content">
         <p><strong>Love Dedicatory</strong> is a heartfelt project created with a single purpose: to connect people through raw emotions and beautiful messages of love.</p>
-        
+
         <p>Our goal is to provide a safe, charming space where you can dedicate messages that truly express your feelings — whether it's a romantic declaration, a hug for a best friend, or simply an affectionate note to family.</p>
-        
+
         <p>Developed with passion by <span class="highlight-name">Josemar Neves</span>, this project blends modern technology and human emotion into one seamless experience. 💌</p>
       </div>
 
@@ -218,12 +268,10 @@
       </div>
     </main>
 
-    
-
   </div>
 
   <footer>
-    © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
+    © {% now "Y" %} Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
 
 </body>
