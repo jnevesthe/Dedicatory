@@ -20,7 +20,10 @@ class Contact(TemplateView):
     template_name= 'contact.html'     
     
 class Terms(TemplateView):
-    template_name= 'terms.html'          
+    template_name= 'terms.html'   
+
+def dedicatories(request):
+    return render(request, 'dedicatories.html')
 
 def criar_dedicatoria(request):
     if request.method == 'POST':
