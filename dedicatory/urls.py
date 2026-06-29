@@ -25,6 +25,8 @@ urlpatterns = [
     path('sitemap.xml/', views.sitemap_view, name='sitemap'),    
     path("robots.txt/", views.robots_txt, name='robots'),
     path('ads.txt/', views.ads_txt_view, name='ads'),
+    path('dedicatories/', views.dedicatories, name='dedicatories'),
+    
 ]
 
 if settings.DEBUG:
