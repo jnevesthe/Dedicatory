@@ -5,11 +5,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — Love Dedicatory</title>
 
+  <!-- SEO Primary Tags -->
+  <title>Terms of Service | Love Dedicatory — Send Love Messages Online</title>
+  <meta name="description" content="Read Love Dedicatory's Terms of Service. Learn how to use our platform responsibly to send heartfelt dedications and love messages online." />
+  <meta name="keywords" content="love dedicatory terms, terms of service, love messages platform rules, dedication website terms, online love letters policy" />
+  <meta name="author" content="Josemar Neves" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://love-dedicatory.xyz/terms/" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.lovededicatory.com/terms/" />
+  <meta property="og:title" content="Terms of Service | Love Dedicatory" />
+  <meta property="og:description" content="Understand the rules and guidelines for using Love Dedicatory — the platform that helps you send beautiful love messages and dedications online." />
+  <meta property="og:image" content="https://www.lovededicatory.com/static/img/og-image.jpg" />
+  <meta property="og:site_name" content="Love Dedicatory" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Terms of Service | Love Dedicatory" />
+  <meta name="twitter:description" content="Read Love Dedicatory's Terms of Service and learn how to use our love message platform responsibly." />
+  <meta name="twitter:image" content="https://www.lovededicatory.com/static/img/og-image.jpg" />
+
+  <!-- Structured Data: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Terms of Service — Love Dedicatory",
+    "description": "Terms of Service for Love Dedicatory, a platform for sending love messages and dedications online.",
+    "url": "https://www.lovededicatory.com/terms/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Love Dedicatory",
+      "url": "https://www.lovededicatory.com"
+    },
+    "inLanguage": "en-US",
+    "datePublished": "2025-01-01",
+    "dateModified": "2025-01-01"
+  }
+  </script>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <!-- Google AdSense -->
+  {% include 'adsense.html' %}
 
   <style>
     :root {
@@ -21,8 +66,6 @@
       --card-bg: #ffffff;
       --shadow: 0 15px 35px -5px rgba(255, 71, 126, 0.15);
       --radius: 20px;
-      --check-green: #20bf6b;
-      --cross-red: #eb3b5a;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,7 +80,7 @@
       flex-direction: column;
     }
 
-    /* Cabeçalho Glassmorphism */
+    /* Header */
     header {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(10px);
@@ -75,8 +118,9 @@
     }
 
     nav a:hover { color: var(--primary); }
+    nav a[aria-current="page"] { color: var(--primary); font-weight: 700; }
 
-    /* Layout Principal */
+    /* Layout */
     .container {
       width: 100%;
       max-width: 800px;
@@ -88,7 +132,7 @@
       align-items: center;
     }
 
-    /* Cartão dos Termos */
+    /* Terms Card */
     .terms-card {
       background: var(--card-bg);
       padding: 40px;
@@ -99,7 +143,7 @@
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
-    .terms-card h1 {
+    .terms-card > h2 {
       font-family: "Playfair Display", serif;
       font-size: 2.2rem;
       color: var(--primary);
@@ -113,7 +157,7 @@
       margin-bottom: 30px;
     }
 
-    /* Lista de Regras Bonita */
+    /* Terms List */
     .terms-list {
       list-style: none;
     }
@@ -141,6 +185,18 @@
       text-align: center;
     }
 
+    .term-item h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .term-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
     .card-footer-msg {
       text-align: center;
       margin-top: 30px;
@@ -150,14 +206,7 @@
       font-size: 1.2rem;
     }
 
-    /* Áreas de Banner */
-    .banner-wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin: 15px 0;
-    }
-
+    /* Footer */
     footer {
       text-align: center;
       color: var(--text-muted);
@@ -167,77 +216,103 @@
       margin-top: auto;
     }
 
-    /* Responsividade */
+    /* Responsive */
     @media (max-width: 600px) {
       header { flex-direction: column; gap: 10px; }
       nav { justify-content: center; }
       .terms-card { padding: 25px 20px; }
-      .terms-card h1 { font-size: 1.8rem; }
+      .terms-card > h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Love Dedicatory 💌</h1>
-    <nav>
+    <p><a href="{% url 'home' %}" style="text-decoration:none;"><span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--primary);font-style:italic;">Love Dedicatory 💌</span></a></p>
+    <nav aria-label="Main navigation">
       <a href="{% url 'home' %}">Home</a>
       <a href="{% url 'about' %}">About</a>
       <a href="{% url 'contact' %}">Contact</a>
       <a href="{% url 'privacy' %}">Privacy</a>
-      <a href="{% url 'terms' %}">Terms</a>
+      <a href="{% url 'terms' %}" aria-current="page">Terms</a>
     </nav>
   </header>
 
   <div class="container">
 
-    <div class="banner-wrapper">
-       {% include 'includes/SmartLink_1.html' %}
-    </div> 
+    <main>
+      <article class="terms-card" itemscope itemtype="https://schema.org/WebPage">
 
-    <main class="terms-card">
-      <h1>Terms of Service</h1>
-      <p class="intro-text">Please read these simple rules before using our platform.</p>
+        <h2 itemprop="name">Terms of Service</h2>
+        <p class="intro-text" itemprop="description">Please read these simple rules before using our platform.</p>
 
-      <ul class="terms-list">
-        <li class="term-item">
-          <span class="icon">✅</span>
-          <div class="text">
-            <strong>Agreement</strong>
-            <p>By using Love Dedicatory, you agree to these terms of use and commit to responsible conduct.</p>
-          </div>
-        </li>
+        <ul class="terms-list">
 
-        <li class="term-item">
-          <span class="icon">🚫</span>
-          <div class="text">
-            <strong>Prohibited Content</strong>
-            <p>Users must not submit offensive, illegal, hateful, or inappropriate content. Keep it clean and kind.</p>
-          </div>
-        </li>
+          <li class="term-item">
+            <span class="icon" aria-hidden="true">✅</span>
+            <div>
+              <h3>Agreement to Terms</h3>
+              <p>By accessing or using Love Dedicatory, you agree to these Terms of Service and commit to responsible, respectful conduct on our platform.</p>
+            </div>
+          </li>
 
-        <li class="term-item">
-          <span class="icon">⚖️</span>
-          <div class="text">
-            <strong>Moderation Rights</strong>
-            <p>We reserve the full right to remove any content immediately if it violates these terms or community standards.</p>
-          </div>
-        </li>
-      </ul>
+          <li class="term-item">
+            <span class="icon" aria-hidden="true">🚫</span>
+            <div>
+              <h3>Prohibited Content</h3>
+              <p>Users must not submit offensive, illegal, hateful, or inappropriate content of any kind. Love Dedicatory is a space for kindness — keep your messages clean and respectful.</p>
+            </div>
+          </li>
 
-      <p class="card-footer-msg">Love Dedicatory is created to spread love — please use it kindly. 💗</p>
+          <li class="term-item">
+            <span class="icon" aria-hidden="true">⚖️</span>
+            <div>
+              <h3>Moderation Rights</h3>
+              <p>We reserve the full right to remove, edit, or restrict any content or account that violates these terms or our community standards, without prior notice.</p>
+            </div>
+          </li>
+
+          <li class="term-item">
+            <span class="icon" aria-hidden="true">🔒</span>
+            <div>
+              <h3>Intellectual Property</h3>
+              <p>All original content on this platform, including design, text, and branding, is the property of Love Dedicatory. User-submitted messages remain the responsibility of the submitter.</p>
+            </div>
+          </li>
+
+          <li class="term-item">
+            <span class="icon" aria-hidden="true">🔄</span>
+            <div>
+              <h3>Changes to These Terms</h3>
+              <p>We may update these Terms of Service at any time. Continued use of the platform after changes are published constitutes your acceptance of the revised terms.</p>
+            </div>
+          </li>
+
+          <li class="term-item">
+            <span class="icon" aria-hidden="true">📬</span>
+            <div>
+              <h3>Contact Us</h3>
+              <p>Questions about these terms? <a href="{% url 'contact' %}" style="color:var(--primary);font-weight:600;">Reach out through our contact page</a> and we'll be happy to help.</p>
+            </div>
+          </li>
+
+        </ul>
+
+        <p class="card-footer-msg">Love Dedicatory is created to spread love — please use it kindly. 💗</p>
+
+      </article>
     </main>
-
-    <div class="banner-wrapper">
-       {% include 'includes/banner320x50_1.html' %}
-    </div> 
 
   </div>
 
   <footer>
-    © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
+    <p>© {% now "Y" %} Love Dedicatory. Made with ❤️ by Josemar Neves.</p>
+    <p style="margin-top:8px;font-size:0.82rem;">
+      <a href="{% url 'privacy' %}" style="color:var(--text-muted);margin-right:12px;">Privacy Policy</a>
+      <a href="{% url 'terms' %}" style="color:var(--primary);">Terms of Service</a>
+    </p>
   </footer>
 
 </body>
-      </html>
-      
+    </html>
+  
