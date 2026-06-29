@@ -4,8 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===================== SEO ===================== -->
   <title>Search Dedication — Love Dedicatory</title>
-  
+  <meta name="description" content="Enter your unique code to find and view a love dedication created on Love Dedicatory. Unlock your special message in seconds.">
+  <meta name="keywords" content="search dedication, find love dedication, dedication code, unlock love message">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://love-dedicatory.xyz/search/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Search Dedication — Love Dedicatory">
+  <meta property="og:description" content="Enter your unique code to unlock and view a special love dedication.">
+  <meta property="og:url" content="https://love-dedicatory.xyz/search/">
+  <meta property="og:image" content="{% static 'img/love1.png' %}">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Search Dedication — Love Dedicatory">
+  <meta name="twitter:description" content="Enter your unique code to unlock and view a special love dedication.">
+  <meta name="twitter:image" content="{% static 'img/love1.png' %}">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Search Dedication — Love Dedicatory",
+    "url": "https://love-dedicatory.xyz/search/",
+    "description": "Search for a love dedication using a unique code on Love Dedicatory.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Love Dedicatory",
+      "url": "https://love-dedicatory.xyz/"
+    }
+  }
+  </script>
+
+  {% include 'adsense.html' %}
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
@@ -23,6 +61,8 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Outfit", sans-serif;
@@ -63,7 +103,12 @@
       font-size: 0.9rem;
     }
 
-    nav a:hover { color: var(--primary); }
+    nav a:hover, nav a:focus-visible { color: var(--primary); }
+
+    nav a:focus-visible, .btn-search:focus-visible {
+      outline: 2px solid var(--primary-dark);
+      outline-offset: 3px;
+    }
 
     /* Layout da Busca */
     .search-container {
@@ -171,6 +216,13 @@
       justify-content: center;
     }
 
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -187,6 +239,11 @@
       nav { margin-bottom: 5px; }
       .search-card { padding: 30px 20px; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .search-card, .error-box { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -201,8 +258,7 @@
   </header>
 
   <div class="search-container">
-    
-    
+
     <main class="search-card">
       <h2>Find Love</h2>
       <p>Enter the unique code you received to unlock your special dedication.</p>
@@ -222,13 +278,15 @@
       {% endif %}
     </main>
 
-    
   </div>
 
-  <footer style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.8rem;">
-    © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
+  <footer>
+    © <span id="ano-atual">2025</span> Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
 
+  <script>
+    document.getElementById('ano-atual').textContent = new Date().getFullYear();
+  </script>
+
 </body>
-  </html>
-  
+</html>
