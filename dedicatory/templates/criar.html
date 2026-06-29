@@ -4,11 +4,49 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===================== SEO ===================== -->
   <title>Create Dedication — Love Dedicatory</title>
-  
+  <meta name="description" content="Create a free, heartfelt dedication for your partner, dad, brother, or best friend. Add photos and a personal message, then share it with a unique link.">
+  <meta name="keywords" content="create dedication, love message generator, online love letter, dedication maker, message for boyfriend, message for girlfriend">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://love-dedicatory.xyz/create/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Create Dedication — Love Dedicatory">
+  <meta property="og:description" content="Turn your feelings into a lasting memory. Create a free love dedication and share it with a unique link.">
+  <meta property="og:url" content="https://love-dedicatory.xyz/create/">
+  <meta property="og:image" content="{% static 'img/love1.png' %}">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Create Dedication — Love Dedicatory">
+  <meta name="twitter:description" content="Turn your feelings into a lasting memory with a free love dedication.">
+  <meta name="twitter:image" content="{% static 'img/love1.png' %}">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Create Dedication — Love Dedicatory",
+    "url": "https://love-dedicatory.xyz/create/",
+    "description": "Create a free, heartfelt love dedication with photos and a personal message, then share it with a unique link.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Love Dedicatory",
+      "url": "https://love-dedicatory.xyz/"
+    }
+  }
+  </script>
+
+  {% include 'adsense.html' %}
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -23,6 +61,8 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Outfit", sans-serif;
@@ -42,6 +82,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
       border-bottom: 1px solid rgba(255, 71, 126, 0.1);
       position: sticky;
       top: 0;
@@ -55,12 +97,28 @@
       font-style: italic;
     }
 
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 15px;
+      justify-content: center;
+    }
+
     nav a {
       color: var(--text-muted);
-      margin-left: 15px;
       text-decoration: none;
       font-weight: 500;
       font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover, nav a:focus-visible {
+      color: var(--primary);
+    }
+
+    nav a:focus-visible, .btn-submit:focus-visible {
+      outline: 2px solid var(--primary-dark);
+      outline-offset: 3px;
     }
 
     /* Layout do Formulário */
@@ -69,6 +127,7 @@
       margin: 40px auto;
       padding: 0 20px;
       width: 100%;
+      flex: 1;
     }
 
     .form-card {
@@ -115,13 +174,28 @@
       font-size: 1rem;
       transition: all 0.3s ease;
       background: #fafafa;
+      width: 100%;
+    }
+
+    form textarea {
+      min-height: 120px;
+      resize: vertical;
     }
 
     form input:focus, form select:focus, form textarea:focus {
       outline: none;
       border-color: var(--primary);
       background: #fff;
-      box-shadow: 0 0 0 4px rgba(255, 71, 126, 0.05);
+      box-shadow: 0 0 0 4px rgba(255, 71, 126, 0.08);
+    }
+
+    /* Inputs de arquivo (fotos) com aparência mais amigável no celular */
+    form input[type="file"] {
+      padding: 12px;
+      background: #fff5f8;
+      border-style: dashed;
+      cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .helptext {
@@ -129,6 +203,15 @@
       color: var(--text-muted);
       margin-top: 5px;
       font-style: italic;
+    }
+
+    /* Erros de validação do Django */
+    form ul.errorlist {
+      list-style: none;
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      margin-top: 6px;
+      font-weight: 600;
     }
 
     /* Botão Principal */
@@ -153,10 +236,8 @@
       box-shadow: 0 8px 25px rgba(255, 71, 126, 0.4);
     }
 
-    .banner-wrapper {
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
+    .btn-submit:active {
+      transform: translateY(0);
     }
 
     footer {
@@ -167,12 +248,54 @@
       margin-top: auto;
     }
 
-    /* Responsivo */
+    /* ===================== RESPONSIVO / MOBILE-FIRST ===================== */
     @media (max-width: 600px) {
-      .form-card { padding: 25px 20px; }
-      header { flex-direction: column; gap: 10px; }
-      nav { margin-bottom: 5px; }
-      .form-card h1 { font-size: 1.8rem; }
+      .container {
+        margin: 20px auto;
+        padding: 0 14px;
+      }
+
+      .form-card {
+        padding: 26px 18px;
+        border-radius: 16px;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 16px;
+      }
+
+      nav {
+        gap: 4px 12px;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+      }
+
+      .form-card h1 {
+        font-size: 1.7rem;
+      }
+
+      .form-card p.subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 22px;
+      }
+
+      form input, form select, form textarea {
+        padding: 13px 14px;
+        font-size: 1rem; /* mantém 16px+ efetivos para evitar zoom automático no iOS */
+      }
+
+      .btn-submit {
+        font-size: 1rem;
+        padding: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
@@ -189,8 +312,6 @@
   </header>
 
   <div class="container">
-    
-    
 
     <main class="form-card">
       <h1>Create Dedication</h1>
@@ -198,21 +319,23 @@
 
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        
+
         {{ form.as_p }}
-        
+
         <button type="submit" class="btn-submit">Generate Magic Link ✨</button>
       </form>
     </main>
 
-    
-
   </div>
 
   <footer>
-    © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
+    © <span id="ano-atual">2025</span> Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
+
+  <script>
+    document.getElementById('ano-atual').textContent = new Date().getFullYear();
+  </script>
 
 </body>
   </html>
-  
+    
