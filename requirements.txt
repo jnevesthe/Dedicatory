@@ -7,7 +7,7 @@ Django==6.0.6
 django-cloudinary-storage==0.3.0
 idna==3.18
 pillow==10.4.0
-psycopg==3.3.4
+psycopg[binary]==3.2.3
 python-decouple==3.8
 pytz==2026.2
 requests==2.34.2
