@@ -217,10 +217,18 @@ def sitemap_view(request):
     with open(path, 'r', encoding='utf-8') as f:
         return HttpResponse(f.read(), content_type='application/xml')
 
-
 def robots_txt(request):
-    return HttpResponse("User-agent: *\nAllow: /", content_type="text/plain")
-
+    content = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /confirm_edit/\n"
+        "Disallow: /confirm_delete/\n"
+        "Disallow: /update/\n"
+        "Disallow: /delete/\n"
+        "\n"
+        "Sitemap: https://love-dedicatory.xyz/sitemap.xml/\n"
+    )
+    return HttpResponse(content, content_type="text/plain")
 
 def ads_txt_view(request):
     path = os.path.join(settings.BASE_DIR, 'ads.txt')
