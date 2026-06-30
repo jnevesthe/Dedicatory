@@ -5,7 +5,26 @@
   <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===================== SEO ===================== -->
   <title>A Love Gift for {{ dedicatory.nome }} ❤️</title>
+  <meta name="description" content="A heartfelt love dedication for {{ dedicatory.nome }}, created with Love Dedicatory.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://love-dedicatory.xyz/dedicatory/{{ dedicatory.codigo }}/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="For You, {{ dedicatory.nome }} ❤️ — Love Dedicatory">
+  <meta property="og:description" content="A heartfelt love dedication from {{ dedicatory.teu }} to {{ dedicatory.nome }}.">
+  <meta property="og:url" content="https://love-dedicatory.xyz/dedicatory/{{ dedicatory.codigo }}/">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="For You, {{ dedicatory.nome }} ❤️">
+  <meta name="twitter:description" content="A heartfelt love dedication created with Love Dedicatory.">
+
+  {% include 'adsense.html' %}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,12 +43,15 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { overflow-x: hidden; }
+
     body {
       font-family: "Outfit", sans-serif;
       background: var(--bg-gradient);
       color: #333;
       overflow-x: hidden;
       min-height: 100vh;
+      width: 100%;
       display: flex;
       flex-direction: column;
       line-height: 1.5;
@@ -47,6 +69,7 @@
       font-size: clamp(2.2rem, 8vw, 3.5rem);
       color: var(--primary);
       text-shadow: 2px 2px 10px rgba(255, 77, 136, 0.2);
+      word-wrap: break-word;
     }
 
     /* Galeria Polaróide Dinâmica */
@@ -60,6 +83,7 @@
       flex-direction: column;
       align-items: center;
       min-height: clamp(350px, 60vh, 500px);
+      box-sizing: border-box;
     }
 
     .photo-frame {
@@ -71,6 +95,7 @@
       transform: rotate(-2deg);
       width: 100%;
       max-width: 380px;
+      box-sizing: border-box;
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
@@ -93,12 +118,15 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
+      max-width: 380px;
       position: absolute;
       top: 40%;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       padding: 0 10px;
       z-index: 10;
       pointer-events: none;
+      box-sizing: border-box;
     }
 
     .nav-btn {
@@ -116,6 +144,7 @@
       justify-content: center;
       color: var(--primary);
       -webkit-tap-highlight-color: transparent;
+      flex-shrink: 0;
     }
 
     #rodape-nome {
@@ -124,6 +153,8 @@
       font-size: clamp(1.5rem, 5vw, 2rem);
       color: var(--primary);
       text-align: center;
+      word-wrap: break-word;
+      padding: 0 10px;
     }
 
     /* Cartão de Mensagem Adaptável */
@@ -139,6 +170,7 @@
       border: 1px solid rgba(255, 255, 255, 0.6);
       box-shadow: var(--shadow);
       text-align: center;
+      box-sizing: border-box;
     }
 
     .message-title {
@@ -153,6 +185,8 @@
       line-height: 1.7;
       color: #444;
       margin-bottom: 30px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     /* Compartilhamento Responsivo */
@@ -172,10 +206,13 @@
       border-radius: 12px;
       border: 1px solid #eee;
       gap: 10px;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     #share-link {
       flex: 1;
+      min-width: 0;
       font-size: 0.8rem;
       color: var(--primary-dark);
       overflow: hidden;
@@ -194,6 +231,7 @@
       cursor: pointer;
       font-size: 0.8rem;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* Área de Ações com Botões Maiores */
@@ -265,6 +303,10 @@
       20% { opacity: 1; transform: translateY(-10vh) rotate(45deg) scale(1); }
       100% { transform: translateY(-110vh) rotate(360deg) scale(0.5); opacity: 0; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .heart-particle { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -302,7 +344,7 @@
     </div>
     <p style="font-size: 0.75rem; color: #888; margin-bottom: 8px;">Direct Link:</p>
     <div class="link-container">
-      <span id="share-link">https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/</span>
+      <span id="share-link">https://love-dedicatory.xyz/dedicatory/{{ dedicatory.codigo }}/</span>
       <button id="copyBtn" class="copy-btn" onclick="copyLink()">Copy</button>
     </div>
   </div>
@@ -331,7 +373,7 @@
 
   // Copiar Link
   function copyLink() {
-    const linkText = "https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/";
+    const linkText = "https://love-dedicatory.xyz/dedicatory/{{ dedicatory.codigo }}/";
     const btn = document.getElementById('copyBtn');
 
     navigator.clipboard.writeText(linkText).then(() => {
@@ -362,4 +404,5 @@
 </script>
 
 </body>
-</html>
+  </html>
+  
