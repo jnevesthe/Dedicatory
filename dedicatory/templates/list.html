@@ -57,6 +57,25 @@
       min-height: 100vh;
     }
 
+    .btn-primary {
+  display: inline-block;
+  background: #ff477e;
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 71, 126, 0.35);
+}
+
+.btn-primary:hover {
+  background: #d62f63;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 71, 126, 0.45);
+}
+
     header {
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(10px);
@@ -445,6 +464,8 @@
       </div>
     {% endfor %}
   </div>
+
+  <a href="{% url 'create' %}" class="btn-primary">Create My Dedication ✨</a>
 
   <div class="paginacao">
     {% if page_obj.has_previous %}
