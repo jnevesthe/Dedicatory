@@ -5,8 +5,15 @@
   <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===================== SEO ===================== -->
   <title>Verify Access — Love Dedicatory</title>
-  
+  <meta name="description" content="Enter your PIN code to verify access and edit your love dedication on Love Dedicatory.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://love-dedicatory.xyz/confirm_edit/">
+
+  {% include 'adsense.html' %}
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
@@ -171,6 +178,13 @@
       margin-bottom: 20px;
     }
 
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -201,8 +215,7 @@
   </header>
 
   <div class="container">
-    
-    
+
     <main class="confirm-card">
   <div class="icon-lock">🔐</div>
   <h2>Verification</h2>
@@ -224,10 +237,13 @@
 </main>
   </div>
 
-  <footer style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.8rem;">
-    © 2025 Love Dedicatory. Made with ❤️ by Josemar Neves.
+  <footer>
+    © <span id="ano-atual">2025</span> Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
 
+  <script>
+    document.getElementById('ano-atual').textContent = new Date().getFullYear();
+  </script>
+
 </body>
-            </html>
-            
+</html>
