@@ -36,9 +36,9 @@ class DedicatoryForm(forms.ModelForm):
         }
 
         widgets = {
-            'teu': forms.TextInput(attrs={'placeholder': 'Ex: João'}),
-            'nome': forms.TextInput(attrs={'placeholder': 'Ex: Maria Silva'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
+            'teu': forms.TextInput(attrs={'placeholder': 'Ex: Jonh (your name)'}),
+            'nome': forms.TextInput(attrs={'placeholder': 'Ex: Maria (dedicated person)'}),
+            'pin': forms.TextInput(attrs={'placeholder': '4-Digit PIN'}),
             'tipo': forms.Select(),
             'contexto': forms.Select(),
             'status': forms.Select(),
