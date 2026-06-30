@@ -228,7 +228,7 @@
   </div>
 
   <footer>
-    © <span id="ano-atual">2025</span> Love Dedicatory. Made with ❤️ by Josemar Neves.
+    © <span id="ano-atual"></span> Love Dedicatory. Made with ❤️ by Josemar Neves.
   </footer>
 
   <script>
@@ -244,18 +244,21 @@
       btn.style.opacity = "0.7";
     };
 
-    // Contador de caracteres opcional (se o campo existir)
+    // Contador de caracteres (limite de 1000)
     if (textarea) {
       const counter = document.createElement('div');
       counter.className = 'char-count';
       textarea.parentNode.appendChild(counter);
-      
+
+      const CHAR_LIMIT = 1000;
+
       const updateCount = () => {
-        const remaining = 200 - textarea.value.length;
-        counter.innerText = `${textarea.value.length}/200 characters`;
+        const remaining = CHAR_LIMIT - textarea.value.length;
+        counter.innerText = `${textarea.value.length}/${CHAR_LIMIT} characters`;
         counter.style.color = remaining < 20 ? 'red' : '#666';
       };
 
+      textarea.setAttribute('maxlength', CHAR_LIMIT);
       textarea.addEventListener('input', updateCount);
       updateCount(); // Inicializa
     }
