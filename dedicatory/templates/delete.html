@@ -1,10 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===================== SEO ===================== -->
   <title>Confirm Deletion — Love Dedicatory</title>
+  <meta name="description" content="Confirm permanent deletion of your love dedication on Love Dedicatory.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://love-dedicatory.xyz/delete/">
+
+  {% include 'adsense.html' %}
+
   <style>
     :root {
       --pink: #ff5a8f;
@@ -127,6 +136,13 @@
       padding: 0 10px;
     }
 
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+      font-size: 0.8rem;
+    }
+
     @media (max-width: 600px) {
       .delete-card {
         padding: 25px 20px;
@@ -157,13 +173,6 @@
       <a href="{% url 'contact' %}">Contact</a>
     </nav>
   </header>
-    <!-- Banners Centralizados -->
-    <div class="banner-container">
-      {% include 'includes/SmartLink_1.html' %}
-    </div>
-    <div class="banner-container">
-      {% include 'includes/banner320x50_1.html' %}
-    </div>
 
   <div class="delete-card">
     <h1>Confirm Deletion</h1>
@@ -176,5 +185,13 @@
       <a href="{% url 'screen_dedicatory' object.codigo %}" class="btn btn-cancel">Cancel</a>
     </form>
   </div>
+
+  <footer>
+    © <span id="ano-atual">2025</span> Love Dedicatory. Made with ❤️ by Josemar Neves.
+  </footer>
+
+  <script>
+    document.getElementById('ano-atual').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
