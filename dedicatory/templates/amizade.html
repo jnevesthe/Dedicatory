@@ -5,7 +5,26 @@
   <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===================== SEO ===================== -->
 <title>Friendship — {{ dedicatory.nome }}</title>
+<meta name="description" content="A heartfelt friendship dedication for {{ dedicatory.nome }}, created with Love Dedicatory.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://love-dedicatory.xyz/dedicatory/{{ dedicatory.codigo }}/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="A Gift of Friendship for {{ dedicatory.nome }} — Love Dedicatory">
+<meta property="og:description" content="A heartfelt friendship dedication from {{ dedicatory.teu }} to {{ dedicatory.nome }}.">
+<meta property="og:url" content="https://love-dedicatory.xyz/dedicatory/{{ dedicatory.codigo }}/">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Gift of Friendship for {{ dedicatory.nome }}">
+<meta name="twitter:description" content="A heartfelt friendship dedication created with Love Dedicatory.">
+
+{% include 'adsense.html' %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,12 +41,15 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { overflow-x: hidden; }
+
 body {
   font-family: "Outfit", sans-serif;
   background: var(--bg-gradient);
   color: #2c2c2c;
   overflow-x: hidden;
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -44,11 +66,13 @@ header h1 {
   font-size: 3rem;
   color: var(--blue-dark);
   text-shadow: 2px 2px 10px rgba(0, 168, 255, 0.2);
+  word-wrap: break-word;
 }
 
 /* Galeria de Fotos */
 #gallery-container {
   position: relative;
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -56,6 +80,7 @@ header h1 {
   flex-direction: column;
   align-items: center;
   min-height: 450px;
+  box-sizing: border-box;
 }
 
 .photo-frame {
@@ -67,6 +92,7 @@ header h1 {
   transform: rotate(-1deg);
   width: 100%;
   max-width: 400px;
+  box-sizing: border-box;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -80,6 +106,7 @@ header h1 {
 }
 
 img.foto {
+  display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 1/1;
@@ -93,10 +120,15 @@ img.foto {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  max-width: 400px;
   position: absolute;
   top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
   pointer-events: none;
+  padding: 0 4px;
+  box-sizing: border-box;
 }
 
 .nav-btn {
@@ -114,6 +146,7 @@ img.foto {
   align-items: center;
   justify-content: center;
   color: var(--blue-primary);
+  flex-shrink: 0;
 }
 
 .nav-btn:hover {
@@ -128,10 +161,14 @@ img.foto {
   font-size: 1.8rem;
   color: var(--blue-dark);
   animation: fadeInUp 1.2s ease;
+  text-align: center;
+  word-wrap: break-word;
+  padding: 0 10px;
 }
 
 /* Cartão de Mensagem (Glassmorphism) */
 #message-card {
+  width: 100%;
   max-width: 650px;
   margin: 40px auto;
   padding: 40px 30px;
@@ -143,6 +180,7 @@ img.foto {
   box-shadow: var(--shadow);
   text-align: center;
   animation: fadeInUp 1s ease;
+  box-sizing: border-box;
 }
 
 .message-body {
@@ -151,6 +189,8 @@ img.foto {
   color: #444;
   font-weight: 300;
   margin-bottom: 30px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Link e Código */
@@ -181,10 +221,13 @@ img.foto {
   border: 1px solid #eee;
   gap: 10px;
   overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 #share-link {
   flex: 1;
+  min-width: 0;
   font-size: 0.85rem;
   color: var(--blue-primary);
   white-space: nowrap;
@@ -265,9 +308,18 @@ img.foto {
 }
 
 @media (max-width: 600px) {
-  header h1 { font-size: 2.2rem; }
-  #gallery-container { min-height: 380px; }
-  .photo-frame { width: 90%; }
+  header { padding: 30px 16px; }
+  header h1 { font-size: 1.9rem; }
+  #gallery-container { min-height: 380px; padding: 16px; }
+  .photo-frame { width: 100%; padding: 10px 10px 40px 10px; }
+  .message-body { font-size: 1.05rem; }
+  #message-card { padding: 28px 18px; margin: 24px auto; }
+  .actions { padding: 20px 14px; gap: 10px; }
+  .btn { padding: 11px 20px; font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble { display: none; }
 }
 </style>
 </head>
@@ -302,7 +354,7 @@ img.foto {
   <div class="share-section">
     <div class="code-display">Code: {{ dedicatory.codigo }}</div>
     <div class="link-box">
-      <span id="share-link">https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/</span>
+      <span id="share-link">https://love-dedicatory.xyz/dedicatory/{{ dedicatory.codigo }}/</span>
       <button id="copyBtn" class="btn-copy" onclick="copyLink()">Copy</button>
     </div>
   </div>
@@ -331,7 +383,7 @@ img.foto {
 
   // Sistema de Cópia (Infalível)
   function copyLink() {
-    const linkText = "https://love-dedicatory.onrender.com/dedicatory/{{ dedicatory.codigo }}/";
+    const linkText = "https://love-dedicatory.xyz/dedicatory/{{ dedicatory.codigo }}/";
     const btn = document.getElementById('copyBtn');
 
     const showSuccess = () => {
@@ -387,5 +439,5 @@ img.foto {
 </script>
 
 </body>
-</html>
-      
+    </html>
+  
