@@ -465,8 +465,10 @@
     {% endfor %}
   </div>
 
-  <center></center><a href="{% url 'create_dedicatory' %}" class="btn-primary">Create My Dedication ✨</a></center>
-
+   <div style="text-align:center; padding: 10px 20px;">
+      <a href="{% url 'create_dedicatory' %}" class="btn-primary">Create My Dedication ✨</a>
+   </div>
+  
   <div class="paginacao">
     {% if page_obj.has_previous %}
       <a href="?page=1{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">« First</a>
