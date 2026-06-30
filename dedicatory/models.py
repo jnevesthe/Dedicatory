@@ -20,6 +20,8 @@ class Dedicatory(models.Model):
         ('namorado', 'Girlfriend/Boyfriend'),
         ('irmao', 'Brother/Sister'),
         ('amigo', 'Friend'),
+        ('celebridade', 'Celebrity'),
+        ('eu_mesmo', 'Myself'),
     ]
 
     OPCOES_CONTEXTO = [

@@ -100,7 +100,16 @@
       justify-content: center;
       gap: 10px;
       flex-wrap: wrap;
-      padding: 20px;
+      padding: 20px 20px 6px;
+    }
+
+    .filtros-label {
+      text-align: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-top: 10px;
     }
 
     .filtros a {
@@ -119,6 +128,7 @@
     .filtros a.active-amor { background: #ff6b81; border-color: #ff6b81; color: #fff; }
     .filtros a.active-carinho { background: #f4c430; border-color: #f4c430; color: #4a3a00; }
     .filtros a.active-amizade { background: #4da6ff; border-color: #4da6ff; color: #fff; }
+    .filtros a.active-tipo { background: #2d2d2d; border-color: #2d2d2d; color: #fff; }
 
     .lista {
       display: grid;
@@ -353,11 +363,25 @@
     <h2>Public Dedications</h2>
   </div>
 
+  <!-- Filtro por contexto -->
   <div class="filtros">
-    <a href="{% url 'listar_publicas' %}" class="{% if not contexto_filtro %}active-todas{% endif %}">All</a>
-    <a href="?contexto=amor" class="{% if contexto_filtro == 'amor' %}active-amor{% endif %}">❤️ Love</a>
-    <a href="?contexto=carinho" class="{% if contexto_filtro == 'carinho' %}active-carinho{% endif %}">✨ Care</a>
-    <a href="?contexto=amizade" class="{% if contexto_filtro == 'amizade' %}active-amizade{% endif %}">🤗 Friendship</a>
+    <a href="{% url 'listar_publicas' %}" class="{% if not context_filter and not type_filter %}active-todas{% endif %}">All</a>
+    <a href="?context=love{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'love' %}active-amor{% endif %}">❤️ Love</a>
+    <a href="?context=care{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'care' %}active-carinho{% endif %}">✨ Care</a>
+    <a href="?context=friendship{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'friendship' %}active-amizade{% endif %}">🤗 Friendship</a>
+  </div>
+
+  <!-- Filtro por tipo -->
+  <p class="filtros-label">Dedicated to</p>
+  <div class="filtros">
+    <a href="?{% if context_filter %}context={{ context_filter }}{% endif %}" class="{% if not type_filter %}active-todas{% endif %}">All</a>
+    <a href="?type=mother{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'mother' %}active-tipo{% endif %}">Mother</a>
+    <a href="?type=father{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'father' %}active-tipo{% endif %}">Father</a>
+    <a href="?type=partner{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'partner' %}active-tipo{% endif %}">Partner</a>
+    <a href="?type=sibling{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'sibling' %}active-tipo{% endif %}">Sibling</a>
+    <a href="?type=friend{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'friend' %}active-tipo{% endif %}">Friend</a>
+    <a href="?type=celebrity{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'celebrity' %}active-tipo{% endif %}">Celebrity</a>
+    <a href="?type=myself{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'myself' %}active-tipo{% endif %}">Myself</a>
   </div>
 
   <div class="lista">
@@ -405,7 +429,7 @@
         </div>
 
         <div class="card-content">
-          <span class="tag">{{ d.get_contexto_display }}</span>
+          <span class="tag">{{ d.get_contexto_display }} · {{ d.get_tipo_display }}</span>
           <h3>{{ d.nome }}</h3>
           <p class="de-para">from <strong>{{ d.teu }}</strong></p>
           {% if d.mensagem %}
@@ -423,21 +447,21 @@
 
   <div class="paginacao">
     {% if page_obj.has_previous %}
-      <a href="?page=1{% if contexto_filtro %}&contexto={{ contexto_filtro }}{% endif %}">« First</a>
-      <a href="?page={{ page_obj.previous_page_number }}{% if contexto_filtro %}&contexto={{ contexto_filtro }}{% endif %}">‹ Previous</a>
+      <a href="?page=1{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">« First</a>
+      <a href="?page={{ page_obj.previous_page_number }}{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">‹ Previous</a>
     {% endif %}
 
     {% for num in page_obj.paginator.page_range %}
       {% if num == page_obj.number %}
         <span class="current">{{ num }}</span>
       {% else %}
-        <a href="?page={{ num }}{% if contexto_filtro %}&contexto={{ contexto_filtro }}{% endif %}">{{ num }}</a>
+        <a href="?page={{ num }}{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">{{ num }}</a>
       {% endif %}
     {% endfor %}
 
     {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}{% if contexto_filtro %}&contexto={{ contexto_filtro }}{% endif %}">Next ›</a>
-      <a href="?page={{ page_obj.paginator.num_pages }}{% if contexto_filtro %}&contexto={{ contexto_filtro }}{% endif %}">Last »</a>
+      <a href="?page={{ page_obj.next_page_number }}{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">Next ›</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">Last »</a>
     {% endif %}
   </div>
 
@@ -484,5 +508,5 @@
   </script>
 
 </body>
-  </html>
-      
+</html>
+

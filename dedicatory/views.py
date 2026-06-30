@@ -230,13 +230,33 @@ def ads_txt_view(request):
 from django.core.paginator import Paginator
 
 
+TYPE_MAP = {
+    'mother': 'mae',
+    'father': 'pai',
+    'partner': 'namorado',
+    'sibling': 'irmao',
+    'friend': 'amigo',
+    'celebrity': 'celebridade',
+    'myself': 'eu_mesmo',
+}
+
+CONTEXT_MAP = {
+    'love': 'amor',
+    'care': 'carinho',
+    'friendship': 'amizade',
+}
+
 def v(request):
-    contexto_filtro = request.GET.get('contexto')
+    context_param = request.GET.get('context')
+    type_param = request.GET.get('type')
 
     dedicatorias = Dedicatory.objects.filter(status='publico').order_by('-criado_em')
 
-    if contexto_filtro in ['amor', 'carinho', 'amizade']:
-        dedicatorias = dedicatorias.filter(contexto=contexto_filtro)
+    if context_param in CONTEXT_MAP:
+        dedicatorias = dedicatorias.filter(contexto=CONTEXT_MAP[context_param])
+
+    if type_param in TYPE_MAP:
+        dedicatorias = dedicatorias.filter(tipo=TYPE_MAP[type_param])
 
     paginator = Paginator(dedicatorias, 5)
     page_number = request.GET.get('page', 1)
@@ -244,5 +264,6 @@ def v(request):
 
     return render(request, 'list.html', {
         'page_obj': page_obj,
-        'contexto_filtro': contexto_filtro,
+        'context_filter': context_param,
+        'type_filter': type_param,
     })
