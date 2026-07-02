@@ -17,7 +17,12 @@ class DedicatoryForm(forms.ModelForm):
             'tipo',
             'contexto',
             'status',
-            'mensagem'
+            'mensagem',
+            'photo1',
+            'photo2',
+            'photo3',
+            'photo4',
+            'photo5'
         ]
 
         labels = {
