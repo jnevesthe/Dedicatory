@@ -157,13 +157,42 @@
       margin-bottom: 25px;
     }
 
+    .about-card h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      color: var(--primary-dark);
+      margin: 35px 0 15px;
+      text-align: left;
+    }
+
     .about-content {
       font-size: 1.05rem;
       color: var(--text-muted);
+      text-align: left;
     }
 
     .about-content p {
       margin-bottom: 20px;
+    }
+
+    .about-content ul {
+      margin: 0 0 20px 20px;
+    }
+
+    .about-content ul li {
+      margin-bottom: 10px;
+    }
+
+    /* Foto de Perfil */
+    .profile-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      display: block;
+      border: 4px solid var(--primary);
+      box-shadow: var(--shadow);
     }
 
     /* Destaque para o nome */
@@ -257,9 +286,34 @@
       <h1>About Us</h1>
 
       <div class="about-content">
+        <img src="{% static 'img/JOSEMAR_NEVES.jpg' %}" alt="Josemar Neves, creator of Love Dedicatory" class="profile-photo">
+
         <p><strong>Love Dedicatory</strong> is a heartfelt project created with a single purpose: to connect people through raw emotions and beautiful messages of love.</p>
 
         <p>Our goal is to provide a safe, charming space where you can dedicate messages that truly express your feelings — whether it's a romantic declaration, a hug for a best friend, or simply an affectionate note to family.</p>
+
+        <p>What started as a small personal project has grown into a platform used by people who simply want to say "I love you" in a more meaningful way. Every dedication tells a story, and we believe those stories deserve a beautiful place to live, even if just for a little while.</p>
+
+        <h2>Our Mission</h2>
+        <p>In a world where communication often feels rushed and impersonal, Love Dedicatory exists to slow things down. We believe that a well-crafted message, paired with a beautiful design, can carry more weight than a hundred quick texts. Our mission is to give everyone — regardless of writing skill or design experience — the tools to create something genuinely touching for the people who matter most in their lives.</p>
+
+        <h2>How It Works</h2>
+        <p>Creating a dedication on our platform is simple and takes just a few minutes:</p>
+        <ul>
+          <li><strong>Choose a theme:</strong> Select from a variety of visual styles designed for different occasions — romantic, friendly, or family-oriented.</li>
+          <li><strong>Write your message:</strong> Add your own words, memories, or a favorite quote to personalize the dedication.</li>
+          <li><strong>Add photos:</strong> Upload pictures that bring your dedication to life through a photo carousel.</li>
+          <li><strong>Share instantly:</strong> Get a unique link you can send directly to the person you're dedicating it to, through any messaging app.</li>
+        </ul>
+
+        <h2>Who We Serve</h2>
+        <p>Love Dedicatory is built for anyone with something meaningful to say. Couples celebrating an anniversary, friends reconnecting after years apart, children honoring their parents, or simply someone who wants to brighten another person's day — our platform adapts to every kind of relationship and every kind of love.</p>
+
+        <h2>Why We Built This</h2>
+        <p>The idea for Love Dedicatory came from a simple observation: most people have deep feelings they rarely put into words. Social media posts are public and fleeting, and private messages often lack the visual impact of a well-designed page. We wanted to build something in between — private enough to feel personal, yet beautiful enough to feel like a genuine gift.</p>
+
+        <h2>Looking Ahead</h2>
+        <p>We're constantly improving the experience — adding new dedication styles, better themes, and smoother ways to share your message with the people who matter most. Future updates will include more customization options, additional languages, and new ways to preserve and revisit your favorite dedications.</p>
 
         <p>Developed with passion by <span class="highlight-name">Josemar Neves</span>, this project blends modern technology and human emotion into one seamless experience. 💌</p>
       </div>
@@ -277,5 +331,5 @@
   </footer>
 
 </body>
-  </html>
+    </html>
   
