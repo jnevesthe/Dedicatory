@@ -17,8 +17,10 @@ class Dedicatory(models.Model):
     OPCOES_TIPO = [
         ('mae', 'Mother'),
         ('pai', 'Father'),
-        ('namorado', 'Girlfriend/Boyfriend'),
-        ('irmao', 'Brother/Sister'),
+        ('parceiro(a)', 'Partner'),
+        ('namorado', 'Boyfriend'),
+        ('namorada', 'Girlfriend'),
+        ('irmao(a)', 'Sibling'),
         ('amigo', 'Friend'),
         ('celebridade', 'Celebrity'),
         ('eu_mesmo', 'Myself'),
