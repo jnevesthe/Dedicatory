@@ -73,7 +73,8 @@ def ver_dedicatoria(request, codigo):
     templates = {
         'amor': 'amor.html',
         'carinho': 'carinho.html',
-        'amizade': 'amizade.html'
+        'amizade': 'amizade.html',
+        'admiracao': 'admiracao.html'
     }
 
     template = templates.get(dedicatory.contexto, 'galeria.html')
@@ -235,15 +236,18 @@ def ads_txt_view(request):
     with open(path, 'r', encoding='utf-8') as f:
         return HttpResponse(f.read(), content_type='text/plain')
 
+
 from django.core.paginator import Paginator
 
 
 TYPE_MAP = {
     'mother': 'mae',
     'father': 'pai',
-    'partner': 'namorado',
-    'sibling': 'irmao',
-    'friend': 'amigo',
+    'partner': 'parceiro(a)',
+    'boyfriend': 'namorado',
+    'girlfriend': 'namorada',
+    'sibling': 'irmao(a)',
+    'friend': 'amigo(a)',
     'celebrity': 'celebridade',
     'myself': 'eu_mesmo',
 }
@@ -252,6 +256,7 @@ CONTEXT_MAP = {
     'love': 'amor',
     'care': 'carinho',
     'friendship': 'amizade',
+    'admiration': 'admiracao',
 }
 
 def v(request):
@@ -266,7 +271,7 @@ def v(request):
     if type_param in TYPE_MAP:
         dedicatorias = dedicatorias.filter(tipo=TYPE_MAP[type_param])
 
-    paginator = Paginator(dedicatorias, 5)
+    paginator = Paginator(dedicatorias, 10)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
 

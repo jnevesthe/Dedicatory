@@ -21,7 +21,7 @@ class Dedicatory(models.Model):
         ('namorado', 'Boyfriend'),
         ('namorada', 'Girlfriend'),
         ('irmao(a)', 'Sibling'),
-        ('amigo', 'Friend'),
+        ('amigo(a)', 'Friend'),
         ('celebridade', 'Celebrity'),
         ('eu_mesmo', 'Myself'),
     ]
@@ -30,6 +30,7 @@ class Dedicatory(models.Model):
         ('amor', 'Loving'),
         ('carinho', 'Care'),
         ('amizade', 'Friendship'),
+        ('admiracao', 'Admiration'),
     ]
 
     OPCOES_STATUS = [
@@ -83,7 +84,7 @@ class Dedicatory(models.Model):
             if not self.codigo:
                 self.codigo = gerar_codigo_unico(self.__class__)
 
-        # Se for público, remove código
+        # Se for público, garante código
         if self.status == 'publico':
             self.codigo = gerar_codigo_unico(self.__class__)
 

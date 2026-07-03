@@ -148,6 +148,7 @@
     .filtros a.active-amor { background: #ff6b81; border-color: #ff6b81; color: #fff; }
     .filtros a.active-carinho { background: #f4c430; border-color: #f4c430; color: #4a3a00; }
     .filtros a.active-amizade { background: #4da6ff; border-color: #4da6ff; color: #fff; }
+    .filtros a.active-admiracao { background: #b0b4bb; border-color: #b0b4bb; color: #2d2d2d; }
     .filtros a.active-tipo { background: #2d2d2d; border-color: #2d2d2d; color: #fff; }
 
     .lista {
@@ -176,6 +177,7 @@
     .card.amor { background: linear-gradient(160deg, #ffafc5 0%, #ff5b86 100%); }
     .card.carinho { background: linear-gradient(160deg, #fff2b8 0%, #f4c430 100%); color: #4a3a00; }
     .card.amizade { background: linear-gradient(160deg, #a8d8ff 0%, #4da6ff 100%); }
+    .card.admiracao { background: linear-gradient(160deg, #e8eaed 0%, #b0b4bb 100%); color: #2d2d2d; }
 
     .floaters { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
     .floaters span {
@@ -325,6 +327,7 @@
     }
 
     .card.carinho .ver-link { border-color: rgba(74,58,0,0.4); }
+    .card.admiracao .ver-link { border-color: rgba(45,45,45,0.4); }
 
     .empty-msg {
       text-align: center;
@@ -389,6 +392,7 @@
     <a href="?context=love{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'love' %}active-amor{% endif %}">❤️ Love</a>
     <a href="?context=care{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'care' %}active-carinho{% endif %}">✨ Care</a>
     <a href="?context=friendship{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'friendship' %}active-amizade{% endif %}">🤗 Friendship</a>
+    <a href="?context=admiration{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'admiration' %}active-admiracao{% endif %}">🥈 Admiration</a>
   </div>
 
   <!-- Filtro por tipo -->
@@ -398,6 +402,8 @@
     <a href="?type=mother{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'mother' %}active-tipo{% endif %}">Mother</a>
     <a href="?type=father{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'father' %}active-tipo{% endif %}">Father</a>
     <a href="?type=partner{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'partner' %}active-tipo{% endif %}">Partner</a>
+    <a href="?type=boyfriend{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'boyfriend' %}active-tipo{% endif %}">Boyfriend</a>
+    <a href="?type=girlfriend{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'girlfriend' %}active-tipo{% endif %}">Girlfriend</a>
     <a href="?type=sibling{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'sibling' %}active-tipo{% endif %}">Sibling</a>
     <a href="?type=friend{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'friend' %}active-tipo{% endif %}">Friend</a>
     <a href="?type=celebrity{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'celebrity' %}active-tipo{% endif %}">Celebrity</a>
@@ -426,6 +432,11 @@
             <span style="left:38%; animation-duration:7s; animation-delay:1.5s;">✨</span>
             <span style="left:62%; animation-duration:5.5s; animation-delay:0.8s;">🤗</span>
             <span style="left:84%; animation-duration:6.5s; animation-delay:2.2s;">💫</span>
+          {% elif d.contexto == 'admiracao' %}
+            <span style="left:10%; animation-duration:6s; animation-delay:0s;">🏆</span>
+            <span style="left:34%; animation-duration:7s; animation-delay:1.2s;">⭐</span>
+            <span style="left:58%; animation-duration:5.5s; animation-delay:0.6s;">🥈</span>
+            <span style="left:82%; animation-duration:6.5s; animation-delay:2s;">✨</span>
           {% endif %}
         </div>
 
