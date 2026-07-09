@@ -70,6 +70,10 @@
   box-shadow: 0 6px 20px rgba(255, 71, 126, 0.35);
 }
 
+.preview {
+    white-space: pre-line;
+}
+
 .btn-primary:hover {
   background: #d62f63;
   transform: translateY(-2px);
@@ -464,7 +468,7 @@
           <h3>{{ d.nome }}</h3>
           <p class="de-para">from <strong>{{ d.teu }}</strong></p>
           {% if d.mensagem %}
-            <p class="preview">"{{ d.mensagem|truncatewords:14 }}"</p>
+            <p class="preview">{{ d.mensagem|truncatechars:200 }}</p>
           {% endif %}
           <a href="{% url 'screen_dedicatory' d.codigo %}" class="ver-link">View dedication →</a>
         </div>
