@@ -1,0 +1,558 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <!-- ===================== SEO ===================== -->
+  <title>Public Dedications — Love Dedicatory</title>
+  <meta name="description" content="Browse public love dedications shared by the community. Discover heartfelt messages of love, care, and friendship on Love Dedicatory.">
+  <meta name="keywords" content="public dedications, love messages, friendship messages, care messages, love dedicatory">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://love-dedicatory.xyz/dedications/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Public Dedications — Love Dedicatory">
+  <meta property="og:description" content="Browse public love dedications shared by the community on Love Dedicatory.">
+  <meta property="og:url" content="https://love-dedicatory.xyz/dedications/">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Public Dedications — Love Dedicatory">
+  <meta name="twitter:description" content="Browse public love dedications shared by the community.">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Public Dedications — Love Dedicatory",
+    "url": "https://love-dedicatory.xyz/dedications/",
+    "description": "A public collection of love, care, and friendship dedications shared by the Love Dedicatory community."
+  }
+  </script>
+
+  {% include 'adsense.html' %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --text-main: #2d2d2d;
+      --text-muted: #666;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      background: #faf7f5;
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .btn-primary {
+  display: inline-block;
+  background: #ff477e;
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 71, 126, 0.35);
+}
+
+.preview {
+    white-space: pre-line;
+}
+
+.btn-primary:hover {
+  background: #d62f63;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 71, 126, 0.45);
+}
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: #ff477e;
+      font-style: italic;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      margin-left: 15px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    nav a:hover { color: #ff477e; }
+
+    .page-title {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+
+    .page-title h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+    }
+
+    .filtros {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 20px 20px 6px;
+    }
+
+    .filtros-label {
+      text-align: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .filtros a {
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: 2px solid #eee;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      background: #fff;
+    }
+
+    .filtros a.active-todas { border-color: #999; color: #333; }
+    .filtros a.active-amor { background: #ff6b81; border-color: #ff6b81; color: #fff; }
+    .filtros a.active-carinho { background: #f4c430; border-color: #f4c430; color: #4a3a00; }
+    .filtros a.active-amizade { background: #4da6ff; border-color: #4da6ff; color: #fff; }
+    .filtros a.active-admiracao { background: #b0b4bb; border-color: #b0b4bb; color: #2d2d2d; }
+    .filtros a.active-tipo { background: #2d2d2d; border-color: #2d2d2d; color: #fff; }
+
+    .lista {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 10px 20px 40px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 700px) {
+      .lista {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.25);
+      transition: transform 0.25s ease;
+      color: #fff;
+    }
+
+    .card:hover { transform: translateY(-4px); }
+
+    .card.amor { background: linear-gradient(160deg, #ffafc5 0%, #ff5b86 100%); }
+    .card.carinho { background: linear-gradient(160deg, #fff2b8 0%, #f4c430 100%); color: #4a3a00; }
+    .card.amizade { background: linear-gradient(160deg, #a8d8ff 0%, #4da6ff 100%); }
+    .card.admiracao { background: linear-gradient(160deg, #e8eaed 0%, #b0b4bb 100%); color: #2d2d2d; }
+
+    .floaters { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+    .floaters span {
+      position: absolute;
+      bottom: -10%;
+      font-size: 1.3rem;
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0) rotate(0deg) scale(0.7); opacity: 0; }
+      15% { opacity: 0.9; }
+      85% { opacity: 0.6; }
+      100% { transform: translateY(-300px) translateX(12px) rotate(25deg) scale(1.1); opacity: 0; }
+    }
+
+    .moldura {
+      position: relative;
+      z-index: 2;
+      background: #fff;
+      padding: 8px;
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      margin-bottom: 16px;
+    }
+
+    .carrossel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+
+    .carrossel-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+
+    .carrossel-slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .carrossel-sem-foto {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 2rem;
+    }
+
+    .carrossel-seta {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      transition: background 0.2s ease;
+    }
+    .carrossel-seta:hover { background: rgba(0,0,0,0.65); }
+    .carrossel-seta.prev { left: 8px; }
+    .carrossel-seta.next { right: 8px; }
+
+    .carrossel-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      z-index: 3;
+    }
+
+    .carrossel-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transition: background 0.2s ease;
+    }
+    .carrossel-dots span.ativo { background: #fff; }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .card-content .tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.85;
+    }
+
+    .card-content h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.3rem;
+      margin: 4px 0 2px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    .card-content .de-para {
+      font-size: 0.85rem;
+      opacity: 0.95;
+      margin-bottom: 12px;
+    }
+
+    .card-content .de-para strong { font-weight: 700; }
+
+    .card-content .preview {
+      font-size: 0.82rem;
+      font-style: italic;
+      line-height: 1.4;
+      opacity: 0.95;
+      margin-bottom: 14px;
+      padding: 0 4px;
+    }
+
+    .card-content .ver-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.6);
+      padding-bottom: 2px;
+    }
+
+    .card.carinho .ver-link { border-color: rgba(74,58,0,0.4); }
+    .card.admiracao .ver-link { border-color: rgba(45,45,45,0.4); }
+
+    .empty-msg {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .paginacao {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px 50px;
+      flex-wrap: wrap;
+    }
+
+    .paginacao a, .paginacao span {
+      padding: 8px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      background: #fff;
+      border: 1px solid #eee;
+    }
+
+    .paginacao a:hover { border-color: #ff477e; color: #ff477e; }
+
+    .paginacao .current {
+      background: #ff477e;
+      color: #fff;
+      border-color: #ff477e;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Love Dedicatory 💌</h1>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+  </header>
+
+  <div class="page-title">
+    <h2>Public Dedications</h2>
+  </div>
+
+  <!-- Filtro por contexto -->
+  <div class="filtros">
+    <a href="{% url 'listar_publicas' %}" class="{% if not context_filter and not type_filter %}active-todas{% endif %}">All</a>
+    <a href="?context=love{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'love' %}active-amor{% endif %}">❤️ Love</a>
+    <a href="?context=care{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'care' %}active-carinho{% endif %}">✨ Care</a>
+    <a href="?context=friendship{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'friendship' %}active-amizade{% endif %}">🤗 Friendship</a>
+    <a href="?context=admiration{% if type_filter %}&type={{ type_filter }}{% endif %}" class="{% if context_filter == 'admiration' %}active-admiracao{% endif %}">🥈 Admiration</a>
+  </div>
+
+  <!-- Filtro por tipo -->
+  <p class="filtros-label">Dedicated to</p>
+  <div class="filtros">
+    <a href="?{% if context_filter %}context={{ context_filter }}{% endif %}" class="{% if not type_filter %}active-todas{% endif %}">All</a>
+    <a href="?type=mother{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'mother' %}active-tipo{% endif %}">Mother</a>
+    <a href="?type=father{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'father' %}active-tipo{% endif %}">Father</a>
+    <a href="?type=partner{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'partner' %}active-tipo{% endif %}">Partner</a>
+    <a href="?type=boyfriend{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'boyfriend' %}active-tipo{% endif %}">Boyfriend</a>
+    <a href="?type=girlfriend{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'girlfriend' %}active-tipo{% endif %}">Girlfriend</a>
+    <a href="?type=sibling{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'sibling' %}active-tipo{% endif %}">Sibling</a>
+    <a href="?type=friend{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'friend' %}active-tipo{% endif %}">Friend</a>
+    <a href="?type=celebrity{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'celebrity' %}active-tipo{% endif %}">Celebrity</a>
+    <a href="?type=myself{% if context_filter %}&context={{ context_filter }}{% endif %}" class="{% if type_filter == 'myself' %}active-tipo{% endif %}">Myself</a>
+  </div>
+
+  <div class="lista">
+    {% for d in page_obj %}
+      <div class="card {{ d.contexto }}">
+
+        <div class="floaters">
+          {% if d.contexto == 'amor' %}
+            <span style="left:8%; animation-duration:5s; animation-delay:0s;">❤️</span>
+            <span style="left:28%; animation-duration:6.5s; animation-delay:1s;">💕</span>
+            <span style="left:52%; animation-duration:4.5s; animation-delay:2s;">❤️</span>
+            <span style="left:74%; animation-duration:7s; animation-delay:0.5s;">💗</span>
+            <span style="left:90%; animation-duration:5.5s; animation-delay:1.5s;">❤️</span>
+          {% elif d.contexto == 'carinho' %}
+            <span style="left:12%; animation-duration:4s; animation-delay:0s;">✨</span>
+            <span style="left:34%; animation-duration:5s; animation-delay:1.2s;">🌟</span>
+            <span style="left:58%; animation-duration:4.5s; animation-delay:0.6s;">✨</span>
+            <span style="left:80%; animation-duration:6s; animation-delay:2s;">⭐</span>
+            <span style="left:46%; animation-duration:5.5s; animation-delay:1.8s;">✨</span>
+          {% elif d.contexto == 'amizade' %}
+            <span style="left:10%; animation-duration:6s; animation-delay:0s;">🤗</span>
+            <span style="left:38%; animation-duration:7s; animation-delay:1.5s;">✨</span>
+            <span style="left:62%; animation-duration:5.5s; animation-delay:0.8s;">🤗</span>
+            <span style="left:84%; animation-duration:6.5s; animation-delay:2.2s;">💫</span>
+          {% elif d.contexto == 'admiracao' %}
+            <span style="left:10%; animation-duration:6s; animation-delay:0s;">🏆</span>
+            <span style="left:34%; animation-duration:7s; animation-delay:1.2s;">⭐</span>
+            <span style="left:58%; animation-duration:5.5s; animation-delay:0.6s;">🥈</span>
+            <span style="left:82%; animation-duration:6.5s; animation-delay:2s;">✨</span>
+          {% endif %}
+        </div>
+
+        <div class="moldura">
+          <div class="carrossel" data-carrossel>
+            {% if d.photo1 or d.photo2 or d.photo3 or d.photo4 or d.photo5 %}
+              <div class="carrossel-slides">
+                {% if d.photo1 %}<img src="{{ d.photo1.url }}" alt="{{ d.nome }}">{% endif %}
+                {% if d.photo2 %}<img src="{{ d.photo2.url }}" alt="{{ d.nome }}">{% endif %}
+                {% if d.photo3 %}<img src="{{ d.photo3.url }}" alt="{{ d.nome }}">{% endif %}
+                {% if d.photo4 %}<img src="{{ d.photo4.url }}" alt="{{ d.nome }}">{% endif %}
+                {% if d.photo5 %}<img src="{{ d.photo5.url }}" alt="{{ d.nome }}">{% endif %}
+              </div>
+              <button class="carrossel-seta prev" onclick="moverCarrossel(this, -1)">‹</button>
+              <button class="carrossel-seta next" onclick="moverCarrossel(this, 1)">›</button>
+              <div class="carrossel-dots"></div>
+            {% else %}
+              <div class="carrossel-sem-foto">💌</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="card-content">
+          <span class="tag">{{ d.get_contexto_display }} · {{ d.get_tipo_display }}</span>
+          <h3>{{ d.nome }}</h3>
+          <p class="de-para">from <strong>{{ d.teu }}</strong></p>
+          {% if d.mensagem %}
+            <p class="preview">{{ d.mensagem|truncatechars:700 }}</p>
+          {% endif %}
+          <a href="{% url 'screen_dedicatory' d.codigo %}" class="ver-link">View dedication →</a>
+        </div>
+      </div>
+    {% empty %}
+      <div class="empty-msg">
+        <p>No public dedications found.</p>
+      </div>
+    {% endfor %}
+  </div>
+
+   <div style="text-align:center; padding: 10px 20px;">
+      <a href="{% url 'create_dedicatory' %}" class="btn-primary">Create My Dedication ✨</a>
+   </div>
+  
+  <div class="paginacao">
+    {% if page_obj.has_previous %}
+      <a href="?page=1{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">« First</a>
+      <a href="?page={{ page_obj.previous_page_number }}{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">‹ Previous</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+      {% if num == page_obj.number %}
+        <span class="current">{{ num }}</span>
+      {% else %}
+        <a href="?page={{ num }}{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">Next ›</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}{% if context_filter %}&context={{ context_filter }}{% endif %}{% if type_filter %}&type={{ type_filter }}{% endif %}">Last »</a>
+    {% endif %}
+  </div>
+
+  <footer>© 2026 Love Dedicatory. Made with ❤️ by Josemar Neves.</footer>
+
+  <script>
+    document.querySelectorAll('[data-carrossel]').forEach(function (carrossel) {
+      const slidesWrap = carrossel.querySelector('.carrossel-slides');
+      if (!slidesWrap) return;
+
+      const total = slidesWrap.children.length;
+      const dotsWrap = carrossel.querySelector('.carrossel-dots');
+
+      carrossel.dataset.index = 0;
+      carrossel.dataset.total = total;
+
+      if (dotsWrap) {
+        for (let i = 0; i < total; i++) {
+          const dot = document.createElement('span');
+          if (i === 0) dot.classList.add('ativo');
+          dotsWrap.appendChild(dot);
+        }
+      }
+
+      if (total <= 1) {
+        carrossel.querySelectorAll('.carrossel-seta').forEach(s => s.style.display = 'none');
+      }
+    });
+
+    function moverCarrossel(botao, direcao) {
+      const carrossel = botao.closest('[data-carrossel]');
+      const slidesWrap = carrossel.querySelector('.carrossel-slides');
+      const dots = carrossel.querySelectorAll('.carrossel-dots span');
+      const total = parseInt(carrossel.dataset.total, 10);
+
+      let index = parseInt(carrossel.dataset.index, 10);
+      index = (index + direcao + total) % total;
+      carrossel.dataset.index = index;
+
+      slidesWrap.style.transform = `translateX(-${index * 100}%)`;
+
+      dots.forEach((dot, i) => dot.classList.toggle('ativo', i === index));
+    }
+  </script>
+
+  {% include 'cookies.html' %}
+
+</body>
+</html>
