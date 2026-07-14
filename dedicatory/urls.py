@@ -23,7 +23,8 @@ urlpatterns = [
     path('delete/<str:codigo>/', DeleteDedicatory.as_view(), name='delete'),
     path('sitemap.xml/', views.sitemap_view, name='sitemap'),    
     path("robots.txt", views.robots_txt, name='robots'),
-    path('ads.txt', views.ads_txt_view, name='ads'),
+    #path('ads.txt', views.ads_txt_view, name='ads'),
+    path('ads.txt', ezoic_ads_txt, name='ezoic_ads_txt'),
     path('examples/', views.dedicatories, name='examples'),
     path('dedications/', views.v, name='listar_publicas'),    
 ]
