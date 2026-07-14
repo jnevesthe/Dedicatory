@@ -231,11 +231,13 @@ def robots_txt(request):
     )
     return HttpResponse(content, content_type="text/plain")
 
+"""
 def ads_txt_view(request):
     path = os.path.join(settings.BASE_DIR, 'ads.txt')
     with open(path, 'r', encoding='utf-8') as f:
         return HttpResponse(f.read(), content_type='text/plain')
 
+"""
 
 from django.core.paginator import Paginator
 
@@ -280,3 +282,14 @@ def v(request):
         'context_filter': context_param,
         'type_filter': type_param,
     })
+
+
+
+
+from django.shortcuts import redirect
+
+def ezoic_ads_txt(request):
+    # Substitua '[YOUR_DOMAIN].com' pelo seu domínio real
+    ezoic_url = "https://srv.adstxtmanager.com/19390/love-dedicatory.xyz"
+    return redirect(ezoic_url, permanent=True)
+
