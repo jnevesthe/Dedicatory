@@ -1,0 +1,323 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===================== SEO ===================== -->
+  <title>FAQ — Frequently Asked Questions | Love Dedicatory</title>
+  <meta name="description" content="Answers to the most common questions about Love Dedicatory: how it works, privacy, sharing, and more." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://love-dedicatory.xyz/faq/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FAQ — Love Dedicatory" />
+  <meta property="og:description" content="Answers to the most common questions about Love Dedicatory." />
+  <meta property="og:url" content="https://love-dedicatory.xyz/faq/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Love Dedicatory" />
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for f in faqs %}
+      {
+        "@type": "Question",
+        "name": {{ f.pergunta|escapejs }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ f.resposta|striptags|escapejs }}
+        }
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
+
+  {% include 'adsense.html' %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ff477e;
+      --primary-dark: #d62f63;
+      --secondary: #ff85a1;
+      --accent: #fbb1bd;
+      --gold: #ffd76a;
+
+      --night-deep: #1a0e2e;
+      --night-mid: #2d1b46;
+      --night-soft: #45245c;
+
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text-main: #2d2d2d;
+      --text-muted: #666;
+      --white: #ffffff;
+      --shadow: 0 10px 30px -10px rgba(255, 71, 126, 0.3);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      color: var(--text-main);
+      background: var(--bg-gradient);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    a { -webkit-tap-highlight-color: transparent; }
+
+    /* ===================== HEADER ===================== */
+    header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 71, 126, 0.1);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    nav { display: flex; gap: 15px; }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover, nav a:focus-visible { color: var(--primary); }
+
+    nav a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--primary-dark);
+      outline-offset: 3px;
+    }
+
+    /* ===================== HERO (versão simples para página interna) ===================== */
+    .page-hero {
+      position: relative;
+      background: linear-gradient(180deg, var(--night-deep) 0%, var(--night-mid) 55%, var(--night-soft) 100%);
+      padding: 60px 20px 70px;
+      text-align: center;
+    }
+
+    .page-hero .hero-kicker {
+      display: inline-block;
+      color: var(--secondary);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .page-hero h1 {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5.5vw, 3rem);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 20px rgba(255, 71, 126, 0.35);
+    }
+
+    .page-hero p {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.02rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ===================== MAIN CONTENT ===================== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .content-section {
+      margin: 50px auto 60px;
+      padding: 0 10px;
+    }
+
+    /* ===================== FAQ ACCORDION ===================== */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px -8px rgba(255, 71, 126, 0.18);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-weight: 600;
+      font-size: 1.02rem;
+      color: var(--text-main);
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary .icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 71, 126, 0.1);
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .faq-item[open] summary .icon {
+      transform: rotate(45deg);
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .faq-item .faq-answer {
+      padding: 0 24px 22px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .faq-item .faq-answer p { margin-bottom: 10px; }
+    .faq-item .faq-answer p:last-child { margin-bottom: 0; }
+    .faq-item .faq-answer ul,
+    .faq-item .faq-answer ol { margin: 0 0 10px 20px; }
+    .faq-item .faq-answer a { color: var(--primary-dark); }
+
+    .empty-msg {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 40px 20px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 30px 20px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ===================== RESPONSIVIDADE ===================== */
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 10px; }
+      nav { width: 100%; justify-content: center; gap: 15px; flex-wrap: wrap; }
+      .page-hero { padding: 45px 16px 55px; }
+      .faq-item summary { padding: 16px 18px; font-size: 0.98rem; }
+      .faq-item .faq-answer { padding: 0 18px 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="logo">Love Dedicatory 💌</span>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      <a href="{% url 'privacy' %}">Privacy</a>
+      <a href="{% url 'listar_publicas' %}">Dedications</a>
+      <a href="{% url 'examples' %}">Examples</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <p class="hero-kicker">Love Dedicatory</p>
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know about creating, sharing, and managing your dedications.</p>
+  </section>
+
+  <section class="container">
+    <div class="content-section">
+      <div class="faq-list">
+        {% for f in faqs %}
+          <details class="faq-item">
+            <summary>
+              <span>{{ f.pergunta }}</span>
+              <span class="icon">+</span>
+            </summary>
+            <div class="faq-answer">{{ f.resposta|safe }}</div>
+          </details>
+        {% empty %}
+          <div class="empty-msg">
+            <p>No questions available yet.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Love Dedicatory. Made with ❤️ by Josemar Neves.
+  </footer>
+
+</body>
+</html>
+

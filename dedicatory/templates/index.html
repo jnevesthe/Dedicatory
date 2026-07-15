@@ -515,6 +515,99 @@
 
     footer a:hover { text-decoration: underline; }
 
+    /* Últimas dedicatórias públicas */
+    .mini-dedication-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .mini-dedication-card {
+      display: block;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 24px -8px rgba(255, 71, 126, 0.18);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mini-dedication-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px -8px rgba(255, 71, 126, 0.28);
+    }
+
+    .mini-dedication-card .mini-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f0;
+      color: #ccc;
+      font-size: 2rem;
+    }
+
+    .mini-dedication-card .mini-content {
+      padding: 16px 18px;
+    }
+
+    .mini-dedication-card .mini-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .mini-dedication-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+      margin: 4px 0 6px;
+      color: var(--text-main);
+    }
+
+    .mini-dedication-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Preview de FAQ na home */
+    .faq-preview-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-preview-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      box-shadow: 0 8px 24px -8px rgba(255, 71, 126, 0.18);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+    }
+
+    .faq-preview-item h3 {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .faq-preview-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .faq-preview-more {
+      text-align: center;
+      margin-top: 18px;
+    }
+
     /* ===================== RESPONSIVIDADE ===================== */
     @media (max-width: 768px) {
       header { flex-direction: column; gap: 10px; }
@@ -548,7 +641,9 @@
       <a href="{% url 'about' %}">About</a>
       <a href="{% url 'contact' %}">Contact</a>
       <a href="{% url 'privacy' %}">Privacy</a>
+      <a href="{% url 'terms' %}">Terms</a>
       <a href="{% url 'listar_publicas' %}">Dedications</a>
+      <a href="{% url 'faq' %}">FAQ</a>
       <a href="{% url 'examples' %}">Examples</a>
     </nav>
   </header>
@@ -684,6 +779,48 @@
         <p>Want to learn more about how we handle your data? Read our <a href="{% url 'privacy' %}">Privacy Policy</a>.</p>
       </div>
     </div>
+
+    <!-- ===================== ÚLTIMAS DEDICATÓRIAS PÚBLICAS ===================== -->
+    <div class="content-section">
+      <h2>Latest Public Dedications</h2>
+      <p class="section-intro">Get inspired by dedications shared by our community.</p>
+
+      <div class="mini-dedication-grid">
+        {% for d in ultimas_dedicatorias %}
+          <a href="{% url 'screen_dedicatory' d.codigo %}" class="mini-dedication-card">
+            {% if d.photo1 %}
+              <img src="{{ d.photo1.url }}" alt="{{ d.nome }}" class="mini-photo" loading="lazy">
+            {% else %}
+              <div class="mini-photo">💌</div>
+            {% endif %}
+            <div class="mini-content">
+              <span class="mini-tag">{{ d.get_contexto_display }}</span>
+              <h3>{{ d.nome }}</h3>
+              <p>{{ d.mensagem|truncatechars:90 }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ===================== FAQ (PREVIEW) ===================== -->
+    <div class="content-section">
+      <h2>Frequently Asked Questions</h2>
+      <p class="section-intro">Quick answers to help you get started.</p>
+
+      <div class="faq-preview-list">
+        {% for f in faqs_preview %}
+          <div class="faq-preview-item">
+            <h3>{{ f.pergunta }}</h3>
+            <p>{{ f.resposta|striptags|truncatewords:25 }}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="faq-preview-more">
+        <a href="{% url 'faq' %}" class="btn btn-secondary">See All FAQs</a>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -692,6 +829,7 @@
       <a href="{% url 'about' %}">About</a> ·
       <a href="{% url 'contact' %}">Contact</a> ·
       <a href="{% url 'privacy' %}">Privacy</a> ·
+      <a href="{% url 'terms' %}">Terms</a> ·
       <a href="{% url 'listar_publicas' %}">Dedications</a>
     </p>
     <p>Created by Josemar Neves</p>

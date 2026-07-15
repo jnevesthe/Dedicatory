@@ -11,7 +11,7 @@
 
   <!-- ===================== SEO ===================== -->
   <title>Love Dedicatory — Share Love and Emotions</title>
-  <meta name="description" content="Create a heartfelt dedication for your partner, dad, brother, or best friend. Add photos and emotions, then share it with a unique code in seconds — free." />
+  <meta name="description" content="Love Dedicatory is the place to create a heartfelt dedication for your partner, dad, brother, or best friend. Add photos and emotions, then share it with a unique code in seconds — free." />
   <meta name="keywords" content="love dedicatory, love dedication, love, dedication, love message, online dedication, virtual gift, letter for boyfriend, letter for girlfriend, letter for dad, letter for friend" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://love-dedicatory.xyz/" />
@@ -19,15 +19,16 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Love Dedicatory — Share Love and Emotions" />
-  <meta property="og:description" content="Write a heartfelt message for someone you love. Add pictures and emotions to generate a unique sharing code." />
+  <meta property="og:description" content="Love Dedicatory: write a heartfelt message for someone you love. Add pictures and emotions to generate a unique sharing code." />
   <meta property="og:url" content="https://love-dedicatory.xyz/" />
   <meta property="og:image" content="{% static 'img/love1.png' %}" />
   <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Love Dedicatory" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Love Dedicatory — Share Love and Emotions" />
-  <meta name="twitter:description" content="Write a heartfelt message for someone you love and share it with a unique code." />
+  <meta name="twitter:description" content="Love Dedicatory: write a heartfelt message for someone you love and share it with a unique code." />
   <meta name="twitter:image" content="{% static 'img/love1.png' %}" />
 
   <!-- Schema.org JSON-LD -->
@@ -36,15 +37,28 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Love Dedicatory",
+    "alternateName": "Love Dedicatory - Share Love and Emotions",
     "url": "https://love-dedicatory.xyz/",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "Any",
-    "description": "Create and share love dedications for your partner, dad, brother, or friend with photos and personalized messages.",
+    "description": "Love Dedicatory is a platform to create and share love dedications for your partner, dad, brother, or friend with photos and personalized messages.",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
     }
+  }
+  </script>
+
+  <!-- Schema.org: Organization (reforça a home como entidade principal) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Love Dedicatory",
+    "url": "https://love-dedicatory.xyz/",
+    "logo": "{% static 'img/favicon.png' %}",
+    "sameAs": []
   }
   </script>
 
@@ -90,6 +104,18 @@
     }
 
     a { -webkit-tap-highlight-color: transparent; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     /* ===================== HEADER ===================== */
     header {
@@ -218,6 +244,16 @@
       max-width: 700px;
       margin: 0 auto;
       text-align: center;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      color: var(--secondary);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
     }
 
     .hero-content h1 {
@@ -471,6 +507,107 @@
       margin-top: auto;
     }
 
+    footer a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* Últimas dedicatórias públicas */
+    .mini-dedication-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .mini-dedication-card {
+      display: block;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 24px -8px rgba(255, 71, 126, 0.18);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mini-dedication-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px -8px rgba(255, 71, 126, 0.28);
+    }
+
+    .mini-dedication-card .mini-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f0;
+      color: #ccc;
+      font-size: 2rem;
+    }
+
+    .mini-dedication-card .mini-content {
+      padding: 16px 18px;
+    }
+
+    .mini-dedication-card .mini-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .mini-dedication-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+      margin: 4px 0 6px;
+      color: var(--text-main);
+    }
+
+    .mini-dedication-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Preview de FAQ na home */
+    .faq-preview-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-preview-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      box-shadow: 0 8px 24px -8px rgba(255, 71, 126, 0.18);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+    }
+
+    .faq-preview-item h3 {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .faq-preview-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .faq-preview-more {
+      text-align: center;
+      margin-top: 18px;
+    }
+
     /* ===================== RESPONSIVIDADE ===================== */
     @media (max-width: 768px) {
       header { flex-direction: column; gap: 10px; }
@@ -504,6 +641,7 @@
       <a href="{% url 'about' %}">About</a>
       <a href="{% url 'contact' %}">Contact</a>
       <a href="{% url 'privacy' %}">Privacy</a>
+      <a href="{% url 'terms' %}">Terms</a>
       <a href="{% url 'listar_publicas' %}">Dedications</a>
       <a href="{% url 'examples' %}">Examples</a>
     </nav>
@@ -544,8 +682,9 @@
     </div>
 
     <div class="hero-content">
+      <p class="hero-kicker">Love Dedicatory</p>
       <h1>Create and Share <br><em>Lovely Dedications</em></h1>
-      <p>Write a heartfelt message for your partner, dad, brother, or best friend. Add pictures and emotions to generate a unique sharing code!</p>
+      <p>Love Dedicatory helps you write a heartfelt message for your partner, dad, brother, or best friend. Add pictures and emotions to generate a unique sharing code!</p>
     <!--
       <div class="warning-badge">
         <span>⚠️</span> Dedications are automatically deleted after 3 days.
@@ -624,25 +763,77 @@
       </div>
     </div>
 
-    <!-- ===================== PRIVACIDADE E SEGURANÇA ===================== -->
+    <!-- ===================== PRIVACIDADE / SEGURANÇA ===================== -->
     <div class="content-section">
-      <h2>Your Privacy and Safety Come First</h2>
+      <h2>Your Privacy Comes First</h2>
+      <p class="section-intro">Love Dedicatory was designed so you always stay in control of what you share and who can see it.</p>
+
       <div class="privacy-block">
-        <p>We know a dedication often carries personal feelings, names, and photos — and we treat that responsibility seriously.</p>
+        <p>Every dedication you create on Love Dedicatory gets a unique, private code. Nobody can guess or browse to it unless you choose to share it or make it public.</p>
         <ul>
-          <li>You control the visibility of every dedication you create: private by default, public only if you choose.</li>
-          <li>Public dedications are moderated to keep the community page a safe, respectful space for everyone.</li>
-          <li>We never sell your personal messages or photos to third parties.</li>
-          <li>Dedications are stored securely, and you can find more details in our <a href="{% url 'privacy' %}" style="color: var(--primary-dark); font-weight: 600;">Privacy Policy</a>.</li>
+          <li>Private dedications are never listed or indexed anywhere on the site.</li>
+          <li>You decide if and when a dedication becomes public.</li>
+          <li>Photos and messages are stored securely and only shown through your unique link or code.</li>
         </ul>
-        <p>If you ever have a concern about a dedication or your data, our <a href="{% url 'contact' %}" style="color: var(--primary-dark); font-weight: 600;">contact page</a> is always open.</p>
+        <p>Want to learn more about how we handle your data? Read our <a href="{% url 'privacy' %}">Privacy Policy</a>.</p>
+      </div>
+    </div>
+
+    <!-- ===================== ÚLTIMAS DEDICATÓRIAS PÚBLICAS ===================== -->
+    <div class="content-section">
+      <h2>Latest Public Dedications</h2>
+      <p class="section-intro">Get inspired by dedications shared by our community.</p>
+
+      <div class="mini-dedication-grid">
+        {% for d in ultimas_dedicatorias %}
+          <a href="{% url 'screen_dedicatory' d.codigo %}" class="mini-dedication-card">
+            {% if d.photo1 %}
+              <img src="{{ d.photo1.url }}" alt="{{ d.nome }}" class="mini-photo" loading="lazy">
+            {% else %}
+              <div class="mini-photo">💌</div>
+            {% endif %}
+            <div class="mini-content">
+              <span class="mini-tag">{{ d.get_contexto_display }}</span>
+              <h3>{{ d.nome }}</h3>
+              <p>{{ d.mensagem|truncatechars:90 }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ===================== FAQ (PREVIEW) ===================== -->
+    <div class="content-section">
+      <h2>Frequently Asked Questions</h2>
+      <p class="section-intro">Quick answers to help you get started.</p>
+
+      <div class="faq-preview-list">
+        {% for f in faqs_preview %}
+          <div class="faq-preview-item">
+            <h3>{{ f.pergunta }}</h3>
+            <p>{{ f.resposta|striptags|truncatewords:25 }}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="faq-preview-more">
+        <a href="{% url 'faq' %}" class="btn btn-secondary">See All FAQs</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>© {% now "Y" %} Love Dedicatory. Made with ❤️ by Josemar Neves.</p>
+    <p>&copy; {% now "Y" %} Love Dedicatory. Made with 💌 to help people share what words alone can't say.</p>
+    <p>
+      <a href="{% url 'about' %}">About</a> ·
+      <a href="{% url 'contact' %}">Contact</a> ·
+      <a href="{% url 'privacy' %}">Privacy</a> ·
+      <a href="{% url 'terms' %}">Terms</a> ·
+      <a href="{% url 'listar_publicas' %}">Dedications</a>
+    </p>
+    <p>Created by Josemar Neves</p>
   </footer>
+
   {% include 'cookies.html' %}
 
 </body>

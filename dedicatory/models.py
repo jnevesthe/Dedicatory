@@ -92,3 +92,23 @@ class Dedicatory(models.Model):
 
     def __str__(self):
         return f"Dedicatória de {self.nome} ({self.status})"
+
+
+
+# models.py
+from django.db import models
+from ckeditor.fields import RichTextField
+
+class FAQ(models.Model):
+    pergunta = models.CharField(max_length=255, verbose_name="Pergunta")
+    resposta = RichTextField(verbose_name="Resposta")
+    ordem = models.IntegerField(default=0, help_text="Define a ordem de exibição no site")
+    ativo = models.BooleanField(default=True, verbose_name="Ativo no site")
+
+    class Meta:
+        ordering = ['ordem']
+        verbose_name = "FAQ"
+        verbose_name_plural = "FAQs"
+
+    def __str__(self):
+        return self.pergunta

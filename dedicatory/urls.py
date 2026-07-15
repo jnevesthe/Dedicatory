@@ -11,6 +11,7 @@ from .views import Home, About, Privacy, Contact, Terms
 urlpatterns = [
     path('', Home.as_view(),  name='home'),
     path('about/', About.as_view(),  name='about'),
+    path('faq/', views.faq_list, name='faq'),
     path('privacy/', Privacy.as_view(),  name='privacy'),
     path('contact/', Contact.as_view(),  name='contact'),
     path('terms/', Terms.as_view(),  name='terms'),

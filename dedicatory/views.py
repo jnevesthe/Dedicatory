@@ -14,8 +14,17 @@ from .models import Dedicatory
 # PÁGINAS ESTÁTICAS
 # =========================
 
+from django.views.generic import TemplateView
+from .models import Dedicatory, FAQ
+
 class Home(TemplateView):
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ultimas_dedicatorias'] = Dedicatory.objects.all()[:2]
+        context['faqs_preview'] = FAQ.objects.filter(ativo=True)[:2]
+        return context
 
 
 class About(TemplateView):
@@ -36,6 +45,15 @@ class Terms(TemplateView):
 
 def dedicatories(request):
     return render(request, 'dedicatories.html')
+
+
+# views.py
+from django.shortcuts import render
+from .models import FAQ
+
+def faq_list(request):
+    faqs = FAQ.objects.filter(ativo=True)
+    return render(request, 'faq.html', {'faqs': faqs})
 
 
 # =========================
