@@ -4,52 +4,39 @@
   <!-- Home -->
   <url>
     <loc>https://love-dedicatory.xyz/</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Páginas institucionais -->
+  <!-- FAQ -->
   <url>
-    <loc>https://love-dedicatory.xyz/about/</loc>
-    <lastmod>2026-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://love-dedicatory.xyz/privacy/</loc>
-    <lastmod>2026-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://love-dedicatory.xyz/terms/</loc>
-    <lastmod>2026-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://love-dedicatory.xyz/contact/</loc>
-    <lastmod>2026-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://love-dedicatory.xyz/faq/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- Criar dedicatória -->
   <url>
     <loc>https://love-dedicatory.xyz/create/</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Dedicatórias públicas -->
+  <url>
+    <loc>https://love-dedicatory.xyz/dedications/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Pesquisa -->
   <url>
     <loc>https://love-dedicatory.xyz/search/</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -57,17 +44,38 @@
   <!-- Exemplos -->
   <url>
     <loc>https://love-dedicatory.xyz/examples/</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- Dedicatórias públicas -->
+  <!-- Páginas institucionais -->
   <url>
-    <loc>https://love-dedicatory.xyz/dedications/</loc>
-    <lastmod>2026-06-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <loc>https://love-dedicatory.xyz/about/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://love-dedicatory.xyz/contact/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://love-dedicatory.xyz/privacy/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://love-dedicatory.xyz/terms/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
 
 </urlset>
