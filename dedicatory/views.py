@@ -48,13 +48,34 @@ def dedicatories(request):
 
 
 # views.py
+import json
 from django.shortcuts import render
+from django.utils.html import strip_tags
 from .models import FAQ
 
 def faq_list(request):
-    faqs = FAQ.objects.filter(ativo=True)
-    return render(request, 'faq.html', {'faqs': faqs})
+    faqs = FAQ.objects.filter(ativo=True).order_by('ordem')
 
+    faq_schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": faq.pergunta,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": strip_tags(faq.resposta)
+                }
+            }
+            for faq in faqs
+        ]
+    }
+
+    return render(request, 'faq.html', {
+        'faqs': faqs,
+        'faq_schema_json': json.dumps(faq_schema, ensure_ascii=False)
+    })
 
 # =========================
 # CRIAR DEDICATÓRIA
