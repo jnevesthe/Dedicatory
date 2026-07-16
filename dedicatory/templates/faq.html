@@ -22,25 +22,8 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="Love Dedicatory" />
 
-  <!-- Schema.org: FAQPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {% for f in faqs %}
-      {
-        "@type": "Question",
-        "name": {{ f.pergunta|escapejs }},
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": {{ f.resposta|striptags|escapejs }}
-        }
-      }{% if not forloop.last %},{% endif %}
-      {% endfor %}
-    ]
-  }
-  </script>
+  <!-- Schema.org: FAQPage (gerado na view com json.dumps, já validado) -->
+  <script type="application/ld+json">{{ faq_schema_json|safe }}</script>
 
   {% include 'adsense.html' %}
 
@@ -319,5 +302,5 @@
   </footer>
 
 </body>
-</html>
-
+  </html>
+  
