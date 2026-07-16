@@ -53,6 +53,9 @@ from django.shortcuts import render
 from django.utils.html import strip_tags
 from .models import FAQ
 
+import json
+from django.utils.html import strip_tags
+
 def faq_list(request):
     faqs = FAQ.objects.filter(ativo=True).order_by('ordem')
 
@@ -74,7 +77,11 @@ def faq_list(request):
 
     return render(request, 'faq.html', {
         'faqs': faqs,
-        'faq_schema_json': json.dumps(faq_schema, ensure_ascii=False)
+        'faq_schema_json': json.dumps(
+            faq_schema,
+            ensure_ascii=False,
+            indent=2
+        )
     })
 
 # =========================
