@@ -501,5 +501,8 @@ video.unrulymedia.com, 5672421953199218469, RESELLER
 yahoo.com, 57289, RESELLER, e1a5b5b6e3255540
 zetaglobal.net, 891, RESELLER
 Once you’ve updated your ads.txt, click the button below to check that the lines are implemented correctly.
-
+sharethrough.com, 5pflvv45, RESELLER, d53b998a7bd4ecd2
+sharethrough.com, uvcax8il, RESELLER, d53b998a7bd4ecd2
+smaato.com, 1100056418, RESELLER, 07bcf65f187117b4
+Once you’ve updated your ads.txt, cli
 
