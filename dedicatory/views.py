@@ -48,6 +48,8 @@ def dedicatories(request):
 
 
 # views.py
+
+"""
 import json
 from django.shortcuts import render
 from django.utils.html import strip_tags
@@ -82,6 +84,66 @@ def faq_list(request):
             ensure_ascii=False,
             indent=2
         )
+    })
+
+"""
+
+import json
+from django.shortcuts import render, get_object_or_404
+from django.utils.html import strip_tags
+from .models import FAQ
+
+
+def faq_list(request):
+    faqs = FAQ.objects.filter(ativo=True).order_by('ordem')
+
+    faq_schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": faq.pergunta,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": strip_tags(faq.resposta)
+                }
+            }
+            for faq in faqs
+        ]
+    }
+
+    faq_schema_json = json.dumps(faq_schema).replace('</', '<\\/')
+
+    return render(request, 'faq.html', {
+        'faqs': faqs,
+        'faq_schema_json': faq_schema_json,
+    })
+
+
+def faq_detail(request, slug):
+    faq = get_object_or_404(FAQ, slug=slug, ativo=True)
+
+    faq_schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": faq.pergunta,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": strip_tags(faq.resposta)
+                }
+            }
+        ]
+    }
+
+    faq_schema_json = json.dumps(faq_schema).replace('</', '<\\/')
+
+    return render(request, 'faq_detail.html', {
+        'faq': faq,
+        'faq_schema_json': faq_schema_json,
     })
 
 # =========================
@@ -330,12 +392,32 @@ def v(request):
     })
 
 
+def ver_dedicatoria_publica(request, slug):
+    dedicatory = get_object_or_404(Dedicatory, slug=slug, status='publico')
 
-"""
-from django.shortcuts import redirect
+    fotos = [
+        dedicatory.photo1,
+        dedicatory.photo2,
+        dedicatory.photo3,
+        dedicatory.photo4,
+        dedicatory.photo5
+    ]
+    fotos = [f.url for f in fotos if f]
 
-def ezoic_ads_txt(request):
-    # Substitua '[YOUR_DOMAIN].com' pelo seu domínio real
-    ezoic_url = "https://srv.adstxtmanager.com/19390/love-dedicatory.xyz"
-    return redirect(ezoic_url, permanent=True)
-"""
+    templates = {
+        'amor': 'amor1.html',
+        'carinho': 'carinho1.html',
+        'amizade': 'amizade1.html',
+        'admiracao': 'admiracao1.html'
+    }
+
+    template = templates.get(dedicatory.contexto, 'galeria.html')
+
+    return render(request, template, {
+        'dedicatory': dedicatory,
+        'fotos': fotos
+    })
+
+
+
+

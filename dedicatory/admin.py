@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import Dedicatory
+from .models import Dedicatory, FAQ
 
-admin.site.register(Dedicatory)
 
-# admin.py
+@admin.register(Dedicatory)
+class DedicatoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('nome',)}
+    list_display = ('nome', 'teu', 'status', 'codigo', 'slug', 'criado_em')
 
-from .models import FAQ
 
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
-    list_display = ('pergunta', 'ordem', 'ativo')
-    list_editable = ('ordem', 'ativo')
-    search_fields = ('pergunta',)
+    prepopulated_fields = {'slug': ('pergunta',)}
+    list_display = ('pergunta', 'slug', 'ordem', 'ativo')

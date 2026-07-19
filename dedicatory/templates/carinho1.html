@@ -1,0 +1,389 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===================== SEO ===================== -->
+<title>Care — {{ dedicatory.nome }}</title>
+<meta name="description" content="A heartfelt care dedication for {{ dedicatory.nome }}, created with Love Dedicatory.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.slug }}/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="With Love for {{ dedicatory.nome }} — Love Dedicatory">
+<meta property="og:description" content="A heartfelt care dedication from {{ dedicatory.teu }} to {{ dedicatory.nome }}.">
+<meta property="og:url" content="https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.slug }}/">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="With Love for {{ dedicatory.nome }}">
+<meta name="twitter:description" content="A heartfelt care dedication created with Love Dedicatory.">
+
+{% include 'adsense.html' %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --warm-yellow: #ffb347;
+  --gold: #ffaa33;
+  --bg-gradient: linear-gradient(135deg, #fffdf5 0%, #fff2cc 100%);
+  --white-glass: rgba(255, 255, 255, 0.8);
+  --shadow: 0 15px 35px rgba(255, 179, 71, 0.2);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { overflow-x: hidden; }
+
+body {
+  font-family: "Outfit", sans-serif;
+  background: var(--bg-gradient);
+  color: #2c2c2c;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px;
+  animation: fadeInDown 1.2s ease;
+}
+
+header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.2rem;
+  color: var(--gold);
+  text-shadow: 2px 2px 8px rgba(255, 179, 71, 0.3);
+  word-wrap: break-word;
+}
+
+#gallery-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 450px;
+  box-sizing: border-box;
+}
+
+.photo-frame {
+  display: none;
+  background: white;
+  padding: 12px 12px 55px 12px;
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  transform: scale(0.9) rotate(-1deg);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 179, 71, 0.1);
+}
+
+.photo-frame.active {
+  display: block;
+  animation: zoomInSwing 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+img.foto {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.nav-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.nav-btn {
+  background: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.nav-btn:hover {
+  background: var(--gold);
+  color: white;
+  transform: scale(1.1);
+}
+
+#rodape-nome {
+  margin-top: 25px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: var(--gold);
+  text-align: center;
+  word-wrap: break-word;
+  padding: 0 10px;
+}
+
+#message-card {
+  width: 100%;
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 40px 30px;
+  background: var(--white-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  animation: fadeInUp 1s ease;
+  box-sizing: border-box;
+}
+
+.subtexto {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 30px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.share-section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  border: 1px solid #ffeeba;
+}
+
+.link-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fdfdfd;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#share-link {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.copy-btn {
+  background: var(--gold);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  transition: 0.3s;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.btn-back { background: #999; color: white; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+@keyframes zoomInSwing {
+  0% { opacity: 0; transform: scale(0.8) rotate(5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-1deg); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  animation: twinkleUp linear forwards;
+}
+
+@keyframes twinkleUp {
+  0% { transform: translateY(0) scale(0); opacity: 0; }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  header { padding: 30px 16px; }
+  header h1 { font-size: 2.1rem; }
+  #gallery-container { min-height: 380px; padding: 16px; }
+  .photo-frame { width: 100%; padding: 10px 10px 45px 10px; }
+  .subtexto { font-size: 1rem; }
+  #message-card { padding: 28px 18px; margin: 24px auto; }
+  .actions { padding: 24px 14px; gap: 10px; }
+  .btn { padding: 11px 20px; font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkle { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>With love, {{ dedicatory.nome }} 🌟</h1>
+</header>
+
+<div id="gallery-container">
+  <div class="nav-controls">
+    <button class="nav-btn" id="prev">❮</button>
+    <button class="nav-btn" id="next">❯</button>
+  </div>
+
+  {% for foto in fotos %}
+  <div class="photo-frame {% if forloop.first %}active{% endif %}">
+    <img src="{{ foto }}" alt="Memory" class="foto">
+  </div>
+  {% endfor %}
+
+  <div id="rodape-nome">From {{ dedicatory.teu }} ❤️</div>
+</div>
+
+<div id="message-card">
+  <div class="subtexto">
+    {{ dedicatory.mensagem|linebreaks }}
+  </div>
+
+  <div class="share-section">
+    <div class="link-container">
+      <span id="share-link">https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.slug }}/</span>
+      <button id="copyBtn" class="copy-btn" onclick="copyLink()">Copy</button>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <a href="{% url 'home' %}" class="btn btn-back">Back Home</a>
+</div>
+
+<script>
+const frames = document.querySelectorAll('.photo-frame');
+let index = 0;
+
+function updateGallery(newIndex) {
+  if (frames.length === 0) return;
+  frames[index].classList.remove('active');
+  index = (newIndex + frames.length) % frames.length;
+  frames[index].classList.add('active');
+}
+
+document.getElementById('next').onclick = () => updateGallery(index + 1);
+document.getElementById('prev').onclick = () => updateGallery(index - 1);
+
+function copyLink() {
+  const linkText = "https://love-dedicatory.xyz/dedicatory/public/{{ dedicatory.slug }}/";
+  const btn = document.getElementById('copyBtn');
+
+  const success = () => {
+    const old = btn.innerText;
+    btn.innerText = "Copied! ✅";
+    btn.style.background = "#28a745";
+    setTimeout(() => { btn.innerText = old; btn.style.background = "var(--gold)"; }, 2000);
+  };
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(linkText).then(success).catch(() => fallback(linkText, success));
+  } else {
+    fallback(linkText, success);
+  }
+}
+
+function fallback(text, cb) {
+  const el = document.createElement("textarea");
+  el.value = text;
+  document.body.appendChild(el);
+  el.select();
+  if (document.execCommand('copy')) cb();
+  document.body.removeChild(el);
+}
+
+function createSparkle() {
+  const sparkle = document.createElement('div');
+  sparkle.className = 'sparkle';
+  const icons = ['✨', '⭐', '🌟', '🟡'];
+  sparkle.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+  sparkle.style.left = Math.random() * 100 + 'vw';
+  sparkle.style.top = '100vh';
+  sparkle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+  sparkle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+  document.body.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 6000);
+}
+setInterval(createSparkle, 700);
+</script>
+
+</body>
+    </html>
+

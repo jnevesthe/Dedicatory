@@ -479,7 +479,7 @@
           {% if d.mensagem %}
             <p class="preview">{{ d.mensagem|truncatechars:500 }}</p>
           {% endif %}
-          <a href="{% url 'screen_dedicatory' d.codigo %}" class="ver-link">View dedication →</a>
+          <a href="{% url 'public' d.slug %}" class="ver-link">View dedication →</a>
         </div>
       </div>
     {% empty %}
