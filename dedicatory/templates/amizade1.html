@@ -354,7 +354,7 @@ img.foto {
   <div class="share-section">
     
     <div class="link-box">
-      <span id="share-link">https://www.love-dedicatory.xyz/dedicatory/public{{ dedicatory.codigo }}/</span>
+      <span id="share-link">https://www.love-dedicatory.xyz/dedicatory/public{{ dedicatory.slug }}/</span>
       <button id="copyBtn" class="btn-copy" onclick="copyLink()">Copy</button>
     </div>
   </div>
@@ -381,7 +381,7 @@ img.foto {
 
   // Sistema de Cópia (Infalível)
   function copyLink() {
-    const linkText = "https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.codigo }}/";
+    const linkText = "https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.slug }}/";
     const btn = document.getElementById('copyBtn');
 
     const showSuccess = () => {

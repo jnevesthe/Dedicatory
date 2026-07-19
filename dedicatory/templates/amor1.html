@@ -342,7 +342,7 @@
     
     <p style="font-size: 0.75rem; color: #888; margin-bottom: 8px;">Direct Link:</p>
     <div class="link-container">
-      <span id="share-link">https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.codigo }}/</span>
+      <span id="share-link">https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.slug }}/</span>
       <button id="copyBtn" class="copy-btn" onclick="copyLink()">Copy</button>
     </div>
   </div>
@@ -369,7 +369,7 @@
 
   // Copiar Link
   function copyLink() {
-    const linkText = "https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.codigo }}/";
+    const linkText = "https://www.love-dedicatory.xyz/dedicatory/public/{{ dedicatory.slug }}/";
     const btn = document.getElementById('copyBtn');
 
     navigator.clipboard.writeText(linkText).then(() => {
