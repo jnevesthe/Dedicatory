@@ -281,7 +281,8 @@
     <div class="content-section">
       <div class="faq-list">
         {% for f in faqs %}
-          <details class="faq-item">
+         <a href="{% url 'faq_detail' f.slug %}">View FAQ detail</a> 
+         <details class="faq-item">
             <summary>
               <span>{{ f.pergunta }}</span>
               <span class="icon">+</span>
