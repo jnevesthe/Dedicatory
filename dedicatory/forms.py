@@ -28,7 +28,7 @@ class DedicatoryForm(forms.ModelForm):
         labels = {
             'teu': 'Your Name',
             'nome': 'Full Name',
-            'pin': '4 digits Pin',
+            'pin': '6 digits Pin',
             'tipo': 'Type of Dedication',
             'contexto': 'Context',
             'status': 'Visibility',
@@ -94,7 +94,7 @@ class DedicatoryEditForm(forms.ModelForm):
         widgets = {
             'teu': forms.TextInput(attrs={'placeholder': 'Ex: João'}),
             'nome': forms.TextInput(attrs={'placeholder': 'Ex: Maria Silva'}),
-            'pin': forms.TextInput(attrs={'placeholder': '4-digit PIN'}),
+            'pin': forms.TextInput(attrs={'placeholder': '6-digit PIN'}),
 
             'tipo': forms.Select(),
             'contexto': forms.Select(),
