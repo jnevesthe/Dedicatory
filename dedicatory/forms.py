@@ -43,7 +43,7 @@ class DedicatoryForm(forms.ModelForm):
         widgets = {
             'teu': forms.TextInput(attrs={'placeholder': 'Ex: Jonh (your name)'}),
             'nome': forms.TextInput(attrs={'placeholder': 'Ex: Maria (dedicated person)'}),
-            'pin': forms.TextInput(attrs={'placeholder': '4-Digit PIN'}),
+            'pin': forms.TextInput(attrs={'placeholder': '6-Digit PIN'}),
             'tipo': forms.Select(),
             'contexto': forms.Select(),
             'status': forms.Select(),
