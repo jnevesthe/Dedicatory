@@ -544,20 +544,7 @@ nav > *:not(a) {
       gap: 20px;
     }
 
-    nav {
-  position: relative;
-  z-index: 2;
-   }
-
-   nav a {
-  position: relative;
-  z-index: 3;
-  }
-
-  nav > *:not(a) {
-  position: relative;
-  z-index: 1;
-  }
+    
 
     .mini-dedication-card {
       display: block;
@@ -687,13 +674,11 @@ nav > *:not(a) {
       <a href="{% url 'listar_publicas' %}">Dedications</a>
       <a href="{% url 'faq' %}">FAQ</a>
       <a href="{% url 'examples' %}">Examples</a>
-      <div class="nav-banner-wrap">
-         {% include 'banner.html' %}
-      </div>
       
     </nav>
-    {% include 'banner.html' %}
+    
   </header>
+  <div data-mndbanid="911c0d72-ecc5-4f1f-9d06-2a4b8754aa60"></div>
 
   <section class="hero-sky">
     <!-- Estrelas -->
