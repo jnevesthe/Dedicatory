@@ -1,0 +1,871 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% include 'adsense.html' %}
+  
+
+
+  
+
+
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===================== SEO ===================== -->
+  <title>Love Dedicatory — Share Love and Emotions</title>
+  <meta name="description" content="Love Dedicatory is the place to create a heartfelt dedication for your partner, dad, brother, or best friend. Add photos and emotions, then share it with a unique code in seconds — free." />
+  <meta name="keywords" content="love dedicatory, love dedication, love, dedication, love message, online dedication, virtual gift, letter for boyfriend, letter for girlfriend, letter for dad, letter for friend" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.love-dedicatory.xyz/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Love Dedicatory — Share Love and Emotions" />
+  <meta property="og:description" content="Love Dedicatory: write a heartfelt message for someone you love. Add pictures and emotions to generate a unique sharing code." />
+  <meta property="og:url" content="https://www.love-dedicatory.xyz/" />
+  <meta property="og:image" content="{% static 'img/love1.png' %}" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Love Dedicatory" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Love Dedicatory — Share Love and Emotions" />
+  <meta name="twitter:description" content="Love Dedicatory: write a heartfelt message for someone you love and share it with a unique code." />
+  <meta name="twitter:image" content="{% static 'img/love1.png' %}" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Love Dedicatory",
+    "alternateName": "Love Dedicatory - Share Love and Emotions",
+    "url": "https://www.love-dedicatory.xyz/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "description": "Love Dedicatory is a platform to create and share love dedications for your partner, dad, brother, or friend with photos and personalized messages.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Schema.org: Organization (reforça a home como entidade principal) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Love Dedicatory",
+    "url": "https://www.love-dedicatory.xyz/",
+    "logo": "{% static 'img/favicon.png' %}",
+    "sameAs": []
+  }
+  </script>
+
+  {% include 'adsense.html' %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ff477e;
+      --primary-dark: #d62f63;
+      --secondary: #ff85a1;
+      --accent: #fbb1bd;
+      --gold: #ffd76a;
+
+      --night-deep: #1a0e2e;
+      --night-mid: #2d1b46;
+      --night-soft: #45245c;
+
+      --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff8fb 100%);
+      --text-main: #2d2d2d;
+      --text-muted: #666;
+      --white: #ffffff;
+      --shadow: 0 10px 30px -10px rgba(255, 71, 126, 0.3);
+      --radius: 16px;
+    }
+     nav {
+  position: relative;
+  z-index: 2;
+}
+
+nav a {
+  position: relative;
+  z-index: 3;
+}
+
+nav > *:not(a) {
+  position: relative;
+  z-index: 1;
+}
+
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      color: var(--text-main);
+      background: var(--bg-gradient);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    a { -webkit-tap-highlight-color: transparent; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ===================== HEADER ===================== */
+    header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 71, 126, 0.1);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover, nav a:focus-visible {
+      color: var(--primary);
+    }
+
+    nav a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--primary-dark);
+      outline-offset: 3px;
+    }
+
+    /* ===================== HERO / NIGHT SKY ===================== */
+    .hero-sky {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--night-deep) 0%, var(--night-mid) 55%, var(--night-soft) 100%);
+      padding: 70px 20px 90px;
+    }
+
+    /* twinkling stars layer */
+    .stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: twinkle 3.2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.15; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* rising hearts */
+    .hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      font-size: 1.4rem;
+      color: var(--secondary);
+      opacity: 0;
+      animation: rise 9s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(255, 133, 161, 0.6));
+    }
+
+    @keyframes rise {
+      0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.9; }
+      50%  { transform: translateY(-50vh) translateX(15px) rotate(8deg); }
+      90%  { opacity: 0.5; }
+      100% { transform: translateY(-95vh) translateX(-10px) rotate(-6deg); opacity: 0; }
+    }
+
+    /* fireworks */
+    .firework {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow:
+        0 0 0 0 var(--gold);
+      animation: spark 2.6s ease-out infinite;
+    }
+
+    @keyframes spark {
+      0%   { box-shadow: 0 0 0 0 var(--gold), 0 0 0 0 var(--gold), 0 0 0 0 var(--gold), 0 0 0 0 var(--gold), 0 0 0 0 var(--gold), 0 0 0 0 var(--gold); opacity: 1; transform: scale(0.3); }
+      60%  { box-shadow: 26px -16px 0 -1px var(--gold), -26px -16px 0 -1px var(--secondary), 26px 16px 0 -1px var(--secondary), -26px 16px 0 -1px var(--gold), 0 -30px 0 -1px var(--accent), 0 30px 0 -1px var(--accent); opacity: 0.85; transform: scale(1); }
+      100% { box-shadow: 40px -26px 0 -2px transparent, -40px -26px 0 -2px transparent, 40px 26px 0 -2px transparent, -40px 26px 0 -2px transparent, 0 -46px 0 -2px transparent, 0 46px 0 -2px transparent; opacity: 0; transform: scale(1.1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      color: var(--secondary);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .hero-content h1 {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5.5vw, 3.2rem);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 20px rgba(255, 71, 126, 0.35);
+    }
+
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--secondary);
+      background: linear-gradient(90deg, var(--secondary), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto 22px;
+    }
+
+    .warning-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.08);
+      color: #ffd6e1;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(4px);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      min-width: 180px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 20px rgba(255, 71, 126, 0.55);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(255, 71, 126, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.95);
+      color: var(--primary-dark);
+      border: 2px solid transparent;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: #fff;
+    }
+
+    /* ===================== MAIN CONTENT ===================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 30px auto 10px;
+      box-shadow: var(--shadow);
+      border: 4px solid white;
+    }
+
+    .slides {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      animation: slide 15s infinite ease-in-out;
+    }
+
+    .slides img {
+      width: 33.333%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes slide {
+      0%, 30% { transform: translateX(0); }
+      33%, 63% { transform: translateX(-33.333%); }
+      66%, 96% { transform: translateX(-66.666%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ===================== CONTENT SECTIONS ===================== */
+    .content-section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 10px;
+    }
+
+    .content-section h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--primary-dark);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .content-section > p.section-intro {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 35px;
+      font-size: 1rem;
+    }
+
+    /* Grid de tipos de dedicatória */
+    .dedication-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .dedication-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: 0 8px 24px -8px rgba(255, 71, 126, 0.18);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .dedication-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px -8px rgba(255, 71, 126, 0.28);
+    }
+
+    .dedication-card .emoji {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .dedication-card h3 {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .dedication-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Público vs Privado */
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .choice-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 30px 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+    }
+
+    .choice-card h3 {
+      font-family: "Playfair Display", serif;
+      color: var(--primary-dark);
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .choice-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Privacidade / Segurança */
+    .privacy-block {
+      background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 100%);
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      border: 1px solid rgba(255, 71, 126, 0.15);
+    }
+
+    .privacy-block p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 16px;
+    }
+
+    .privacy-block p:last-child { margin-bottom: 0; }
+
+    .privacy-block ul {
+      margin: 0 0 16px 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .privacy-block ul li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 30px 20px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* Últimas dedicatórias públicas */
+    .mini-dedication-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    
+
+    .mini-dedication-card {
+      display: block;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 24px -8px rgba(255, 71, 126, 0.18);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mini-dedication-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px -8px rgba(255, 71, 126, 0.28);
+    }
+
+    .mini-dedication-card .mini-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f0;
+      color: #ccc;
+      font-size: 2rem;
+    }
+
+    .mini-dedication-card .mini-content {
+      padding: 16px 18px;
+    }
+
+    .mini-dedication-card .mini-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .mini-dedication-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+      margin: 4px 0 6px;
+      color: var(--text-main);
+    }
+
+    .mini-dedication-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Preview de FAQ na home */
+    .faq-preview-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-preview-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      box-shadow: 0 8px 24px -8px rgba(255, 71, 126, 0.18);
+      border: 1px solid rgba(255, 71, 126, 0.08);
+    }
+
+    .faq-preview-item h3 {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .faq-preview-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .faq-preview-more {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    /* ===================== RESPONSIVIDADE ===================== */
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 10px; }
+      nav { width: 100%; justify-content: center; gap: 15px; flex-wrap: wrap; }
+      .hero-sky { padding: 50px 16px 70px; }
+      .carousel-wrapper { aspect-ratio: 4/3; width: 95%; }
+      .action-buttons { flex-direction: column; width: 100%; max-width: 300px; margin-left: auto; margin-right: auto; }
+      .btn { width: 100%; }
+      .content-section { margin: 45px auto; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-sky { padding: 90px 20px 110px; }
+    }
+
+    /* Reduced motion: respeita a preferência do usuário */
+    @media (prefers-reduced-motion: reduce) {
+      .star, .heart, .firework, .slides {
+        animation: none !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  
+  
+
+
+  <header>
+    <span class="logo">Love Dedicatory 💌</span>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      <a href="{% url 'privacy' %}">Privacy</a>
+      <a href="{% url 'terms' %}">Terms</a>
+      <a href="{% url 'listar_publicas' %}">Dedications</a>
+      <a href="{% url 'faq' %}">FAQ</a>
+      <a href="{% url 'examples' %}">Examples</a>
+      
+    </nav>
+    
+  </header>
+
+  <section class="hero-sky">
+    <!-- Estrelas -->
+    <div class="stars" aria-hidden="true">
+      <div class="star" style="top:8%; left:10%; animation-delay:0s;"></div>
+      <div class="star" style="top:15%; left:80%; animation-delay:0.4s;"></div>
+      <div class="star" style="top:25%; left:35%; animation-delay:0.8s;"></div>
+      <div class="star" style="top:12%; left:55%; animation-delay:1.2s;"></div>
+      <div class="star" style="top:30%; left:90%; animation-delay:1.6s;"></div>
+      <div class="star" style="top:5%; left:25%; animation-delay:2s;"></div>
+      <div class="star" style="top:20%; left:5%; animation-delay:2.4s;"></div>
+      <div class="star" style="top:35%; left:65%; animation-delay:0.6s;"></div>
+      <div class="star" style="top:18%; left:45%; animation-delay:1.8s;"></div>
+      <div class="star" style="top:9%; left:70%; animation-delay:1s;"></div>
+    </div>
+
+    <!-- Fogos de artifício sutis -->
+    <div class="fireworks" aria-hidden="true">
+      <div class="firework" style="top:18%; left:18%; animation-delay:0.5s;"></div>
+      <div class="firework" style="top:14%; left:78%; animation-delay:2s;"></div>
+      <div class="firework" style="top:28%; left:50%; animation-delay:3.5s;"></div>
+    </div>
+
+    <!-- Corações subindo -->
+    <div class="hearts" aria-hidden="true">
+      <div class="heart" style="left:8%; animation-delay:0s;">❤️</div>
+      <div class="heart" style="left:22%; animation-delay:1.5s;">💕</div>
+      <div class="heart" style="left:40%; animation-delay:3s;">❤️</div>
+      <div class="heart" style="left:58%; animation-delay:0.8s;">💗</div>
+      <div class="heart" style="left:72%; animation-delay:2.3s;">❤️</div>
+      <div class="heart" style="left:88%; animation-delay:4s;">💕</div>
+      <div class="heart" style="left:50%; animation-delay:5.5s;">💗</div>
+      <div class="heart" style="left:15%; animation-delay:6.2s;">❤️</div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-kicker">Love Dedicatory</p>
+      <h1>Create and Share <br><em>Lovely Dedications</em></h1>
+      <p>Love Dedicatory helps you write a heartfelt message for your partner, dad, brother, or best friend. Add pictures and emotions to generate a unique sharing code!</p>
+    <!--
+      <div class="warning-badge">
+        <span>⚠️</span> Dedications are automatically deleted after 3 days.
+      </div>
+    -->
+
+      <div class="action-buttons">
+        <a href="{% url 'create_dedicatory' %}" class="btn btn-primary">Create Dedication</a>
+        <a href="{% url 'search' %}" class="btn btn-secondary">Find Dedication</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="carousel-wrapper">
+      <div class="slides">
+        <img src="{% static 'img/love2.png' %}" alt="Friends hugging in a warm, caring moment" loading="lazy">
+        <img src="{% static 'img/love1.png' %}" alt="Couple kissing, symbolizing a love dedication" loading="lazy">
+        <img src="{% static 'img/love3.png' %}" alt="Friends together celebrating their friendship" loading="lazy">
+      </div>
+    </div>
+
+    <!-- ===================== O QUE VOCÊ PODE CRIAR ===================== -->
+    <div class="content-section">
+      <h2>A Dedication for Every Kind of Love</h2>
+      <p class="section-intro">Love Dedicatory was built to help you express what words alone sometimes can't. Whatever the relationship, there's a dedication style made for it.</p>
+
+      <div class="dedication-grid">
+        <div class="dedication-card">
+          <span class="emoji">💑</span>
+          <h3>For Your Partner</h3>
+          <p>Romantic declarations, anniversary surprises, or a simple "I love you" made unforgettable.</p>
+        </div>
+        <div class="dedication-card">
+          <span class="emoji">👨</span>
+          <h3>For Dad</h3>
+          <p>Honor the lessons, sacrifices, and quiet love that often go unspoken.</p>
+        </div>
+        <div class="dedication-card">
+          <span class="emoji">👩</span>
+          <h3>For Mom</h3>
+          <p>Celebrate the person who gave everything, with a message she can keep forever.</p>
+        </div>
+        <div class="dedication-card">
+          <span class="emoji">🧑‍🤝‍🧑</span>
+          <h3>For Friends</h3>
+          <p>Thank the friends who show up, listen, and stay — near or far.</p>
+        </div>
+        <div class="dedication-card">
+          <span class="emoji">👫</span>
+          <h3>For Siblings</h3>
+          <p>Brothers and sisters share a bond built on memories only you two understand.</p>
+        </div>
+        <div class="dedication-card">
+          <span class="emoji">⭐</span>
+          <h3>For Someone You Admire</h3>
+          <p>From a mentor to a public figure or celebrity — dedicate a tribute to anyone who inspires you.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PÚBLICO OU PRIVADO ===================== -->
+    <div class="content-section">
+      <h2>Public or Private — You Decide</h2>
+      <p class="section-intro">Every dedication is different, and so is every reason for creating one. That's why you choose exactly who gets to see it.</p>
+
+      <div class="choice-grid">
+        <div class="choice-card">
+          <h3>🔒 Private Dedications</h3>
+          <p>Keep your message just between you and the person it's meant for. Share it only through your unique link or code — nobody else can find it or browse it.</p>
+        </div>
+        <div class="choice-card">
+          <h3>🌍 Public Dedications</h3>
+          <p>Want your dedication to inspire others too? Make it public and it will appear on our community dedications page, where visitors can browse heartfelt messages from people around the world.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PRIVACIDADE / SEGURANÇA ===================== -->
+    <div class="content-section">
+      <h2>Your Privacy Comes First</h2>
+      <p class="section-intro">Love Dedicatory was designed so you always stay in control of what you share and who can see it.</p>
+
+      <div class="privacy-block">
+        <p>Every dedication you create on Love Dedicatory gets a unique, private code. Nobody can guess or browse to it unless you choose to share it or make it public.</p>
+        <ul>
+          <li>Private dedications are never listed or indexed anywhere on the site.</li>
+          <li>You decide if and when a dedication becomes public.</li>
+          <li>Photos and messages are stored securely and only shown through your unique link or code.</li>
+        </ul>
+        <p>Want to learn more about how we handle your data? Read our <a href="{% url 'privacy' %}">Privacy Policy</a>.</p>
+      </div>
+    </div>
+
+    <!-- ===================== ÚLTIMAS DEDICATÓRIAS PÚBLICAS ===================== -->
+    <div class="content-section">
+      <h2>Latest Public Dedications</h2>
+      <p class="section-intro">Get inspired by dedications shared by our community.</p>
+
+      <div class="mini-dedication-grid">
+        {% for d in ultimas_dedicatorias %}
+          <a href="{% url 'screen_dedicatory' d.codigo %}" class="mini-dedication-card">
+            {% if d.photo1 %}
+              <img src="{{ d.photo1.url }}" alt="{{ d.nome }}" class="mini-photo" loading="lazy">
+            {% else %}
+              <div class="mini-photo">💌</div>
+            {% endif %}
+            <div class="mini-content">
+              <span class="mini-tag">{{ d.get_contexto_display }}</span>
+              <h3>{{ d.nome }}</h3>
+              <p>{{ d.mensagem|truncatechars:90 }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ===================== FAQ (PREVIEW) ===================== -->
+    <div class="content-section">
+      <h2>Frequently Asked Questions</h2>
+      <p class="section-intro">Quick answers to help you get started.</p>
+
+      <div class="faq-preview-list">
+        {% for f in faqs_preview %}
+          <div class="faq-preview-item">
+            <h3>{{ f.pergunta }}</h3>
+            <p>{{ f.resposta|striptags|truncatewords:25 }}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="faq-preview-more">
+        <a href="{% url 'faq' %}" class="btn btn-secondary">See All FAQs</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; {% now "Y" %} Love Dedicatory. Made with 💌 to help people share what words alone can't say.</p>
+    <p>
+      <a href="{% url 'about' %}">About</a> ·
+      <a href="{% url 'contact' %}">Contact</a> ·
+      <a href="{% url 'privacy' %}">Privacy</a> ·
+      <a href="{% url 'terms' %}">Terms</a> ·
+      <a href="{% url 'listar_publicas' %}">Dedications</a>
+    </p>
+    <p>Created by Josemar Neves</p>
+  </footer>
+
+  {% include 'cookies.html' %}
+
+</body>
+</html>
