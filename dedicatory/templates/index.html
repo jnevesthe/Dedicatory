@@ -94,7 +94,22 @@
       --shadow: 0 10px 30px -10px rgba(255, 71, 126, 0.3);
       --radius: 16px;
     }
+     nav {
+  position: relative;
+  z-index: 2;
+}
 
+nav a {
+  position: relative;
+  z-index: 3;
+}
+
+nav > *:not(a) {
+  position: relative;
+  z-index: 1;
+}
+
+    
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
@@ -529,6 +544,21 @@
       gap: 20px;
     }
 
+    nav {
+  position: relative;
+  z-index: 2;
+   }
+
+   nav a {
+  position: relative;
+  z-index: 3;
+  }
+
+  nav > *:not(a) {
+  position: relative;
+  z-index: 1;
+  }
+
     .mini-dedication-card {
       display: block;
       background: var(--white);
@@ -657,6 +687,9 @@
       <a href="{% url 'listar_publicas' %}">Dedications</a>
       <a href="{% url 'faq' %}">FAQ</a>
       <a href="{% url 'examples' %}">Examples</a>
+      <div class="nav-banner-wrap">
+         {% include 'banner.html' %}
+      </div>
       
     </nav>
     {% include 'banner.html' %}
