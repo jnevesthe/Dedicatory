@@ -1,1 +1,51 @@
-<div data-mndbanid="911c0d72-ecc5-4f1f-9d06-2a4b8754aa60"></div>
+<div class="lb-banner-wrap" id="lbBannerWrap">
+  <button type="button" class="lb-banner-close" id="lbBannerClose" aria-label="Fechar anúncio">&times;</button>
+  <div data-mndbanid="911c0d72-ecc5-4f1f-9d06-2a4b8754aa60"></div>
+</div>
+
+<style>
+  .lb-banner-wrap {
+    position: relative;
+    display: inline-block;
+    max-width: 160px;
+    max-height: 50px;
+    overflow: hidden;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .lb-banner-close {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    line-height: 16px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .lb-banner-close:hover {
+    background: #ff477e;
+  }
+</style>
+
+<script>
+  (function () {
+    var wrap = document.getElementById('lbBannerWrap');
+    var closeBtn = document.getElementById('lbBannerClose');
+    if (!wrap || !closeBtn) return;
+
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      wrap.remove();
+    });
+  })();
+</script>
