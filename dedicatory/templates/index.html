@@ -819,7 +819,7 @@ nav > *:not(a) {
 
       <div class="mini-dedication-grid">
         {% for d in ultimas_dedicatorias %}
-          <a href="{% url 'screen_dedicatory' d.codigo %}" class="mini-dedication-card">
+          <a href="{% url 'public' d.slug %}" class="mini-dedication-card">
             {% if d.photo1 %}
               <img src="{{ d.photo1.url }}" alt="{{ d.nome }}" class="mini-photo" loading="lazy">
             {% else %}
