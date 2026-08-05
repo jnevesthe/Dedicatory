@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 from dedicatory.sitemaps import FAQSitemap, DedicatorySitemap, StaticViewSitemap
+from access.views import limpar_acessos
 
 sitemaps = {
     'faqs': FAQSitemap,
@@ -29,7 +30,8 @@ sitemaps = {
 
 
 urlpatterns = [
-
+    
+    path('admin/limpar-acessos/', limpar_acessos, name='limpar_acessos'),
     path('admin/', admin.site.urls),
     path('', include('dedicatory.urls')),
     path('', include('access.urls')),
