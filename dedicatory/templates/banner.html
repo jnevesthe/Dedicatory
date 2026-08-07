@@ -1,25 +1,30 @@
-
-
 <style>
 .ad-row {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 4px;
     width: 100%;
     overflow: hidden;
 }
 
 .ad-slot {
+    width: 48px;      /* 300 * 0.16 */
+    height: 40px;      /* 250 * 0.16 */
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.ad-slot > div {
     width: 300px;
     height: 250px;
-    flex-shrink: 0;
-    transform: scale(0.16); /* ajusta esse valor conforme necessário */
+    transform: scale(0.16);
     transform-origin: top left;
-    /* compensa o espaço vazio deixado pelo scale */
-    margin-right: -252px;
-    margin-bottom: -210px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 </style>
 
@@ -31,4 +36,3 @@
     <div class="ad-slot"><div data-mndbanid="87d17847-f92b-498f-b185-9a91fba2ef69"></div></div>
     <div class="ad-slot"><div data-mndbanid="f71b4352-8ac6-4f1e-a169-2c3d39b6dd97"></div></div>
 </div>
-
